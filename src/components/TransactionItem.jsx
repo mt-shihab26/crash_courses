@@ -1,4 +1,11 @@
-const Part = ({ text, amount }) => {
+import { useHistory } from "../contexts/historyContext.jsx";
+
+const TransactionItem = ({ text, amount }) => {
+    const [history, setHistory] = useHistory();
+
+    const handleDelete = () => {
+        setHistory(history.filter(h => h.text !== text));
+    };
     return (
         <div
             className={
@@ -6,7 +13,10 @@ const Part = ({ text, amount }) => {
                 (amount > 0 ? "border-r-green-500" : "border-r-red-600")
             }
         >
-            <button className="absolute -translate-x-6 cursor-pointer bg-[#e74c3c] px-1 py-[3px] text-sm text-white opacity-0 hover:opacity-100 ">
+            <button
+                onClick={handleDelete}
+                className="absolute -translate-x-6 cursor-pointer bg-[#e74c3c] px-1 py-[3px] text-sm text-white opacity-0 hover:opacity-100 "
+            >
                 X
             </button>
             <span>{text}</span>
@@ -18,4 +28,4 @@ const Part = ({ text, amount }) => {
     );
 };
 
-export default Part;
+export default TransactionItem;
