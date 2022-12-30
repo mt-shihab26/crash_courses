@@ -1,20 +1,19 @@
-import { useHistory } from "../contexts/historyContext.jsx";
+import { useExpanse } from "../contexts/expanseStore.jsx";
 import Heading2 from "./Heading2.jsx";
 import TransactionItem from "./TransactionItem.jsx";
 
 const TransactionList = () => {
-    const [history] = useHistory();
+    const { transactions } = useExpanse();
     return (
         <div>
             <Heading2>History</Heading2>
             <div className="mt-4">
                 <div className="flex flex-col space-y-3">
-                    {history.map((node, index) => {
+                    {transactions.map(transaction => {
                         return (
                             <TransactionItem
-                                key={index}
-                                text={node.text}
-                                amount={node.amount}
+                                key={transaction.id}
+                                transaction={transaction}
                             />
                         );
                     })}

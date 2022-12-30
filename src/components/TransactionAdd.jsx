@@ -1,20 +1,14 @@
 import { useState } from "react";
-import { useAccount } from "../contexts/accountContext.jsx";
-import { useHistory } from "../contexts/historyContext.jsx";
+import { useExpanse } from "../contexts/expanseStore.jsx";
 import Heading2 from "./Heading2.jsx";
 import Input from "./Input.jsx";
+
+const range = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 const TransactionAdd = () => {
     const [amount, setAmount] = useState("");
     const [text, setText] = useState("");
-
-    const {
-        balance: [balance, setBalance],
-        income: [income, setIncome],
-        expanse: [expanse, setExpanse],
-    } = useAccount();
-
-    const [history, setHistory] = useHistory();
+    const { addTransaction } = useExpanse();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -25,18 +19,7 @@ const TransactionAdd = () => {
         if (text === "") {
             return;
         }
-        if (amountNum > 0) {
-            setBalance(balance + amountNum);
-            setIncome(income + amountNum);
-        } else {
-            const amountNumPositive = -amountNum;
-            if (balance < amountNumPositive) {
-                return;
-            }
-            setBalance(balance - amountNumPositive);
-            setExpanse(expanse + amountNumPositive);
-        }
-        setHistory([...history, { text, amount }]);
+        addTransaction(range(1, 1000), text, amountNum);
         setText("");
         setAmount("");
     };

@@ -1,11 +1,21 @@
-import { useAccount } from "../contexts/accountContext.jsx";
+import { useExpanse } from "../contexts/expanseStore";
 
 const Balance = () => {
-    const {
-        balance: [balance],
-        income: [income],
-        expanse: [expanse],
-    } = useAccount();
+    const { transactions } = useExpanse();
+
+    const income = transactions.reduce(
+        (sum, transaction) =>
+            transaction.amount > 0 ? sum + transaction.amount : sum,
+        0
+    );
+    const expanse = transactions.reduce(
+        (sum, transaction) =>
+            transaction.amount < 0 ? sum + Math.abs(transaction.amount) : sum,
+        0
+    );
+
+    const balance = income - expanse;
+
     return (
         <div className="flex flex-col space-y-4">
             <div>
