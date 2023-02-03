@@ -1,0 +1,11 @@
+{
+    "main": "src/index.js",
+    "license": "MIT",
+    "scripts": {
+        "dev": "tsc --watch",
+        "build": "tsc"
+    },
+    "dependencies": {
+        "http-server": "^14.1.1"
+    }
+}
