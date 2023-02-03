@@ -1,3 +1,6 @@
+# Custom
+dist
+
 # Logs
 logs
 *.log
@@ -66,3 +69,31 @@ node_modules/
 .env
 
 .bin
+
+# dependencies
+.pnp
+.pnp.js
+
+# next.js
+.next
+out
+
+# production
+build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+.pnpm-debug.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
