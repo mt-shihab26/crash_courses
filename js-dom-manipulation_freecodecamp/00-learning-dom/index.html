@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dom Manipulation</title>
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- <script src="./01-selecting-dom.js" defer></script> -->
+    <!-- <script src="./02-styling-an-element.js" defer></script> -->
+    <!-- <script src="./03-creating-adding-modifing.js" defer></script> -->
+    <!-- <script src="./04-traverse-the-dom.js" defer></script> -->
+    <!-- <script src="./05-event-listeners.js" defer></script> -->
+    <!-- <script src="./06-event-listener-examples.js" defer></script> -->
+    <!-- <script src="./07-event-propagation.js" defer></script> -->
+    <script src="./08-event-delegation.js" defer></script>
+
+</head>
+
+<body>
+    <div>
+        <h1 id="main-heading">Favorite Movie Franchise</h1>
+        <ul>
+            <li class="list-item">
+                <span>Neo</span>
+                The Matrix
+            </li>
+            <li class="list-item">Star Wars</li>
+            <li class="list-item">Harry Potter</li>
+            <li class="list-item">Lord of the Rings</li>
+            <li class="list-item">Mar
+                vel</li>
+        </ul>
+
+        <p>next sibling</p>
+    </div>
+
+    <div>
+        <h2 id="event-text">Event Listers:</h2>
+        <button id="btn-1" onclick="alert('I don\'t love javascript')">Enter 1</button>
+        <button id="btn-2">Enter 2</button>
+        <button id="btn-3">Enter 3</button>
+    </div>
+
+    <div>
+        <h2>Event Listener Example</h2>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+        <div id="hidden-content" style="display: none;">
+            <p>Rerum eos nobis voluptate architecto aspernatur sint eius
+                exercitationem voluptatibus.
+                Iusto facere magni laudantium libero obcaecati, itaque veniam nisi omnis unde reiciendis quidem delectus
+                nobis asperiores nemo beatae voluptatum odio maiores iure excepturi, consequuntur praesentium corporis
+                cupiditate! Obcaecati, quam sed. Deserunt numquam laudantium error tempore aut aperiam fugit sunt natus,
+                optio dicta aliquid cupiditate hic culpa accusantium quidem harum. Minus, itaque soluta! Quam fugiat
+                porro
+                pariatur! Consectetur dolore laboriosam magnam ratione tenetur quasi esse omnis quo porro libero fugit
+                dolor
+                doloremque officia corrupti, praesentium illum rem aspernatur cumque est vero ipsam sed, reprehenderit
+                aliquam. Illum dolore assumenda quos voluptatum pariatur magni, ab veniam maiores accusamus vero! Esse
+                beatae saepe sed quidem consectetur numquam obcaecati sit architecto, explicabo molestiae dolores
+                doloremque
+                laborum repellat at error non quas id? Distinctio fugiat laudantium eaque maiores, sed animi, reiciendis
+                nam
+                molestias incidunt et natus magni autem quis? Dolores, fuga impedit accusamus consectetur nam, rem
+                aliquam
+                magnam facere dolor necessitatibus, tenetur in fugit eum quam veritatis numquam nesciunt amet enim
+                inventore
+                error deleniti quisquam quasi. Alias, fuga? Explicabo iusto ex tempore minima iste beatae aut magnam?
+                Consequatur voluptas blanditiis officia? Inventore nam nisi, cum officiis quos accusamus.</p>
+        </div>
+        <button id="reveal-btn">Reveal More</button>
+    </div>
+
+    <div>
+        <h2>Event Propagation</h2>
+        <div id="div1">Div 1
+            <div id="div2">
+                Div 2
+                <a href="" id="button" style="color: white; display: block;">
+                    Click
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h2>Event Delegation</h2>
+        <ul id="sports">
+            <li>Football</li>
+            <li>Basketball</li>
+            <li>Boxing</li>
+            <li>Tennis</li>
+            <li>Golf</li>
+        </ul>
+    </div>
+</body>
+
+</html>
