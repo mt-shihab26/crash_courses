@@ -1,0 +1,39 @@
+body {
+    background-color: #3D2D6C;
+}
+
+.container {
+    color: white;
+    text-align: center;
+    background-color: #8063d4;
+    padding: 10px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 3px;
+    width: 50%;
+}
+
+.count-display {
+    padding: 20px;
+    background-color: white;
+    width: 20%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #3D2D6C;
+    border-radius: 3px;
+}
+
+.increment-button {
+    background-color: #508DF5;
+    padding: 20px;
+    border: 0px;
+    border-radius: 3px;
+    margin: auto;
+    width: 13%;
+    color: white;
+}
+
+.increment-button:active {
+    background-color: #7556d2;
+}
