@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .word-spacing {
+        word-spacing: -12px;
+    }
+    .tracking-tightest {
+        letter-spacing: -0.08em;
+    }
+    .f-word {
+        word-spacing: -12px;
+        letter-spacing: -0.08em;
+    }
+}
