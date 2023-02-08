@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc -w",
+    "compile": "tec"
+  },
+  "devDependencies": {
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2"
+  }
+}

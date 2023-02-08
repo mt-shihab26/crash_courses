@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig.json */
+
+    /* Language and Environment */
+    "target": "es6",
+
+    /* Modules */
+    "module": "es2015",
+    "rootDir": "./src",
+    "outDir": "./out",
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+ 
+    /* Completeness */
+    "skipLibCheck": true,
+  }
+}
