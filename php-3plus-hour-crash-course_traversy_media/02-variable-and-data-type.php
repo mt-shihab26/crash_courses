@@ -3,15 +3,14 @@
 /*
 ------ PHP Data Types ------
 
-- String      Series of characters surrounded by qoutes
+- String      Series of characters surrounded by quotes
 - Integer     Whole numbers
 - Float       Decimal numbers
 - Boolean     true or false
 - Array       Special variable, which can hold more then one value
 - Object      A class
 - NULL        Empty variable
-- Rescource   Special variabler taht holds a resource
-
+- Resource   Special variables that holds a resource
  */
 
 $name = "Shihab"; // string
@@ -28,10 +27,10 @@ echo $is_programmer, "\n";
 echo $cash_on_hand, "\n";
 
 echo '$name is $age years old\n', "\n";
-echo $name . ' is ' . $age . " years old\n"; // string concatanate
+echo $name . ' is ' . $age . " years old\n"; // string concatenate
 echo "$name is $age years old\n";
 
-// arimethic
+// arithmetic
 $x = 5 + 5;
 $y = '5'+'5';
 echo $x, " ", $y, "\n";

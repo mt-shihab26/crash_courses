@@ -4,10 +4,10 @@
 $numbers = [1, 2, 3, 4];
 print_r($numbers);
 
-$fruts = array("apple", "orange", "pear");
-print_r($fruts);
+$fruits = array("apple", "orange", "pear");
+print_r($fruits);
 
-echo $fruts[1], "\n";
+echo $fruits[1], "\n";
 
 // Associative Array
 $colors = [
@@ -31,7 +31,7 @@ $person = [
 ];
 print_r($person);
 
-// Multidimentional array
+// Multidimensional array
 $people = [
     [
         "first_name" => "Shihab",

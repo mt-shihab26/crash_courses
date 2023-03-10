@@ -9,9 +9,9 @@
 <=   Less than or equal to
 >=   Greater than or equal to
 ==   Equal to
-===  Indentical to
+===  Identical to
 !=   Not equal to
-!==  Not indentical to
+!==  Not identical to
  */
 
 $age = 17;
