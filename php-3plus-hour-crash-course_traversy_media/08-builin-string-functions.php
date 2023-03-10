@@ -34,3 +34,6 @@ if (str_ends_with($str, "d")) {
 
 $string2 = "<h1>Hello</h1>";
 echo htmlspecialchars($string2);
+
+printf("%s likes to %s\n", "Shihab", "Code");
+printf("1+1=%d\n", 1 + 1);
