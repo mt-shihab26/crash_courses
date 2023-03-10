@@ -57,5 +57,5 @@ switch ($fav_color) {
         echo "Your favorite color is green\n";
         break;
     default:
-        echo "Your favoriate color is not red, green or blue\n";
+        echo "Your favorite color is not red, green or blue\n";
 }
