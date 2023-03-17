@@ -1,3 +1,3 @@
-# js-slash-ts-crash-courses
+# crash-courses
 
-JavaScript/TypeScript Crash Varius Courses
+This repository contains all of the code and related files for my various crash courses on programming and other topics.
