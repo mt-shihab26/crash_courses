@@ -1,6 +1,10 @@
 <?php
 
 require_once 'vendor/autoload.php';
+require_once "config/db.php";
+require_once "lib/pdo.php";
+require_once "models/Customer.php";
+require_once "models/Transaction.php";
 
 Dotenv\Dotenv::createUnsafeImmutable(__DIR__)->safeLoad();
 
@@ -27,5 +31,27 @@ $charge = $stripe->charges->create([
     "description" => "Intro to React Course",
     "customer" => $customer->id
 ]);
+
+$customer_data = [
+    "id" => $charge->customer,
+    "first_name" => $first_name,
+    "last_name" => $last_name,
+    "email" => $email,
+];
+$customer      = new Customer();
+$customer->add_customer($customer_data);
+
+
+$transaction_data = [
+    "id" => $charge->id,
+    "customer_id" => $charge->customer,
+    "product" => $charge->description,
+    "amount" => $charge->amount,
+    "currency" => $charge->currency,
+    "status" => $charge->status,
+];
+$transaction      = new Transaction();
+$transaction->add_transaction($transaction_data);
+
 
 header("Location: success.php?tid=" . $charge["id"] . "&product=" . $charge["description"]);

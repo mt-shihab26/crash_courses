@@ -7,7 +7,6 @@ if (!empty($_GET["tid"]) && !empty($_GET["product"])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
