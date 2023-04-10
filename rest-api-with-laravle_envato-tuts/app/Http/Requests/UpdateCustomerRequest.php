@@ -3,15 +3,17 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCustomerRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     */
+    /**
+    * Determine if the user is authorized to make this request.
+    */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +23,36 @@ class UpdateCustomerRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+
+        if ($method === "PUT") {
+            return [
+                "name" => ["required"],
+                "type" => ["required", Rule::in(["I", "B"])],
+                "email" => ["required", "email"],
+                "address" => ["required"],
+                "city" => ["required"],
+                "state" => ["required"],
+                "postalCode" => ["required"],
+            ];
+        }
+        if ($method === "PATCH") {
+            return [
+                "name" => ["sometimes", "required"],
+                "type" => ["sometimes", "required", Rule::in(["I", "B"])],
+                "email" => ["sometimes", "required", "email"],
+                "address" => ["sometimes", "required"],
+                "city" => ["sometimes", "required"],
+                "state" => ["sometimes", "required"],
+                "postalCode" => ["sometimes", "required"],
+            ];
+        }
+        return [];
+    }
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'postal_code' => $this->input('postalCode'),
+        ]);
     }
 }
