@@ -1,5 +1,3 @@
-"use client";
-
 import {
     BsYoutube,
     BsFillMicFill,
@@ -8,7 +6,6 @@ import {
 } from "react-icons/bs";
 import { HiOutlineMenu } from "react-icons/hi";
 import { AiOutlineSearch } from "react-icons/ai";
-import Image from "next/image";
 import { useState } from "react";
 
 const TopNavigation = () => {
@@ -45,7 +42,7 @@ const TopNavigation = () => {
                     <BsBell size={22} />
                 </div>
                 <div className="flex cursor-pointer items-center">
-                    <Image
+                    <img
                         src="https://pbs.twimg.com/profile_images/1535005978831519744/l_w8skl2_400x400.jpg"
                         height={40}
                         width={40}
