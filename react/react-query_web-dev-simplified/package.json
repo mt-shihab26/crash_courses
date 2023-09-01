@@ -1,0 +1,32 @@
+{
+    "name": "zustand-tut",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "api": "json-server --watch db.json"
+    },
+    "dependencies": {
+        "@tanstack/react-query": "^4.32.6",
+        "@tanstack/react-query-devtools": "^4.32.6",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-icons": "^4.8.0",
+        "zustand": "^4.4.1"
+    },
+    "devDependencies": {
+        "@types/react": "^18.0.28",
+        "@types/react-dom": "^18.0.11",
+        "@vitejs/plugin-react": "^3.1.0",
+        "autoprefixer": "^10.4.14",
+        "postcss": "^8.4.21",
+        "prettier": "^3.0.1",
+        "prettier-plugin-tailwindcss": "^0.5.2",
+        "tailwindcss": "^3.3.1",
+        "typescript": "^4.9.3",
+        "vite": "^4.2.0"
+    }
+}
