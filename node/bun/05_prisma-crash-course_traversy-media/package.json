@@ -1,0 +1,15 @@
+{
+  "name": "05_prisma-crash-course_traversy-media",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "5.2.0",
+    "prisma": "^5.2.0"
+  }
+}
