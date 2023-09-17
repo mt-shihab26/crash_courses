@@ -1,12 +1,14 @@
 ---
+import { getCollection, type CollectionEntry } from "astro:content";
 import Card from "../../components/Card.astro";
 import Layout from "../../layouts/Layout.astro";
 
 export const getStaticPaths = async () => {
-    const posts = await Astro.glob("../../posts/*.md");
+    const posts = await getCollection("posts");
+
     return posts.map((post) => ({
         params: {
-            slugx: post.frontmatter.slug,
+            slugx: post.slug,
         },
         props: {
             post: post,
@@ -14,7 +16,12 @@ export const getStaticPaths = async () => {
     }));
 };
 
-const { Content, frontmatter } = Astro.props.post;
+interface Props {
+    post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
 ---
 
 <Layout>
@@ -22,10 +29,10 @@ const { Content, frontmatter } = Astro.props.post;
         <div class="container">
             <Card>
                 <a class="btn" href="/blog">Go Back</a>
-                <h2>{frontmatter.title}</h2>
+                <h2>{post.data.title}</h2>
                 <div>
-                    Written by <strong>{frontmatter.author}</strong> on {
-                        new Date(frontmatter.date).toLocaleDateString()
+                    Written by <strong>{post.data.author}</strong> on {
+                        new Date(post.data.date).toLocaleDateString()
                     }
                 </div>
                 <Content />

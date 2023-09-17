@@ -1,0 +1,51 @@
+---
+import type { Page, PaginateFunction, PaginateOptions } from "astro";
+import Card from "../../components/Card.astro";
+import Showcase from "../../components/Showcase.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+export const getStaticPaths = async ({
+    paginate,
+}: {
+    paginate: PaginateFunction;
+}) => {
+    const posts = await getCollection("posts");
+
+    return paginate(posts, { pageSize: 3 });
+};
+
+interface Props {
+    page: Page<CollectionEntry<"posts">>;
+}
+
+const { page } = Astro.props;
+
+const posts = page.data;
+---
+
+<Layout title="Astro Blog">
+    <Showcase heading="Astro Blog" text="Simple blog build with astro" />
+    <section class="page-content">
+        <div class="container">
+            {
+                posts?.map((post) => (
+                    <Card>
+                        <h2>{post.data.title}</h2>
+                        <>
+                            <div>
+                                Written by <strong>{post.data.author} </strong>{" "}
+                                on{" "}
+                                {new Date(post.data.date).toLocaleDateString()}
+                            </div>
+                            <p>{post.data.excerpt}</p>
+                        </>
+                        <a href={`/blog/${post.slug}`} class="btn">
+                            Read More
+                        </a>
+                    </Card>
+                ))
+            }
+        </div>
+    </section>
+</Layout>
