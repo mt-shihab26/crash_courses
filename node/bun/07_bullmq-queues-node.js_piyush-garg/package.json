@@ -1,0 +1,8 @@
+{
+  "main": "index.js",
+  "scripts": {},
+  "license": "ISC",
+  "dependencies": {
+    "bullmq": "^4.12.5"
+  }
+}
