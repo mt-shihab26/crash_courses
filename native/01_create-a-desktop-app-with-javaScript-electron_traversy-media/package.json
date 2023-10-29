@@ -1,0 +1,18 @@
+{
+    "productName": "ImageResizer",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ./src/main.js",
+        "dev": "NODE_ENV=dev electronmon ./src/main.js"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "electron": "^27.0.2",
+        "resize-img": "^2.0.0",
+        "toastify-js": "^1.12.0"
+    },
+    "devDependencies": {
+        "electronmon": "^2.0.2",
+        "prettier": "^3.0.3"
+    }
+}
