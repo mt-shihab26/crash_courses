@@ -16,23 +16,23 @@
 
 ## Serve static content
 
-```nginx.conf
+```nginx
 events {
 
 }
 
 http {
-	server {
-		listen 80;
-		server_name _;
-
-		#location / {
-	        #       return 200 "Hello from Nginx";
-		#}
-
-		root /app;
-	}
-
-	include /etc/nginx/mime.types;
+    server {
+	listen 80;
+	server_name _;
+	
+	#location / {
+	#       return 200 "Hello from Nginx";
+	#}
+	
+	root /app;
+    }
+	
+    include /etc/nginx/mime.types;
 }
 ```
