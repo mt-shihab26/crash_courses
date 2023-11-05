@@ -1,5 +1,9 @@
 # Nginx
 
+## Links
+
+- https://gist.github.com/piyushgarg-dev/8b14c87c8ff4d626ecbc747b6b9fc57f
+
 ## Definition
 
 - NGINX is a powerful web server and uses a non-threaded, event-driven architecture.
