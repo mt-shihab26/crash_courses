@@ -24,5 +24,11 @@ defmodule Example do
     end
 
     IO.puts ?a
+
+
+    # tuple
+    memberships = {:a, :b, :c}
+    memberships = Tuple.append(memberships, :x)
+
   end
 end
