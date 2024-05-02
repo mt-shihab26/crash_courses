@@ -25,6 +25,7 @@ const gameOver = (gameWon: any) => {
     for (var i = 0; i < cells.length; i++) {
         cells[i].removeEventListener("click", turnClick, false);
     }
+    declareWinner(gameWon.player == humenPlayer ? "You win!" : "You lose.");
 };
 
 const checkWon = (board: any, player: string) => {
@@ -70,8 +71,14 @@ function checkTie() {
     return false;
 }
 
+// const bestSpot = () => {
+//     return emptySquares()[0];
+// };
+
+const minimax = (board: any, aiPlayer: string) => {};
+
 const bestSpot = () => {
-    return emptySquares()[0];
+    return minimax(origBoard, aiPlayer).index;
 };
 
 const turnClick = (square: any) => {
