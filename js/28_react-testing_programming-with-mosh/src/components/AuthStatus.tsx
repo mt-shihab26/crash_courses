@@ -4,19 +4,19 @@ import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 
 const AuthStatus = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+    const { user, isAuthenticated, isLoading } = useAuth0();
 
-  if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <div>Loading...</div>;
 
-  if (isAuthenticated)
-    return (
-      <div className="flex space-x-2 items-center">
-        <Text>{user!.name}</Text>
-        <LogoutButton />
-      </div>
-    );
+    if (isAuthenticated)
+        return (
+            <div className="flex items-center space-x-2">
+                <Text>{user!.name}</Text>
+                <LogoutButton />
+            </div>
+        );
 
-  return <LoginButton />;
+    return <LoginButton />;
 };
 
 export default AuthStatus;

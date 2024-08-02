@@ -8,19 +8,19 @@ import ReduxProvider from "./ReduxProvider";
 import { LanguageProvider } from "./language/LanguageProvider";
 
 const Providers = ({ children }: PropsWithChildren) => {
-  return (
-    <AuthProvider>
-      <ReactQueryProvider>
-        <ReduxProvider>
-          <CartProvider>
-            <LanguageProvider language="en">
-              <Theme>{children}</Theme>
-            </LanguageProvider>
-          </CartProvider>
-        </ReduxProvider>
-      </ReactQueryProvider>
-    </AuthProvider>
-  );
+    return (
+        <AuthProvider>
+            <ReactQueryProvider>
+                <ReduxProvider>
+                    <CartProvider>
+                        <LanguageProvider language="en">
+                            <Theme>{children}</Theme>
+                        </LanguageProvider>
+                    </CartProvider>
+                </ReduxProvider>
+            </ReactQueryProvider>
+        </AuthProvider>
+    );
 };
 
 export default Providers;
