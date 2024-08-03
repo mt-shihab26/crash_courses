@@ -1,5 +1,5 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { useAuth0 } from '@auth0/auth0-react';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 const PrivateRoutes = () => {
     const { pathname } = useLocation();

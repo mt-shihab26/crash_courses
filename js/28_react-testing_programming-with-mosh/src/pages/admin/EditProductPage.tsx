@@ -1,10 +1,10 @@
-import { withAuthenticationRequired } from "@auth0/auth0-react";
-import { Heading } from "@radix-ui/themes";
-import axios from "axios";
-import toast from "react-hot-toast";
-import { useNavigate, useParams } from "react-router-dom";
-import ProductForm from "../../components/ProductForm";
-import useProduct from "../../hooks/useProduct";
+import { withAuthenticationRequired } from '@auth0/auth0-react';
+import { Heading } from '@radix-ui/themes';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useNavigate, useParams } from 'react-router-dom';
+import ProductForm from '../../components/ProductForm';
+import useProduct from '../../hooks/useProduct';
 
 const EditProductPage = withAuthenticationRequired(() => {
     const navigate = useNavigate();
@@ -24,9 +24,9 @@ const EditProductPage = withAuthenticationRequired(() => {
             <ProductForm
                 product={product}
                 onSubmit={async product => {
-                    await axios.put("/products/" + productId, product);
-                    toast.success("Changes were successfully saved.");
-                    navigate("/admin/products");
+                    await axios.put('/products/' + productId, product);
+                    toast.success('Changes were successfully saved.');
+                    navigate('/admin/products');
                 }}
             />
         </div>

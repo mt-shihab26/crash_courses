@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { fetchCategories } from "../store/categorySlice";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { useEffect } from 'react';
+import { fetchCategories } from '../store/categorySlice';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
 
 function CategoryList() {
     const dispatch = useAppDispatch();

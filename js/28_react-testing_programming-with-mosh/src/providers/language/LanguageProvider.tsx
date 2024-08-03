@@ -1,9 +1,9 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState } from 'react';
 
-import LanguageContext from "./LanguageContext";
-import en from "./data/en.json";
-import es from "./data/es.json";
-import { Language } from "./type";
+import LanguageContext from './LanguageContext';
+import en from './data/en.json';
+import es from './data/es.json';
+import { Language } from './type';
 
 interface Props {
     language: Language;

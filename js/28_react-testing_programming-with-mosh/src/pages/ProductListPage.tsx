@@ -1,9 +1,9 @@
-import { Table } from "@radix-ui/themes";
-import axios from "axios";
-import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
-import QuantitySelector from "../components/QuantitySelector";
-import { Product } from "../entities";
+import { Table } from '@radix-ui/themes';
+import axios from 'axios';
+import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
+import QuantitySelector from '../components/QuantitySelector';
+import { Product } from '../entities';
 
 function ProductListPage() {
     const { data: products, isLoading, error } = useProducts();
@@ -51,8 +51,8 @@ function ProductListPage() {
 
 const useProducts = () =>
     useQuery<Product[], Error>({
-        queryKey: ["products"],
-        queryFn: () => axios.get("/products").then(res => res.data),
+        queryKey: ['products'],
+        queryFn: () => axios.get('/products').then(res => res.data),
     });
 
 export default ProductListPage;

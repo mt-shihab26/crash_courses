@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { Category } from "../entities";
-import { RootState } from "./store";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { Category } from '../entities';
+import { RootState } from './store';
 
 export interface CategoryState {
     list: Category[];
@@ -15,18 +15,18 @@ const initialState: CategoryState = {
     error: null,
 };
 
-export const fetchCategories = createAsyncThunk<Category[]>("categories/fetch", async () => {
-    const { data } = await axios.get("/categories");
+export const fetchCategories = createAsyncThunk<Category[]>('categories/fetch', async () => {
+    const { data } = await axios.get('/categories');
     return data;
 });
 
-export const createCategory = createAsyncThunk("categories/create", async (name: string) => {
-    const { data } = await axios.post("/categories", { name });
+export const createCategory = createAsyncThunk('categories/create', async (name: string) => {
+    const { data } = await axios.post('/categories', { name });
     return data;
 });
 
 export const categorySlice = createSlice({
-    name: "categories",
+    name: 'categories',
     initialState,
     extraReducers: builder => {
         builder.addCase(fetchCategories.pending, state => {

@@ -1,10 +1,10 @@
-import axios, { AxiosError } from "axios";
-import { useQuery } from "react-query";
-import { Product } from "../entities";
+import axios, { AxiosError } from 'axios';
+import { useQuery } from 'react-query';
+import { Product } from '../entities';
 
 const useProduct = (productId: number) => {
     return useQuery<Product, Error>({
-        queryKey: ["products", productId],
+        queryKey: ['products', productId],
         queryFn: () => fetchProduct(productId),
         cacheTime: 0,
     });

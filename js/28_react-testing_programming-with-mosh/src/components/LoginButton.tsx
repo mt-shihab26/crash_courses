@@ -1,5 +1,5 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { Button } from "@radix-ui/themes";
+import { useAuth0 } from '@auth0/auth0-react';
+import { Button } from '@radix-ui/themes';
 
 const LoginButton = () => {
     const { loginWithRedirect } = useAuth0();

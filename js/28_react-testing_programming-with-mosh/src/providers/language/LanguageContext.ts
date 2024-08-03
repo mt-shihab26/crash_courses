@@ -1,5 +1,5 @@
-import { createContext } from "react";
-import { Language } from "./type";
+import { createContext } from 'react';
+import { Language } from './type';
 
 type LanguageContextType = {
     currentLanguage: Language;

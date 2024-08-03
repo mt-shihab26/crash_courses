@@ -1,5 +1,5 @@
-import { withAuthenticationRequired } from "@auth0/auth0-react";
-import { Link } from "react-router-dom";
+import { withAuthenticationRequired } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
 
 const AdminHomePage = withAuthenticationRequired(() => {
     return (

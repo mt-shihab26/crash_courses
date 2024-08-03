@@ -1,4 +1,4 @@
-import { Button, Dialog, Flex } from "@radix-ui/themes";
+import { Button, Dialog, Flex } from '@radix-ui/themes';
 
 const CancelOrderButton = () => {
     return (

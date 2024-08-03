@@ -1,8 +1,8 @@
-import { withAuthenticationRequired } from "@auth0/auth0-react";
-import { Heading } from "@radix-ui/themes";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import ProductForm from "../../components/ProductForm";
+import { withAuthenticationRequired } from '@auth0/auth0-react';
+import { Heading } from '@radix-ui/themes';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import ProductForm from '../../components/ProductForm';
 
 const NewProductPage = withAuthenticationRequired(
     () => {
@@ -13,8 +13,8 @@ const NewProductPage = withAuthenticationRequired(
                 <Heading mb="4">New Product</Heading>
                 <ProductForm
                     onSubmit={async product => {
-                        await axios.post("/products", product);
-                        navigate("/admin/products");
+                        await axios.post('/products', product);
+                        navigate('/admin/products');
                     }}
                 />
             </div>
