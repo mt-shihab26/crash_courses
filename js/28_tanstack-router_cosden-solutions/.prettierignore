@@ -1,2 +1,5 @@
+out
+dist
+bun.lock
 routeTree.gen.ts
 
