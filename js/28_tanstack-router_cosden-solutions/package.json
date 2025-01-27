@@ -1,14 +1,11 @@
 {
-    "name": "28_tanstack-router_cosden-solutions",
-    "private": true,
-    "version": "0.0.0",
     "type": "module",
     "scripts": {
         "dev": "bun x --bun vite",
-        "build": "tsc -b && vite build",
-        "lint": "eslint .",
-        "preview": "vite preview",
-        "format": "prettier --write ."
+        "build": "bun x --bun tsc -b && bun x --bun vite build",
+        "lint": "bun x --bun eslint .",
+        "preview": "bun x --bun vite preview",
+        "format": "bun x --bun prettier --write ."
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.0.0",
