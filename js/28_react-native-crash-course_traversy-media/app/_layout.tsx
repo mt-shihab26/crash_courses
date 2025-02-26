@@ -1,5 +1,7 @@
 import { Stack } from "expo-router";
 
-export default function RootLayout() {
-  return <Stack />;
-}
+const Layout = () => {
+    return <Stack />;
+};
+
+export default Layout;
