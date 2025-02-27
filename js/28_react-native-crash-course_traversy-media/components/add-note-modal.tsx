@@ -6,6 +6,10 @@ const AddNoteModal = () => {
     const [open, setOpen] = useState<boolean>(false);
     const [content, setContent] = useState<string>("");
 
+    const addNote = () => {
+        //
+    };
+
     return (
         <View>
             <TouchableOpacity
@@ -77,6 +81,47 @@ const AddNoteModal = () => {
                                 marginBottom: 15,
                             }}
                         />
+                        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                            <TouchableOpacity
+                                style={{
+                                    backgroundColor: "#cccccc",
+                                    padding: 10,
+                                    borderRadius: 5,
+                                    flex: 1,
+                                    marginRight: 10,
+                                    alignItems: "center",
+                                }}
+                                onPress={() => setOpen(false)}
+                            >
+                                <Text
+                                    style={{
+                                        fontSize: 16,
+                                        color: "#333331",
+                                    }}
+                                >
+                                    Cancel
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={{
+                                    backgroundColor: "#007bff",
+                                    padding: 10,
+                                    borderRadius: 5,
+                                    flex: 1,
+                                    alignItems: "center",
+                                }}
+                                onPress={addNote}
+                            >
+                                <Text
+                                    style={{
+                                        fontSize: 16,
+                                        color: "#ffffff",
+                                    }}
+                                >
+                                    Save
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </Modal>
