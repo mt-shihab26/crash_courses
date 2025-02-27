@@ -1,7 +1,7 @@
 {
     "expo": {
-        "name": "28_react-native-crash-course_traversy-media",
-        "slug": "28_react-native-crash-course_traversy-media",
+        "name": "TaskApp",
+        "slug": "task_app",
         "version": "1.0.0",
         "orientation": "portrait",
         "icon": "./assets/images/icon.png",
