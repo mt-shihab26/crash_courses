@@ -2,7 +2,8 @@ import type { TNote } from "@/types/models";
 
 import { useState } from "react";
 
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { AddNoteModal } from "@/components/add-note-modal";
+import { FlatList, Text, View } from "react-native";
 
 const Notes = () => {
     const [notes, setNotes] = useState<TNote[]>([
@@ -31,28 +32,7 @@ const Notes = () => {
                     </View>
                 )}
             />
-            <TouchableOpacity
-                style={{
-                    position: "absolute",
-                    bottom: 20,
-                    left: 20,
-                    right: 20,
-                    backgroundColor: "#007bff",
-                    padding: 15,
-                    borderRadius: 8,
-                    alignItems: "center",
-                }}
-            >
-                <Text
-                    style={{
-                        color: "#ffffff",
-                        fontSize: 18,
-                        fontWeight: "bold",
-                    }}
-                >
-                    + Add Note
-                </Text>
-            </TouchableOpacity>
+            <AddNoteModal />
         </View>
     );
 };
