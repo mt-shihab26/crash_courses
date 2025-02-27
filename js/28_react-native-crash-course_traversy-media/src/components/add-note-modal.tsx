@@ -2,12 +2,13 @@ import { useState } from "react";
 
 import { Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
 
-const AddNoteModal = () => {
+const AddNoteModal = ({ onSave }: { onSave: (data: { content: string }) => void }) => {
     const [open, setOpen] = useState<boolean>(false);
     const [content, setContent] = useState<string>("");
 
     const addNote = () => {
-        //
+        onSave({ content });
+        setOpen(false);
     };
 
     return (

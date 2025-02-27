@@ -1,5 +1,6 @@
 import type { TNote } from "@/types/models";
 
+import { getRandomNoteId } from "@/lib/utils";
 import { useState } from "react";
 
 import { AddNoteModal } from "@/components/add-note-modal";
@@ -32,7 +33,13 @@ const Notes = () => {
                     </View>
                 )}
             />
-            <AddNoteModal />
+            <AddNoteModal
+                onSave={data => {
+                    setNotes(notes => {
+                        return [...notes, { id: getRandomNoteId(), content: data.content }];
+                    });
+                }}
+            />
         </View>
     );
 };
