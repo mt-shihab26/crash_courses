@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Modal, Text, TouchableOpacity, View } from "react-native";
+import { Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 const AddNoteModal = () => {
     const [open, setOpen] = useState<boolean>(false);
@@ -63,6 +63,20 @@ const AddNoteModal = () => {
                         >
                             Add a New Note
                         </Text>
+                        <TextInput
+                            placeholder="Enter note..."
+                            placeholderTextColor="#aaaaaa"
+                            value={content}
+                            onChangeText={content => setContent(content)}
+                            style={{
+                                borderWidth: 1,
+                                borderColor: "#cccccc",
+                                borderRadius: 8,
+                                padding: 10,
+                                fontSize: 16,
+                                marginBottom: 15,
+                            }}
+                        />
                     </View>
                 </View>
             </Modal>
