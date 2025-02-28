@@ -7,7 +7,9 @@ const AddNoteModal = ({ onSave }: { onSave: (data: { content: string }) => void 
     const [content, setContent] = useState<string>("");
 
     const addNote = () => {
+        if (!content.trim()) return;
         onSave({ content });
+        setContent("");
         setOpen(false);
     };
 
