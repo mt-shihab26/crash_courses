@@ -14,16 +14,16 @@ const Notes = () => {
         { id: "3", content: "Note Three" },
     ]);
 
+    const handleSaveNote = (content: string) => {
+        setNotes(notes => {
+            return [...notes, { id: getRandomNoteId(), content }];
+        });
+    };
+
     return (
         <View style={{ flex: 1, padding: 20, backgroundColor: "#ffffff" }}>
             <NotesList notes={notes} />
-            <AddNoteModal
-                onSave={data => {
-                    setNotes(notes => {
-                        return [...notes, { id: getRandomNoteId(), content: data.content }];
-                    });
-                }}
-            />
+            <AddNoteModal onSave={handleSaveNote} />
         </View>
     );
 };
