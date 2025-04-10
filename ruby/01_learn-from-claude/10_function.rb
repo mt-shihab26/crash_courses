@@ -1,4 +1,4 @@
-def greet(name = "World")
+def greet name = "World"
     puts "Hello #{name}"
 end
 
