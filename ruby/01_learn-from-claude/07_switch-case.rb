@@ -2,11 +2,11 @@ day = "Friday"
 
 case day
 when "Monday"
-    puts("Start to work week")
+  puts("Start to work week")
 when "Friday"
-    puts("End of work week")
+  puts("End of work week")
 when "Saturday", "Sunday"
-    puts("Weekend")
+  puts("Weekend")
 else
-    puts("Mid-week")
+  puts("Mid-week")
 end

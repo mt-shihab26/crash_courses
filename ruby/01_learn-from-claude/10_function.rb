@@ -1,6 +1,6 @@
-def greet name = "World"
-    puts "Hello #{name}"
+def greet(name = "World")
+  puts("Hello #{name}")
 end
 
 message = greet("Ruby Learner")
-puts message
+puts(message)

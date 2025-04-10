@@ -1,13 +1,11 @@
-fruits = ['apple', 'banana', 'cherry']
+fruits = ["apple", "banana", "cherry"]
 
-puts fruits[0]
-
+puts(fruits[0])
 
 fruits.push("orange")
-fruits << "mango" # another way to add elements
-
+# another way to add elements
+fruits << "mango"
 
 fruits.each do |fruit|
-    puts "I like #{fruit}"
+  puts("I like #{fruit}")
 end
-
