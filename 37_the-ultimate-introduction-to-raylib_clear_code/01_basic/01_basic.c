@@ -5,7 +5,7 @@ int main() {
 
     InitWindow(800, 500, "Basic");
 
-    char *spaceship_path;
+    char spaceship_path[1000];
     strcat(spaceship_path, GetWorkingDirectory());
     strcat(spaceship_path, "/01_basic/assets/spaceship.png");
 
