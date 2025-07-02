@@ -1,7 +1,11 @@
 #include <raylib.h>
 
 int main() {
+
     InitWindow(800, 500, "Basic");
+
+    Texture2D spaceship_texture = LoadTexture("assets/spaceship.png");
+
     SetTargetFPS(60);
 
     while (!WindowShouldClose()) {
@@ -13,7 +17,7 @@ int main() {
         // ClearBackground((Color){0, 0, 0, 255}); // Pure Black
         // ClearBackground((Color){0, 0, 0, 0}); // Invisible Color
 
-        ClearBackground(WHITE);
+        ClearBackground(BLACK);
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -27,6 +31,9 @@ int main() {
         DrawCircleV((Vector2){400, 400}, 10, YELLOW);
 
         DrawLineEx((Vector2){100, 100}, (Vector2){300, 100}, 10, GREEN);
+
+        // display images
+        DrawTexture(spaceship_texture, 0, 0, WHITE);
 
         EndDrawing();
     }
