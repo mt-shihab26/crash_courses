@@ -1,10 +1,15 @@
 #include <raylib.h>
+#include <string.h>
 
 int main() {
 
     InitWindow(800, 500, "Basic");
 
-    Texture2D spaceship_texture = LoadTexture("assets/spaceship.png");
+    char *spaceship_path;
+    strcat(spaceship_path, GetWorkingDirectory());
+    strcat(spaceship_path, "/01_basic/assets/spaceship.png");
+
+    Texture2D spaceship_texture = LoadTexture(spaceship_path);
 
     SetTargetFPS(60);
 
@@ -38,6 +43,7 @@ int main() {
         EndDrawing();
     }
 
+    UnloadTexture(spaceship_texture);
     CloseWindow();
 
     return 0;
