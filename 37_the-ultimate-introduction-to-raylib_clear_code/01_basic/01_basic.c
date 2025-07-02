@@ -23,7 +23,10 @@ int main() {
         }
 
         // DrawCircle(400, 400, 10, GREEN);
-        DrawCircleV((Vector2){400, 400}, 10, GREEN);
+        DrawCircleV((Vector2){400, 400}, 50, GREEN);
+        DrawCircleV((Vector2){400, 400}, 10, YELLOW);
+
+        DrawLineEx((Vector2){100, 100}, (Vector2){300, 100}, 10, GREEN);
 
         EndDrawing();
     }
