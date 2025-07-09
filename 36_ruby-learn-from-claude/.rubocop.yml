@@ -1,7 +1,0 @@
-AllCops:
-    NewCops: enable
-    TargetRubyVersion: 3.0
-
-# Allow method definitions without parentheses
-Style/MethodDefParentheses:
-    Enabled: false
