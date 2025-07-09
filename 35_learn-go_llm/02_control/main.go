@@ -51,4 +51,32 @@ func main() {
 		}
 		i += 1
 	}
+
+	// 	fmt.Println("Start")
+	// 	goto skip
+	// 	fmt.Println("Want's run")
+	//
+	// skip:
+	// 	fmt.Println("Skipping to here")
+
+	// for i := 0; i < 3; i++ {
+	// 	for j := 0; j < 3; j++ {
+	// 		if i == 1 && j == 1 {
+	// 			goto done
+	// 		}
+	// 		fmt.Println(i, j)
+	// 	}
+	// }
+
+	for i := range 3 {
+		for j := range 3 {
+			if i == 1 && j == 1 {
+				goto done
+			}
+			fmt.Println(i, j)
+		}
+	}
+
+done:
+	fmt.Println("Exited nested loops")
 }

@@ -18,7 +18,7 @@
 - [x] `switch` statements
 - [x] `for` loops (no `while` in Go)
 - [x] `break`, `continue`
-- [ ] `goto`
+- [x] `goto`
 
 ### ✅ Functions
 
