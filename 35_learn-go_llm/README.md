@@ -20,7 +20,7 @@
 - [x] `break`, `continue`
 - [x] `goto`
 
-### ✅ Functions
+### 3. Functions
 
 - Defining and calling functions
 - Parameters and return values
@@ -192,5 +192,3 @@
 - Interfacing with Redis, Kafka, etc.
 
 ---
-
-Would you like this list turned into a **study plan** or **interactive checklist**? I can also recommend one great tutorial for each topic if you want a curated learning path.
