@@ -34,8 +34,8 @@
 ### 4. Data Structures
 
 - [x] Arrays
-- Slices
-- Maps
+- [x] Slices
+- [x] Maps
 - Structs (custom types)
 - Pointers
 
