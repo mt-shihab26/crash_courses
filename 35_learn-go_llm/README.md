@@ -22,18 +22,18 @@
 
 ### 3. Functions
 
-- Defining and calling functions
-- Parameters and return values
-- Multiple return values
-- Variadic functions
-- Anonymous functions
-- Closures
-- Recursion
-- Defer statement
+- [x] Defining and calling functions
+- [x] Parameters and return values
+- [x] Multiple return values
+- [x] Variadic functions
+- [x] Anonymous functions
+- [x] Closures
+- [x] Recursion
+- [x] Defer statement
 
-### ✅ Data Structures
+### 4. Data Structures
 
-- Arrays
+- [x] Arrays
 - Slices
 - Maps
 - Structs (custom types)
