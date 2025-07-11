@@ -36,12 +36,12 @@
 - [x] Arrays
 - [x] Slices
 - [x] Maps
-- Structs (custom types)
-- Pointers
+- [x] Structs (custom types)
+- [x] Pointers
 
-### ✅ Basic I/O and Strings
+### 5. Basic I/O and Strings
 
-- Reading and writing input/output
+- [x] Reading and writing input/output
 - String formatting (`fmt.Sprintf`)
 - String manipulation (`strings` package)
 
