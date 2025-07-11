@@ -51,9 +51,8 @@
 
 ### 6. Collections & Built-in Functions
 
-- Built-in functions (`len`, `append`, `copy`, etc.)
-- Working with slices and maps effectively
-- Deep vs shallow copy
+- [x] Built-in functions (`len`, `append`, `copy`, etc.)
+- [x] Deep vs shallow copy
 - Sorting with `sort` package
 
 ### 7. Methods & Interfaces
