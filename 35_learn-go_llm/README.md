@@ -1,4 +1,6 @@
-## **Beginner Topics**
+# Learn go from LLM
+
+## Beginner Topics
 
 ### 1. Basic Syntax & Language Fundamentals
 
@@ -43,20 +45,18 @@
 
 - [x] Reading and writing input/output
 - [x] String formatting (`fmt.Sprintf`)
-- String manipulation (`strings` package)
+- [x] String manipulation (`strings` package)
 
----
+## Intermediate Topics
 
-## 🟡 **Intermediate Topics**
-
-### ✅ Collections & Built-in Functions
+### 6. Collections & Built-in Functions
 
 - Built-in functions (`len`, `append`, `copy`, etc.)
 - Working with slices and maps effectively
 - Deep vs shallow copy
 - Sorting with `sort` package
 
-### ✅ Methods & Interfaces
+### 7. Methods & Interfaces
 
 - Method receivers (value vs pointer)
 - Interfaces and interface types
@@ -64,7 +64,7 @@
 - Type switches
 - Empty interface (`interface{}`)
 
-### ✅ Error Handling
+### 8. Error Handling
 
 - Built-in error type
 - Returning errors from functions
@@ -72,7 +72,7 @@
 - `errors.New` and `fmt.Errorf`
 - Error wrapping (Go 1.13+)
 
-### ✅ Concurrency
+### 9. Concurrency
 
 - Goroutines
 - Channels
@@ -82,14 +82,14 @@
 - `sync` package (Mutex, WaitGroup)
 - `context` package for cancellation
 
-### ✅ Modules & Dependency Management
+### 10. Modules & Dependency Management
 
 - Introduction to Go Modules (`go mod`)
 - `go get`, `go install`
 - Semantic versioning
 - Vendoring
 
-### ✅ Packages and Project Structure
+### 11. Packages and Project Structure
 
 - Creating reusable packages
 - Standard library overview
@@ -97,11 +97,9 @@
 - Internal packages
 - Documentation with `godoc`
 
----
+## Advanced Topics
 
-## 🔵 **Advanced Topics**
-
-### ✅ Testing
+### 12. Testing
 
 - Writing unit tests with `testing` package
 - Table-driven tests
@@ -109,13 +107,13 @@
 - Mocks and test coverage
 - Using `testify` or other test libraries
 
-### ✅ File I/O
+### 13. File I/O
 
 - Reading and writing files
 - File paths and OS operations
 - Buffering and scanning files
 
-### ✅ Networking
+### 14. Networking
 
 - Creating HTTP clients and servers
 - RESTful APIs with `net/http`
@@ -123,20 +121,20 @@
 - Handling JSON with `encoding/json`
 - WebSockets (via `gorilla/websocket`)
 
-### ✅ Reflection
+### 15. Reflection
 
 - `reflect` package
 - Type metadata and dynamic access
 - When to avoid reflection
 
-### ✅ Generics (Go 1.18+)
+### 16. Generics (Go 1.18+)
 
 - Introduction to type parameters
 - Writing generic functions and types
 - Constraints
 - Type inference
 
-### ✅ Advanced Concurrency Patterns
+### 17. Advanced Concurrency Patterns
 
 - Worker pools
 - Pipelines
@@ -144,23 +142,21 @@
 - Deadlock prevention
 - `context.Context` best practices
 
----
+## Tools, Practices, and Ecosystem
 
-## ⚙️ **Tools, Practices, and Ecosystem**
-
-### ✅ Formatting & Linting
+### 18. Formatting & Linting
 
 - `gofmt`, `goimports`
 - `golint`, `staticcheck`, `govet`
 - `golangci-lint`
 
-### ✅ Build & Deployment
+### 19. Build & Deployment
 
 - `go build`, `go run`, `go install`
 - Cross-compilation
 - Embedding static files (Go 1.16+)
 
-### ✅ Code Organization & Best Practices
+### 20. Code Organization & Best Practices
 
 - Idiomatic Go (Effective Go)
 - Composition over inheritance
@@ -168,27 +164,23 @@
 - Avoiding global variables
 - Handling panics and recover
 
-### ✅ Working with Databases
+### 21. Working with Databases
 
 - SQL with `database/sql`
 - Using ORM (e.g. `gorm`)
 - Transactions and prepared statements
 
-### ✅ Popular Frameworks & Libraries
+### 22. Popular Frameworks & Libraries
 
 - Web frameworks: `gin`, `echo`, `fiber`
 - CLI: `cobra`, `urfave/cli`
 - Logging: `log`, `zap`, `logrus`
 - Testing: `testify`, `httptest`
 
----
-
-## 🧠 Optional Topics (as needed)
+## Optional Topics (as needed)
 
 - WebAssembly with Go
 - Embedding in other apps (C/C++)
 - Mobile apps with Go (gomobile)
 - Using Go in Kubernetes development
 - Interfacing with Redis, Kafka, etc.
-
----
