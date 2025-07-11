@@ -53,7 +53,7 @@
 
 - [x] Built-in functions (`len`, `append`, `copy`, etc.)
 - [x] Deep vs shallow copy
-- Sorting with `sort` package
+- [x] Sorting with `sort` package
 
 ### 7. Methods & Interfaces
 
