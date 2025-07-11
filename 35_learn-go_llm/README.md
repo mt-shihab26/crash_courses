@@ -42,7 +42,7 @@
 ### 5. Basic I/O and Strings
 
 - [x] Reading and writing input/output
-- String formatting (`fmt.Sprintf`)
+- [x] String formatting (`fmt.Sprintf`)
 - String manipulation (`strings` package)
 
 ---
