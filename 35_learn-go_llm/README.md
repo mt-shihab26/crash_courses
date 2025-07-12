@@ -57,11 +57,11 @@
 
 ### 7. Methods & Interfaces
 
-- Method receivers (value vs pointer)
-- Interfaces and interface types
-- Type assertions
-- Type switches
-- Empty interface (`interface{}`)
+- [x] Method receivers (value vs pointer)
+- [x] Interfaces and interface types
+- [x] Type assertions
+- [x] Type switches
+- [x] Empty interface (`interface{}`)
 
 ### 8. Error Handling
 
