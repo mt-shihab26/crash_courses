@@ -65,11 +65,11 @@
 
 ### 8. Error Handling
 
-- Built-in error type
-- Returning errors from functions
-- Custom error types
-- `errors.New` and `fmt.Errorf`
-- Error wrapping (Go 1.13+)
+- [x] Built-in error type
+- [x] Returning errors from functions
+- [x] Custom error types
+- [x] `errors.New` and `fmt.Errorf`
+- [x] Error wrapping (Go 1.13+)
 
 ### 9. Concurrency
 
