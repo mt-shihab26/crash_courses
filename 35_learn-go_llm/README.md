@@ -1,4 +1,4 @@
-# Learn go from LLM
+# Learn Go from LLM
 
 ## Beginner Topics
 
