@@ -178,6 +178,7 @@
 
 ## Optional Topics (as needed)
 
+- Learn Design Pattern for Building to Application
 - WebAssembly with Go
 - Embedding in other apps (C/C++)
 - Mobile apps with Go (gomobile)
