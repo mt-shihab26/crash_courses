@@ -75,7 +75,7 @@
 
 - [x] Goroutines
 - [x] Channels
-- Buffered vs unbuffered channels
+- [x] Buffered vs unbuffered channels
 - Channel directions
 - `select` statement
 - `sync` package (Mutex, WaitGroup)
