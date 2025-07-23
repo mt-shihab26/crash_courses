@@ -73,8 +73,8 @@
 
 ### 9. Concurrency
 
-- Goroutines
-- Channels
+- [x] Goroutines
+- [x] Channels
 - Buffered vs unbuffered channels
 - Channel directions
 - `select` statement
