@@ -2,7 +2,7 @@
 
 ## Beginner Topics
 
-### 1. Basic Syntax & Language Fundamentals
+### 1. [x] Basic Syntax & Language Fundamentals
 
 - [x] Go installation and setup
 - [x] `main` function and `package main`
@@ -14,7 +14,7 @@
 - [x] Type conversions
 - [x] Naming conventions
 
-### 2. Control Structures
+### 2. [x] Control Structures
 
 - [x] `if`, `else`
 - [x] `switch` statements
@@ -22,7 +22,7 @@
 - [x] `break`, `continue`
 - [x] `goto`
 
-### 3. Functions
+### 3. [x] Functions
 
 - [x] Defining and calling functions
 - [x] Parameters and return values
@@ -33,7 +33,7 @@
 - [x] Recursion
 - [x] Defer statement
 
-### 4. Data Structures
+### 4. [x] Data Structures
 
 - [x] Arrays
 - [x] Slices
@@ -41,7 +41,7 @@
 - [x] Structs (custom types)
 - [x] Pointers
 
-### 5. Basic I/O and Strings
+### 5. [x] Basic I/O and Strings
 
 - [x] Reading and writing input/output
 - [x] String formatting (`fmt.Sprintf`)
@@ -49,13 +49,13 @@
 
 ## Intermediate Topics
 
-### 6. Collections & Built-in Functions
+### 6. [x] Collections & Built-in Functions
 
 - [x] Built-in functions (`len`, `append`, `copy`, etc.)
 - [x] Deep vs shallow copy
 - [x] Sorting with `sort` package
 
-### 7. Methods & Interfaces
+### 7. [x] Methods & Interfaces
 
 - [x] Method receivers (value vs pointer)
 - [x] Interfaces and interface types
@@ -63,7 +63,7 @@
 - [x] Type switches
 - [x] Empty interface (`interface{}`)
 
-### 8. Error Handling
+### 8. [x] Error Handling
 
 - [x] Built-in error type
 - [x] Returning errors from functions
@@ -71,15 +71,15 @@
 - [x] `errors.New` and `fmt.Errorf`
 - [x] Error wrapping (Go 1.13+)
 
-### 9. Concurrency
+### 9. [ ] Concurrency (not learn yet)
 
 - [x] Goroutines
 - [x] Channels
 - [x] Buffered vs unbuffered channels
-- Channel directions
-- `select` statement
-- `sync` package (Mutex, WaitGroup)
-- `context` package for cancellation
+- [x] Channel directions
+- [x] `select` statement
+- [x] `sync` package (Mutex, WaitGroup)
+- [x] `context` package for cancellation
 
 ### 10. Modules & Dependency Management
 
