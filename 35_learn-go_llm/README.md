@@ -100,11 +100,10 @@
 
 ### 12. Testing
 
-- Writing unit tests with `testing` package
-- Table-driven tests
-- Benchmarking (`go test -bench`)
-- Mocks and test coverage
-- Using `testify` or other test libraries
+- [x] Writing unit tests with `testing` package
+- [x] Table-driven tests
+- [x] Benchmarking (`go test -bench`)
+- [x] Mocks and test coverage
 
 ### 13. File I/O
 
