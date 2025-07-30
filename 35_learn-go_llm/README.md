@@ -81,20 +81,20 @@
 - [x] `sync` package (Mutex, WaitGroup)
 - [x] `context` package for cancellation
 
-### 10. Modules & Dependency Management
+### 10. [x] Modules & Dependency Management
 
-- Introduction to Go Modules (`go mod`)
-- `go get`, `go install`
-- Semantic versioning
-- Vendoring
+- [x] Introduction to Go Modules (`go mod`)
+- [x] `go get`, `go install`
+- [x] Semantic versioning
+- [x] Vendoring
 
-### 11. Packages and Project Structure
+### 11. [x] Packages and Project Structure
 
-- Creating reusable packages
-- Standard library overview
-- Organizing Go projects
-- Internal packages
-- Documentation with `godoc`
+- [x] Creating reusable packages
+- [x] Standard library overview
+- [x] Organizing Go projects
+- [x] Internal packages
+- [x] Documentation with `godoc`
 
 ## Advanced Topics
 
