@@ -98,7 +98,7 @@
 
 ## Advanced Topics
 
-### 12. Testing
+### 12. [x] Testing
 
 - [x] Writing unit tests with `testing` package
 - [x] Table-driven tests
