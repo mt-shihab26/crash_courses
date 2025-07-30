@@ -117,7 +117,7 @@
 - RESTful APIs with `net/http`
 - Middleware patterns
 - Handling JSON with `encoding/json`
-- WebSockets (via `gorilla/websocket`)
+- WebSockets
 
 ### 15. Reflection
 
@@ -165,15 +165,7 @@
 ### 21. Working with Databases
 
 - SQL with `database/sql`
-- Using ORM (e.g. `gorm`)
 - Transactions and prepared statements
-
-### 22. Popular Frameworks & Libraries
-
-- Web frameworks: `gin`, `echo`, `fiber`
-- CLI: `cobra`, `urfave/cli`
-- Logging: `log`, `zap`, `logrus`
-- Testing: `testify`, `httptest`
 
 ## Optional Topics (as needed)
 
