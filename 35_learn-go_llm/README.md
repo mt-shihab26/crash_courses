@@ -123,12 +123,12 @@
 - [x] Type metadata and dynamic access
 - [x] When to avoid reflection
 
-### 16. Generics (Go 1.18+)
+### 16. [x] Generics (Go 1.18+)
 
-- Introduction to type parameters
-- Writing generic functions and types
-- Constraints
-- Type inference
+- [x] Introduction to type parameters
+- [x] Writing generic functions and types
+- [x] Constraints
+- [x] Type inference
 
 ### 17. Advanced Concurrency Patterns
 
@@ -142,9 +142,9 @@
 
 ### 18. Formatting & Linting
 
-- `gofmt`, `goimports`
-- `golint`, `staticcheck`, `govet`
-- `golangci-lint`
+- [x] `gofmt`, `goimports`
+- [x] `golint`, `staticcheck`, `govet`
+- [x] `golangci-lint`
 
 ### 19. Build & Deployment
 
