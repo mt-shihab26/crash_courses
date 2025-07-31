@@ -107,13 +107,13 @@
 
 ### 13. File I/O
 
-- Reading and writing files
-- File paths and OS operations
-- Buffering and scanning files
+- [x] Reading and writing files
+- [x] File paths and OS operations
+- [x] Buffering and scanning files
 
 ### 14. Networking
 
-- Creating HTTP clients and servers
+- [x] Creating HTTP clients and servers
 - RESTful APIs with `net/http`
 - Middleware patterns
 - Handling JSON with `encoding/json`
