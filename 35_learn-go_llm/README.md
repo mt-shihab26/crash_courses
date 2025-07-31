@@ -105,19 +105,19 @@
 - [x] Benchmarking (`go test -bench`)
 - [x] Mocks and test coverage
 
-### 13. File I/O
+### 13. [x] File I/O
 
 - [x] Reading and writing files
 - [x] File paths and OS operations
 - [x] Buffering and scanning files
 
-### 14. Networking
+### 14. [x] Networking
 
 - [x] Creating HTTP clients and servers
 - [x] RESTful APIs with `net/http`, Middleware patterns
 - [x] Handling JSON with `encoding/json`
 
-### 15. Reflection
+### 15. [x] Reflection
 
 - `reflect` package
 - Type metadata and dynamic access
