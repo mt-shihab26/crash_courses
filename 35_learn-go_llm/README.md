@@ -130,13 +130,13 @@
 - [x] Constraints
 - [x] Type inference
 
-### 17. Advanced Concurrency Patterns
+### 17. [x] Advanced Concurrency Patterns
 
-- Worker pools
-- Pipelines
-- Rate limiting
-- Deadlock prevention
-- `context.Context` best practices
+- [x] Worker pools
+- [x] Pipelines
+- [x] Rate limiting
+- [x] Deadlock prevention
+- [x] `context.Context` best practices
 
 ## Tools, Practices, and Ecosystem
 
