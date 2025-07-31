@@ -140,37 +140,27 @@
 
 ## Tools, Practices, and Ecosystem
 
-### 18. Formatting & Linting
+### 18. [x] Formatting & Linting
 
 - [x] `gofmt`, `goimports`
 - [x] `golint`, `staticcheck`, `govet`
 - [x] `golangci-lint`
 
-### 19. Build & Deployment
+### 19. [x] Build & Deployment
 
-- `go build`, `go run`, `go install`
-- Cross-compilation
-- Embedding static files (Go 1.16+)
+- [x] `go build`, `go run`, `go install`
+- [x] Cross-compilation
+- [x] Embedding static files (Go 1.16+)
 
-### 20. Code Organization & Best Practices
+### 20. [x] Code Organization & Best Practices
 
-- Idiomatic Go (Effective Go)
-- Composition over inheritance
-- Minimal interfaces
-- Avoiding global variables
-- Handling panics and recover
+- [x] Idiomatic Go (Effective Go)
+- [x] Composition over inheritance
+- [x] Minimal interfaces
+- [x] Avoiding global variables
+- [x] Handling panics and recover
 
-### 21. Working with Databases
+### 21. [x] Working with Databases
 
-- SQL with `database/sql`
-- Transactions and prepared statements
-
-## Optional Topics (as needed)
-
-- Learn meta programming golang
-- Learn Design Pattern for Building to Application
-- WebAssembly with Go
-- Embedding in other apps (C/C++)
-- Mobile apps with Go (gomobile)
-- Using Go in Kubernetes development
-- Interfacing with Redis, Kafka, etc.
+- [x] SQL with `database/sql`
+- [x] Transactions and prepared statements
