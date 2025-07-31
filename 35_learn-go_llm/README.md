@@ -114,10 +114,8 @@
 ### 14. Networking
 
 - [x] Creating HTTP clients and servers
-- RESTful APIs with `net/http`
-- Middleware patterns
-- Handling JSON with `encoding/json`
-- WebSockets
+- [x] RESTful APIs with `net/http`, Middleware patterns
+- [x] Handling JSON with `encoding/json`
 
 ### 15. Reflection
 
