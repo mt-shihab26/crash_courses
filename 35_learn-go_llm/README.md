@@ -119,9 +119,9 @@
 
 ### 15. [x] Reflection
 
-- `reflect` package
-- Type metadata and dynamic access
-- When to avoid reflection
+- [x] `reflect` package
+- [x] Type metadata and dynamic access
+- [x] When to avoid reflection
 
 ### 16. Generics (Go 1.18+)
 
