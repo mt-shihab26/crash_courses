@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get "/projects/new", to: "projects#new", as: "new_project"
   get "/projects/:id", to: "projects#show", as: "project"
   post "/projects", to: "projects#create"
+  get "/projects/:id/edit", to: "projects#edit", as: "edit_project"
+  patch "/projects/:id", to: "projects#update", as: "update_project"
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
