@@ -1,0 +1,9 @@
+<% content_for :title, "Projects" %>
+
+<h1>Projects</h1>
+
+<ul>
+  <% @projects.each do |project| %>
+    <li><%= project.name %></li>
+  <% end %>
+</ul>
