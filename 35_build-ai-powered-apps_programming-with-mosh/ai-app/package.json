@@ -2,13 +2,15 @@
     "name": "ai-app",
     "type": "module",
     "scripts": {
-        "dev": "bun run ./main.ts"
+        "dev": "bun run ./main.ts",
+        "format": "prettier --write ."
     },
     "workspaces": [
         "packages/*"
     ],
     "devDependencies": {
-        "concurrently": "^9.2.1"
+        "concurrently": "^9.2.1",
+        "prettier": "^3.6.2"
     },
     "trustedDependencies": [
         "@tailwindcss/oxide",
