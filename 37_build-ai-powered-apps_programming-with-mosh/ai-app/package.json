@@ -1,7 +1,12 @@
 {
-    "name": "ai-app",
-    "type": "module",
-    "workspaces": [
-        "packages/*"
-    ]
+  "name": "ai-app",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "trustedDependencies": [
+    "@tailwindcss/oxide",
+    "esbuild",
+    "msw"
+  ]
 }
