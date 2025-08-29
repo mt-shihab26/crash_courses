@@ -1,11 +1,15 @@
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
 const App = () => {
-    return (
-        <div>
-            <Button>Click Me</Button>
-        </div>
-    );
+    const [message, setMessage] = useState<string>("");
+
+    useEffect(() => {
+        fetch("/api/hello")
+            .then(r => r.json())
+            .then(d => setMessage(d.message));
+    }, []);
+
+    return <div>{message}</div>;
 };
 
 export default App;
