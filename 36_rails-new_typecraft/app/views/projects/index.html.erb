@@ -1,9 +1,0 @@
-<% content_for :title, "Projects" %>
-
-<h1>Projects</h1>
-
-<ul>
-  <% @projects.each do |project| %>
-    <li><%= link_to project.name, project_path(project) %></li>
-  <% end %>
-</ul>
