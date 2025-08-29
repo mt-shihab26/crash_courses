@@ -2,7 +2,7 @@
     "name": "server",
     "type": "module",
     "scripts": {
-        "dev": "bun --watch ./src/main.ts"
+        "dev": "bun --watch run ./src/main.ts"
     },
     "dependencies": {
         "hono": "^4.9.4"
