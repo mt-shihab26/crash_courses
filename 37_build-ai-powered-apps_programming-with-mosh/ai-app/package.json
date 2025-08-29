@@ -1,12 +1,18 @@
 {
-  "name": "ai-app",
-  "type": "module",
-  "workspaces": [
-    "packages/*"
-  ],
-  "trustedDependencies": [
-    "@tailwindcss/oxide",
-    "esbuild",
-    "msw"
-  ]
+    "name": "ai-app",
+    "type": "module",
+    "scripts": {
+        "dev": "bun run ./main.ts"
+    },
+    "workspaces": [
+        "packages/*"
+    ],
+    "devDependencies": {
+        "concurrently": "^9.2.1"
+    },
+    "trustedDependencies": [
+        "@tailwindcss/oxide",
+        "esbuild",
+        "msw"
+    ]
 }
