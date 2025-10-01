@@ -1,29 +1,40 @@
-'use client';
+"use client";
 
-import type { PromptInputMessage } from '@/components/ai-elements/prompt-input';
+import type { PromptInputMessage } from "@/components/ai-elements/prompt-input";
 
-import { useChat } from '@ai-sdk/react';
-import { useState } from 'react';
+import { useChat } from "@ai-sdk/react";
+import { useState } from "react";
 
-import { Fragment } from 'react';
-import { DefaultChatTransport } from 'ai';
-import { Conversation, ConversationContent, ConversationScrollButton } from '@/components/ai-elements/conversation';
-import { PromptInput, PromptInputBody, PromptInputSubmit, PromptInputTextarea, PromptInputToolbar, PromptInputTools } from '@/components/ai-elements/prompt-input';
-import { Message, MessageContent } from '@/components/ai-elements/message';
-import { Response } from '@/components/ai-elements/response';
-import { Loader } from '@/components/ai-elements/loader';
+import { Fragment } from "react";
+import { DefaultChatTransport } from "ai";
+import {
+    Conversation,
+    ConversationContent,
+    ConversationScrollButton,
+} from "@/components/ai-elements/conversation";
+import {
+    PromptInput,
+    PromptInputBody,
+    PromptInputSubmit,
+    PromptInputTextarea,
+    PromptInputToolbar,
+    PromptInputTools,
+} from "@/components/ai-elements/prompt-input";
+import { Message, MessageContent } from "@/components/ai-elements/message";
+import { Response } from "@/components/ai-elements/response";
+import { Loader } from "@/components/ai-elements/loader";
 
 const Chatbot = () => {
     const { messages, sendMessage, status } = useChat({
-        transport: new DefaultChatTransport({ api: '/api/chat' }),
+        transport: new DefaultChatTransport({ api: "/api/chat" }),
     });
 
-    const [input, setInput] = useState('');
+    const [input, setInput] = useState("");
 
     const submit = (message: PromptInputMessage) => {
         if (!message.text) return;
         sendMessage({ text: message.text });
-        setInput('');
+        setInput("");
     };
 
     return (
@@ -32,16 +43,22 @@ const Chatbot = () => {
                 <div className="flex-1 overflow-hidden p-6 pb-0">
                     <Conversation className="h-full">
                         <ConversationContent>
-                            {messages.map(message => (
+                            {messages.map((message) => (
                                 <div key={message.id}>
                                     {message.parts.map((part, index) => {
                                         switch (part.type) {
-                                            case 'text':
+                                            case "text":
                                                 return (
-                                                    <Fragment key={`${message.id}-${index}`}>
-                                                        <Message from={message.role}>
+                                                    <Fragment
+                                                        key={`${message.id}-${index}`}
+                                                    >
+                                                        <Message
+                                                            from={message.role}
+                                                        >
                                                             <MessageContent>
-                                                                <Response>{part.text}</Response>
+                                                                <Response>
+                                                                    {part.text}
+                                                                </Response>
                                                             </MessageContent>
                                                         </Message>
                                                     </Fragment>
@@ -52,7 +69,7 @@ const Chatbot = () => {
                                     })}
                                 </div>
                             ))}
-                            {status !== 'ready' && <Loader />}
+                            {status !== "ready" && <Loader />}
                         </ConversationContent>
                         <ConversationScrollButton />
                     </Conversation>
@@ -61,11 +78,14 @@ const Chatbot = () => {
                 <div className="p-6 pt-4">
                     <PromptInput onSubmit={submit}>
                         <PromptInputBody>
-                            <PromptInputTextarea value={input} onChange={e => setInput(e.target.value)} />
+                            <PromptInputTextarea
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                            />
                         </PromptInputBody>
                         <PromptInputToolbar>
                             <PromptInputTools></PromptInputTools>
-                            <PromptInputSubmit disabled={status !== 'ready'} />
+                            <PromptInputSubmit disabled={status !== "ready"} />
                         </PromptInputToolbar>
                     </PromptInput>
                 </div>
