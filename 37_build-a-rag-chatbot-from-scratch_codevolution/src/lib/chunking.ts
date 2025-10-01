@@ -1,9 +1,9 @@
-import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
+import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 
 const textSplitter = new RecursiveCharacterTextSplitter({
     chunkSize: 150,
     chunkOverlap: 20,
-    separators: [' '],
+    separators: [" "],
 });
 
 export const chunkContent = async (content: string): Promise<string[]> => {
