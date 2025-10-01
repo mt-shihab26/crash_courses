@@ -13,7 +13,7 @@ const tools = {
         }),
         execute: async ({ query }) => {
             try {
-                const results = await searchDocuments(query, 3, 0.5);
+                const results = await searchDocuments(query, 100, 0.5);
                 if (results.length === 0) {
                     return 'No relevant information found in the knowledge base';
                 }
