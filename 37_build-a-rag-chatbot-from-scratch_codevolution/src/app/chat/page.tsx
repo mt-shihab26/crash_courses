@@ -28,8 +28,8 @@ const Chatbot = () => {
 
     return (
         <>
-            <div className="max-w-4xl mx-auto p-6 relative size-full h-[clac(100vh-4rem)] ">
-                <div className="flex space-y-4 flex-col h-full">
+            <div className="max-w-4xl mx-auto relative flex flex-col h-[calc(100vh-5rem)]">
+                <div className="flex-1 overflow-hidden p-6 pb-0">
                     <Conversation className="h-full">
                         <ConversationContent>
                             {messages.map(message => (
@@ -56,7 +56,9 @@ const Chatbot = () => {
                         </ConversationContent>
                         <ConversationScrollButton />
                     </Conversation>
+                </div>
 
+                <div className="p-6 pt-4">
                     <PromptInput onSubmit={submit}>
                         <PromptInputBody>
                             <PromptInputTextarea value={input} onChange={e => setInput(e.target.value)} />
