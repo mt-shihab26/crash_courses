@@ -1,29 +1,39 @@
-import type { InferUITools, UIDataTypes } from 'ai';
+import type { InferUITools, UIDataTypes } from "ai";
 
-import { openai } from '@ai-sdk/openai';
-import { convertToModelMessages, streamText, UIMessage, tool, stepCountIs } from 'ai';
-import { searchDocuments } from '@/lib/search';
-import { z } from 'zod';
+import { openai } from "@ai-sdk/openai";
+import {
+    convertToModelMessages,
+    streamText,
+    UIMessage,
+    tool,
+    stepCountIs,
+} from "ai";
+import { searchDocuments } from "@/lib/search";
+import { z } from "zod";
 
 const tools = {
     searchKnowledgeBase: tool({
-        description: 'Search the knowledge base for relevant information',
+        description: "Search the knowledge base for relevant information",
         inputSchema: z.object({
-            query: z.string().describe('The search query to find relevant documents'),
+            query: z
+                .string()
+                .describe("The search query to find relevant documents"),
         }),
         execute: async ({ query }) => {
             try {
                 const results = await searchDocuments(query, 100, 0.5);
                 if (results.length === 0) {
-                    return 'No relevant information found in the knowledge base';
+                    return "No relevant information found in the knowledge base";
                 }
 
-                const formattedResults = results.map((r, i) => `[${i + 1}] - ${r.content}`).join('\n\n');
+                const formattedResults = results
+                    .map((r, i) => `[${i + 1}] - ${r.content}`)
+                    .join("\n\n");
 
                 return formattedResults;
             } catch (e) {
-                console.log('Search error by llm:', e);
-                return 'Error searching the knowledge base';
+                console.log("Search error by llm:", e);
+                return "Error searching the knowledge base";
             }
         },
     }),
@@ -48,7 +58,7 @@ export async function POST(req: Request) {
         const { messages }: { messages: UIMessage[] } = await req.json();
 
         const result = streamText({
-            model: openai('gpt-4.1-mini'),
+            model: openai("gpt-4.1-mini"),
             system: systemPrompt,
             messages: convertToModelMessages(messages),
             tools,
@@ -57,8 +67,8 @@ export async function POST(req: Request) {
 
         return result.toUIMessageStreamResponse();
     } catch (e: any) {
-        console.error('Error streaming chat completion:', e);
-        return new Response('Failed to stream chat completion', {
+        console.error("Error streaming chat completion:", e);
+        return new Response("Failed to stream chat completion", {
             status: 500,
         });
     }
