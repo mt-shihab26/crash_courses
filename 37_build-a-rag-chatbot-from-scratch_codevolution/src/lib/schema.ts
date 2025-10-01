@@ -1,13 +1,18 @@
-import { pgTable, serial, text, vector, index } from 'drizzle-orm/pg-core';
+import { pgTable, serial, text, vector, index } from "drizzle-orm/pg-core";
 
 export const documents = pgTable(
-    'documents',
+    "documents",
     {
-        id: serial('id').primaryKey(),
-        content: text('content').notNull(),
-        embedding: vector('embedding', { dimensions: 1536 }),
+        id: serial("id").primaryKey(),
+        content: text("content").notNull(),
+        embedding: vector("embedding", { dimensions: 1536 }),
     },
-    table => [index('embeddingIndex').using('hnsw', table.embedding.op('vector_cosine_ops'))],
+    (table) => [
+        index("embeddingIndex").using(
+            "hnsw",
+            table.embedding.op("vector_cosine_ops"),
+        ),
+    ],
 );
 
 export type TInsertDocument = typeof documents.$inferInsert;
