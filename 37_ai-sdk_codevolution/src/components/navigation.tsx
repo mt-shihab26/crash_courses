@@ -1,6 +1,13 @@
-import { SignedIn, SignedOut, SignInButton, SignOutButton, SignUpButton } from '@clerk/nextjs';
-import { Button } from './ui/button';
-import Link from 'next/link';
+import {
+    SignedIn,
+    SignedOut,
+    SignInButton,
+    SignOutButton,
+    SignUpButton,
+} from "@clerk/nextjs";
+import { Button } from "./ui/button";
+
+import Link from "next/link";
 
 export const Navigation = () => {
     return (
@@ -12,15 +19,24 @@ export const Navigation = () => {
                     </Link>
                     <div className="flex w-full justify-between items-center">
                         <div className="flex gap-4 items-center">
-                            <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
+                            <Link
+                                href="/"
+                                className="text-sm font-medium hover:text-primary transition-colors"
+                            >
                                 Home
                             </Link>
-                            <Link href="/chat" className="text-sm font-medium hover:text-primary transition-colors">
+                            <Link
+                                href="/chat"
+                                className="text-sm font-medium hover:text-primary transition-colors"
+                            >
                                 Chat
                             </Link>
                         </div>
                         <div className="flex gap-4 items-center">
-                            <Link href="/upload" className="text-sm font-medium hover:text-primary transition-colors">
+                            <Link
+                                href="/upload"
+                                className="text-sm font-medium hover:text-primary transition-colors"
+                            >
                                 Upload
                             </Link>
                         </div>
