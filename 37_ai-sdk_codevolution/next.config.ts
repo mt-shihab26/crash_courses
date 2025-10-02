@@ -1,7 +1,8 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-    serverExternalPackages: ["pdf-parse"],
+    devIndicators: { position: 'bottom-left' },
+    serverExternalPackages: ['pdf-parse'],
 };
 
 export default nextConfig;
