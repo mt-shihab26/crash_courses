@@ -8,7 +8,7 @@ const StreamPage = () => {
     return (
         <div className="flex flex-col w-full max-w-md py-24 mx-auto content-stretch">
             {error && <div className="text-red-500 mb-4">{error.message}</div>}
-            {completion && <div className="whitespace-pre-wrap">{completion}</div>}
+            {completion && <div className="whitespace-pre-wrap flex-1 overflow-auto">{completion}</div>}
             {isLoading && <div>Loading...</div>}
             <form
                 className="fixed bottom-0 w-full max-w-md mx-auto left-0 right-0 p-4 bg-zinc-50"
