@@ -15,7 +15,7 @@ export const Navigation = () => {
             <div className="flex container h-16 gap-6 items-center justify-between px-4 mx-auto">
                 <div className="flex w-full items-center gap-6">
                     <Link href="/" className="text-xl font-semibold">
-                        Chatbot
+                        <div className="flex w-full">AISDK</div>
                     </Link>
                     <div className="flex w-full justify-between items-center">
                         <div className="flex gap-4 items-center">
@@ -26,10 +26,10 @@ export const Navigation = () => {
                                 Home
                             </Link>
                             <Link
-                                href="/chat"
+                                href="/chatbot"
                                 className="text-sm font-medium hover:text-primary transition-colors"
                             >
-                                Chat
+                                Chatbot
                             </Link>
                             <Link
                                 href="/completion"

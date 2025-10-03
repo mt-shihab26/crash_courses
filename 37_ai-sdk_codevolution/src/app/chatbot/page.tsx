@@ -26,7 +26,7 @@ import { Loader } from "@/components/ai-elements/loader";
 
 const Chatbot = () => {
     const { messages, sendMessage, status } = useChat({
-        transport: new DefaultChatTransport({ api: "/api/chat" }),
+        transport: new DefaultChatTransport({ api: "/api/chatbot" }),
     });
 
     const [input, setInput] = useState("");
