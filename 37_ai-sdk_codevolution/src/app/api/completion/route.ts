@@ -1,13 +1,24 @@
 import { openai } from "@ai-sdk/openai";
 import { generateText } from "ai";
 
-export async function POST(req: Request) {
-    const prompt = req.body.prompt;
+export const POST = async (req: Request) => {
+    try {
+        const data = await req.json();
 
-    const { text } = await generateText({
-        model: openai("gpt-4.1-nano"),
-        prompt,
-    });
+        console.log(data);
 
-    return Response.json({ text });
-}
+        const prompt = data.prompt;
+
+        const { text } = await generateText({
+            model: openai("gpt-4.1-nano"),
+            prompt,
+        });
+
+        return Response.json({ text });
+    } catch (e: any) {
+        console.error("Error:", e);
+        return Response.json({
+            error: e instanceof Error ? e.message : "Something went wrong",
+        });
+    }
+};

@@ -13,7 +13,7 @@ const CompletionPage = () => {
             setLoading(true);
             setCompletion("");
 
-            const response = await fetch("/completion", {
+            const response = await fetch("/api/completion", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ prompt }),
