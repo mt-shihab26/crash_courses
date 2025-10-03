@@ -10,6 +10,14 @@ export const POST = async (req: Request) => {
             prompt,
         });
 
+        result.usage.then((usage) => {
+            console.log({
+                inputTokens: usage.inputTokens,
+                outputTokens: usage.outputTokens,
+                totalTokens: usage.totalTokens,
+            });
+        });
+
         return result.toUIMessageStreamResponse();
     } catch (e: any) {
         console.error("Error streaming text:", e);
