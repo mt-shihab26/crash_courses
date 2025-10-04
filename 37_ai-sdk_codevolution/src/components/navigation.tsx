@@ -1,13 +1,7 @@
-import {
-    SignedIn,
-    SignedOut,
-    SignInButton,
-    SignOutButton,
-    SignUpButton,
-} from "@clerk/nextjs";
-import { Button } from "./ui/button";
+import { SignedIn, SignedOut, SignInButton, SignOutButton, SignUpButton } from '@clerk/nextjs';
+import { Button } from './ui/button';
 
-import Link from "next/link";
+import Link from 'next/link';
 
 export const Navigation = () => {
     return (
@@ -19,54 +13,33 @@ export const Navigation = () => {
                     </Link>
                     <div className="flex w-full justify-between items-center">
                         <div className="flex gap-4 items-center">
-                            <Link
-                                href="/"
-                                className="text-sm font-medium hover:text-primary transition-colors"
-                            >
+                            <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
                                 Home
                             </Link>
-                            <Link
-                                href="/chatbot"
-                                className="text-sm font-medium hover:text-primary transition-colors"
-                            >
+                            <Link href="/chatbot" className="text-sm font-medium hover:text-primary transition-colors">
                                 Chatbot
                             </Link>
-                            <Link
-                                href="/completion"
-                                className="text-sm font-medium hover:text-primary transition-colors"
-                            >
+                            <Link href="/completion" className="text-sm font-medium hover:text-primary transition-colors">
                                 Completion
                             </Link>
-                            <Link
-                                href="/stream"
-                                className="text-sm font-medium hover:text-primary transition-colors"
-                            >
+                            <Link href="/stream" className="text-sm font-medium hover:text-primary transition-colors">
                                 Stream
                             </Link>
-                            <Link
-                                href="/chat"
-                                className="text-sm font-medium hover:text-primary transition-colors"
-                            >
+                            <Link href="/chat" className="text-sm font-medium hover:text-primary transition-colors">
                                 Chat
                             </Link>
-                            <Link
-                                href="/structured"
-                                className="text-sm font-medium hover:text-primary transition-colors"
-                            >
+                            <Link href="/structured" className="text-sm font-medium hover:text-primary transition-colors">
                                 Structured
                             </Link>
-                            <Link
-                                href="/structured/array"
-                                className="text-sm font-medium hover:text-primary transition-colors"
-                            >
+                            <Link href="/structured/array" className="text-sm font-medium hover:text-primary transition-colors">
                                 Structured Array
+                            </Link>
+                            <Link href="/structured/enum" className="text-sm font-medium hover:text-primary transition-colors">
+                                Structured Enum
                             </Link>
                         </div>
                         <div className="flex gap-4 items-center">
-                            <Link
-                                href="/chatbot/upload"
-                                className="text-sm font-medium hover:text-primary transition-colors"
-                            >
+                            <Link href="/chatbot/upload" className="text-sm font-medium hover:text-primary transition-colors">
                                 Upload
                             </Link>
                         </div>
