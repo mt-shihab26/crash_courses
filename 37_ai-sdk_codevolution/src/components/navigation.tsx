@@ -1,7 +1,27 @@
-import { SignedIn, SignedOut, SignInButton, SignOutButton, SignUpButton } from '@clerk/nextjs';
-import { Button } from './ui/button';
+import {
+    SignedIn,
+    SignedOut,
+    SignInButton,
+    SignOutButton,
+    SignUpButton,
+} from "@clerk/nextjs";
+import { Button } from "./ui/button";
 
-import Link from 'next/link';
+import Link from "next/link";
+
+const navigationLinks = [
+    { href: "/", name: "Home" },
+    { href: "/chatbot", name: "Chatbot" },
+    { href: "/completion", name: "Completion" },
+    { href: "/stream", name: "Stream" },
+    { href: "/chat", name: "Chat" },
+    { href: "/structured", name: "Structured" },
+    { href: "/structured/array", name: "Structured Array" },
+    { href: "/structured/enum", name: "Structured Enum" },
+    { href: "/image", name: "Image" },
+];
+
+const secondaryLinks = [{ href: "/chatbot/upload", name: "Upload" }];
 
 export const Navigation = () => {
     return (
@@ -13,38 +33,26 @@ export const Navigation = () => {
                     </Link>
                     <div className="flex w-full justify-between items-center">
                         <div className="flex gap-4 items-center">
-                            <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
-                                Home
-                            </Link>
-                            <Link href="/chatbot" className="text-sm font-medium hover:text-primary transition-colors">
-                                Chatbot
-                            </Link>
-                            <Link href="/completion" className="text-sm font-medium hover:text-primary transition-colors">
-                                Completion
-                            </Link>
-                            <Link href="/stream" className="text-sm font-medium hover:text-primary transition-colors">
-                                Stream
-                            </Link>
-                            <Link href="/chat" className="text-sm font-medium hover:text-primary transition-colors">
-                                Chat
-                            </Link>
-                            <Link href="/structured" className="text-sm font-medium hover:text-primary transition-colors">
-                                Structured
-                            </Link>
-                            <Link href="/structured/array" className="text-sm font-medium hover:text-primary transition-colors">
-                                Structured Array
-                            </Link>
-                            <Link href="/structured/enum" className="text-sm font-medium hover:text-primary transition-colors">
-                                Structured Enum
-                            </Link>
-                            <Link href="/image" className="text-sm font-medium hover:text-primary transition-colors">
-                                Image
-                            </Link>
+                            {navigationLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className="text-sm font-medium hover:text-primary transition-colors"
+                                >
+                                    {link.name}
+                                </Link>
+                            ))}
                         </div>
                         <div className="flex gap-4 items-center">
-                            <Link href="/chatbot/upload" className="text-sm font-medium hover:text-primary transition-colors">
-                                Upload
-                            </Link>
+                            {secondaryLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className="text-sm font-medium hover:text-primary transition-colors"
+                                >
+                                    {link.name}
+                                </Link>
+                            ))}
                         </div>
                     </div>
                 </div>
