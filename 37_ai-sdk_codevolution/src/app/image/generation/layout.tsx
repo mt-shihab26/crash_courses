@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-    title: "Image",
+    title: "Image Generation",
 };
 
 const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {

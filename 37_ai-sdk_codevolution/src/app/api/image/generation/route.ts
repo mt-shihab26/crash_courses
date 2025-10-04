@@ -1,27 +1,25 @@
 import { openai } from "@ai-sdk/openai";
-import { convertToModelMessages, streamText, UIMessage } from "ai";
+import { experimental_generateImage as generateImage } from "ai";
 
 export const POST = async (req: Request) => {
     try {
-        const { messages }: { messages: UIMessage[] } = await req.json();
+        const { prompt } = await req.json();
 
-        const result = streamText({
-            model: openai("gpt-4.1-nano"),
-            messages: convertToModelMessages(messages),
+        const { image } = await generateImage({
+            model: openai.imageModel("dall-e-3"),
+            prompt,
+            size: "1024x1024",
+            providerOptions: {
+                openai: {
+                    style: "vivid",
+                    quality: "hd",
+                },
+            },
         });
 
-        result.usage.then((usage) => {
-            console.log({
-                messagesCount: messages.length,
-                inputTokens: usage.inputTokens,
-                outputTokens: usage.outputTokens,
-                totalTokens: usage.totalTokens,
-            });
-        });
-
-        return result.toUIMessageStreamResponse();
+        return Response.json(image.base64);
     } catch (e: any) {
-        console.error("Error chat:", e);
+        console.error("Error image generating:", e);
         return new Response(
             e instanceof Error ? e.message : "Something went wrong",
             { status: 500 },
