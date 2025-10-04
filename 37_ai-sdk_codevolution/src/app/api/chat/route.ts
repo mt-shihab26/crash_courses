@@ -7,7 +7,28 @@ export const POST = async (req: Request) => {
 
         const result = streamText({
             model: openai("gpt-4.1-nano"),
-            messages: convertToModelMessages(messages),
+            messages: [
+                // {
+                //     role: 'system',
+                //     // content: 'You are a helpful conding assistant. Keep responses under 3 sentences and focus on practical examples',
+                //     content: 'You are a friendly teacher who explains concepts using simple analogies. Always relate technical concepts to everyday experiences',
+                // },
+                {
+                    role: "system",
+                    content:
+                        "Convert user questions about React into code examples.",
+                },
+                {
+                    role: "user",
+                    content: "How to toggle a boolean?",
+                },
+                {
+                    role: "assistant",
+                    content:
+                        "const [isOpen, setIsOpen] = useState(false); const toggle = () => setIsOpen(prev => !prev)",
+                },
+                ...convertToModelMessages(messages),
+            ],
         });
 
         result.usage.then((usage) => {
