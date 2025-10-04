@@ -37,6 +37,9 @@ export const Navigation = () => {
                             <Link href="/structured/enum" className="text-sm font-medium hover:text-primary transition-colors">
                                 Structured Enum
                             </Link>
+                            <Link href="/image" className="text-sm font-medium hover:text-primary transition-colors">
+                                Image
+                            </Link>
                         </div>
                         <div className="flex gap-4 items-center">
                             <Link href="/chatbot/upload" className="text-sm font-medium hover:text-primary transition-colors">
