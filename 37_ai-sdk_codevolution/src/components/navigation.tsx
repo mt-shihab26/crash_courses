@@ -23,7 +23,8 @@ const navigationLinks = [
     { href: "/structured/array", name: "Structured Array" },
     { href: "/structured/enum", name: "Structured Enum" },
     { href: "/image", name: "Image" },
-    { href: "/pdf", name: "pdf" },
+    { href: "/pdf", name: "PDF" },
+    { href: "/image/generation", name: "Image Generation" },
 ];
 
 const secondaryLinks = [{ href: "/chatbot/upload", name: "Upload" }];
