@@ -3,17 +3,16 @@ import { convertToModelMessages, streamText, UIMessage } from "ai";
 
 export const POST = async (req: Request) => {
     try {
-        const { messages, prompt }: { messages: UIMessage[]; prompt: any } =
-            await req.json();
+        const { messages }: { messages: UIMessage[] } = await req.json();
 
         const result = streamText({
             model: openai("gpt-4.1-nano"),
             messages: convertToModelMessages(messages),
-            prompt,
         });
 
         result.usage.then((usage) => {
             console.log({
+                messagesCount: messages.length,
                 inputTokens: usage.inputTokens,
                 outputTokens: usage.outputTokens,
                 totalTokens: usage.totalTokens,
