@@ -1,20 +1,29 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { DefaultChatTransport } from "ai";
 
-const ChatPage = () => {
-    const [prompt, setPrompt] = useState<string>("");
+import Image from "next/image";
+
+const ImagePage = () => {
+    const [text, setText] = useState<string>("");
+    const [files, setFiles] = useState<FileList | null>(null);
+
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const { messages, error, sendMessage, status, stop } = useChat({
-        transport: new DefaultChatTransport({ api: "/api/chat" }),
+        transport: new DefaultChatTransport({ api: "/api/pdf" }),
     });
 
     const submit = async () => {
-        sendMessage({ text: prompt });
-        setPrompt("");
+        sendMessage({ text, files: files || undefined });
+        setText("");
+        setFiles(null);
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
     };
 
     return (
@@ -36,6 +45,21 @@ const ChatPage = () => {
                                             {part.text}
                                         </div>
                                     );
+                                case "file":
+                                    if (part.mediaType.startsWith("image/")) {
+                                        return (
+                                            <Image
+                                                key={`${message.id}-${index}`}
+                                                src={part.url}
+                                                alt={
+                                                    part.filename ||
+                                                    `attachment-${index}`
+                                                }
+                                                width={500}
+                                                height={500}
+                                            />
+                                        );
+                                    }
                                 default:
                                     return null;
                             }
@@ -54,12 +78,32 @@ const ChatPage = () => {
                     submit();
                 }}
             >
+                <div className="flex gap-3">
+                    <div className="flex items-center gap-2">
+                        <label
+                            htmlFor="file-upload"
+                            className="flex items-center gap-2 text-sm text-zinc-600"
+                        >
+                            {files?.length
+                                ? `${files.length} file(s)`
+                                : "Attach files"}
+                        </label>
+                        <input
+                            id="file-upload"
+                            type="file"
+                            className="hidden"
+                            onChange={(e) => setFiles(e.target.files)}
+                            multiple={true}
+                            ref={fileInputRef}
+                        />
+                    </div>
+                </div>
                 <div className="flex gap-2">
                     <input
                         placeholder="How can I help you?"
                         className="flex-1 p-2 border border-zinc-300"
-                        value={prompt}
-                        onChange={(e) => setPrompt(e.target.value)}
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
                     />
                     {status !== "ready" ? (
                         <button
@@ -84,4 +128,4 @@ const ChatPage = () => {
     );
 };
 
-export default ChatPage;
+export default ImagePage;
