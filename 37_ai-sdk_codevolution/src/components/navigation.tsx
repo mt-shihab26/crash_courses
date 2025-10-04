@@ -43,10 +43,16 @@ export const Navigation = () => {
                             >
                                 Stream
                             </Link>
+                            <Link
+                                href="/chat"
+                                className="text-sm font-medium hover:text-primary transition-colors"
+                            >
+                                Chat
+                            </Link>
                         </div>
                         <div className="flex gap-4 items-center">
                             <Link
-                                href="/upload"
+                                href="/chatbot/upload"
                                 className="text-sm font-medium hover:text-primary transition-colors"
                             >
                                 Upload

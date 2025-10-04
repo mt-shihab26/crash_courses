@@ -1,0 +1,69 @@
+"use client";
+
+import { useChat } from "@ai-sdk/react";
+import { useState } from "react";
+
+const ChatPage = () => {
+    const [prompt, setPrompt] = useState<string>("");
+
+    const { messages, error, sendMessage, status } = useChat();
+
+    const submit = async () => {
+        sendMessage({ text: prompt });
+        setPrompt("");
+    };
+
+    return (
+        <div className="flex flex-col w-full max-w-md py-24 mx-auto content-stretch">
+            {messages.map((message) => (
+                <div key={message.id} className="mb-4">
+                    <div className="font-semibold">
+                        {message.role === "user" ? "You" : "AI"}:{" "}
+                    </div>
+                    {message.parts.map((part, index) => {
+                        switch (part.type) {
+                            case "text":
+                                return (
+                                    <div
+                                        key={`${message.id}-${index}`}
+                                        className="whitespace-pre-wrap"
+                                    >
+                                        {part.text}
+                                    </div>
+                                );
+                            default:
+                                return null;
+                        }
+                    })}
+                </div>
+            ))}
+            {error && <div className="text-red-500 mb-4">{error.message}</div>}
+            {status !== "ready" && <div>Loading...</div>}
+            <form
+                className="fixed bottom-0 w-full max-w-md mx-auto left-0 right-0 p-4 bg-zinc-50"
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    submit();
+                }}
+            >
+                <div className="flex gap-2">
+                    <input
+                        placeholder="How can I help you?"
+                        className="flex-1 p-2 border border-zinc-300"
+                        value={prompt}
+                        onChange={(e) => setPrompt(e.target.value)}
+                    />
+                    <button
+                        disabled={status !== "ready"}
+                        type="submit"
+                        className="bg-blue-500 text-white px-4 py-2 rounded transition"
+                    >
+                        Send
+                    </button>
+                </div>
+            </form>
+        </div>
+    );
+};
+
+export default ChatPage;
