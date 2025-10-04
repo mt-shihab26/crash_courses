@@ -49,6 +49,12 @@ export const Navigation = () => {
                             >
                                 Chat
                             </Link>
+                            <Link
+                                href="/structured"
+                                className="text-sm font-medium hover:text-primary transition-colors"
+                            >
+                                Structured
+                            </Link>
                         </div>
                         <div className="flex gap-4 items-center">
                             <Link
