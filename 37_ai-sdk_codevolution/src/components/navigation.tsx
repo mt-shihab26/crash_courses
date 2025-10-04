@@ -54,11 +54,11 @@ export const Navigation = () => {
                                     key={link.href}
                                     href={link.href}
                                     className={cn(
-                                        "px-3 py-2 text-sm font-medium rounded-md transition-all duration-200",
-                                        "hover:bg-accent hover:text-accent-foreground",
+                                        "px-2 py-1 text-sm font-medium transition-all duration-200 relative",
+                                        "hover:text-foreground",
                                         isActive(link.href)
-                                            ? "bg-accent text-accent-foreground shadow-sm"
-                                            : "text-muted-foreground"
+                                            ? "text-foreground after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary after:rounded-full"
+                                            : "text-muted-foreground hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:right-0 hover:after:h-0.5 hover:after:bg-muted-foreground/50 hover:after:rounded-full",
                                     )}
                                 >
                                     {link.name}
@@ -72,11 +72,11 @@ export const Navigation = () => {
                                     key={link.href}
                                     href={link.href}
                                     className={cn(
-                                        "px-3 py-2 text-sm font-medium rounded-md transition-all duration-200",
-                                        "hover:bg-accent hover:text-accent-foreground",
+                                        "px-2 py-1 text-sm font-medium transition-all duration-200 relative",
+                                        "hover:text-foreground",
                                         isActive(link.href)
-                                            ? "bg-accent text-accent-foreground shadow-sm"
-                                            : "text-muted-foreground"
+                                            ? "text-foreground after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary after:rounded-full"
+                                            : "text-muted-foreground hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:right-0 hover:after:h-0.5 hover:after:bg-muted-foreground/50 hover:after:rounded-full",
                                     )}
                                 >
                                     {link.name}

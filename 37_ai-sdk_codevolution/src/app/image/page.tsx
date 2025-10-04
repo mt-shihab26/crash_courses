@@ -1,8 +1,11 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import Image from "next/image";
 import { useRef, useState } from "react";
+
+import { DefaultChatTransport } from "ai";
+
+import Image from "next/image";
 
 const ImagePage = () => {
     const [text, setText] = useState<string>("");
@@ -10,7 +13,9 @@ const ImagePage = () => {
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const { messages, error, sendMessage, status, stop } = useChat();
+    const { messages, error, sendMessage, status, stop } = useChat({
+        transport: new DefaultChatTransport({ api: "/api/image" }),
+    });
 
     const submit = async () => {
         sendMessage({ text, files: files || undefined });
