@@ -55,6 +55,12 @@ export const Navigation = () => {
                             >
                                 Structured
                             </Link>
+                            <Link
+                                href="/structured/array"
+                                className="text-sm font-medium hover:text-primary transition-colors"
+                            >
+                                Structured Array
+                            </Link>
                         </div>
                         <div className="flex gap-4 items-center">
                             <Link
