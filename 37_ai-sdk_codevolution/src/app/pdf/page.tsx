@@ -59,7 +59,25 @@ const ImagePage = () => {
                                                 height={500}
                                             />
                                         );
+                                    } else if (
+                                        part.mediaType.startsWith(
+                                            "application/pdf",
+                                        )
+                                    ) {
+                                        return (
+                                            <iframe
+                                                key={`${message.id}-${index}`}
+                                                src={part.url}
+                                                title={
+                                                    part.filename ||
+                                                    `attachment-${index}`
+                                                }
+                                                width={500}
+                                                height={500}
+                                            />
+                                        );
                                     }
+
                                 default:
                                     return null;
                             }
