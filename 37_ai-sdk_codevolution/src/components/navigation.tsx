@@ -25,6 +25,7 @@ const navigationLinks = [
     { href: "/image", name: "Image" },
     { href: "/pdf", name: "PDF" },
     { href: "/image/generation", name: "Image Generation" },
+    { href: "/audio", name: "Audio" },
 ];
 
 const secondaryLinks = [{ href: "/chatbot/upload", name: "Upload" }];
