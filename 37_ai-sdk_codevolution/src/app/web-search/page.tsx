@@ -1,12 +1,11 @@
 "use client";
 
-import type { TMessage } from "@/app/api/tools/route";
+import type { TMessage } from "@/app/api/web-search/route";
 
 import { useChat } from "@ai-sdk/react";
 import { useState } from "react";
 
 import { DefaultChatTransport } from "ai";
-import { WeatherCard } from "@/components/weather-card";
 
 const WebSearchPage = () => {
     const [prompt, setPrompt] = useState<string>("");
@@ -39,102 +38,52 @@ const WebSearchPage = () => {
                                             {part.text}
                                         </div>
                                     );
-                                case "tool-getLocation":
+                                case "tool-web_search_preview":
                                     switch (part.state) {
                                         case "input-streaming":
                                             return (
                                                 <div
-                                                    key={`${message.id}-get-location-${index}`}
-                                                    className="border border-zinc-700 p-2 rounded mt-1 bg-zinc-800/50"
+                                                    key={`${message.id}-web-search-${index}`}
+                                                    className="border border-blue-300 p-3 rounded-lg mt-2 bg-blue-50"
                                                 >
-                                                    <div className="text-sm text-zinc-500">
-                                                        Receiving location request...
+                                                    <div className="text-sm text-blue-600 font-medium mb-2">
+                                                        Preparing search...
                                                     </div>
-                                                    <pre className="text-sm text-zinc-600 mt-1">
-                                                        {JSON.stringify(part.input, null, 2)}
-                                                    </pre>
                                                 </div>
                                             );
                                         case "input-available":
                                             return (
                                                 <div
-                                                    key={`${message.id}-get-location-${index}`}
-                                                    className="border border-zinc-700 p-2 rounded mt-1 bg-zinc-800/50"
+                                                    key={`${message.id}-web-search-${index}`}
+                                                    className="border border-yellow-300 p-3 rounded-lg mt-2 bg-yellow-50"
                                                 >
-                                                    <div className="text-sm text-zinc-500">
-                                                        Getting location for {part.input.name}...
+                                                    <div className="text-sm text-yellow-700 font-medium">
+                                                        Searching the web
                                                     </div>
                                                 </div>
                                             );
                                         case "output-available":
                                             return (
                                                 <div
-                                                    key={`${message.id}-get-location-${index}`}
-                                                    className="border border-gray-300 p-2 rounded mt-1 bg-gray-100"
+                                                    key={`${message.id}-web-search-${index}`}
+                                                    className="border border-green-300 p-3 rounded-lg mt-2 bg-green-50"
                                                 >
-                                                    <div className="text-sm text-gray-700 font-semibold">
-                                                        Location
-                                                    </div>
-                                                    <div className="text-sm text-black">
-                                                        <div>{part.output}</div>
+                                                    <div className="text-sm text-green-700 font-semibold mb-2">
+                                                        Web Search Complete
                                                     </div>
                                                 </div>
                                             );
                                         case "output-error":
                                             return (
                                                 <div
-                                                    key={`${message.id}-get-location-${index}`}
-                                                    className="border border-zinc-700 p-2 rounded mt-1 bg-red-900/20"
+                                                    key={`${message.id}-web-search-${index}`}
+                                                    className="border border-red-300 p-3 rounded-lg mt-2 bg-red-50"
                                                 >
-                                                    <div className="text-sm text-red-400">
-                                                        Error: {part.errorText}
+                                                    <div className="text-sm text-red-700 font-medium mb-1">
+                                                        Web Search Error
                                                     </div>
-                                                </div>
-                                            );
-                                        default:
-                                            return null;
-                                    }
-                                case "tool-getWeather":
-                                    switch (part.state) {
-                                        case "input-streaming":
-                                            return (
-                                                <div
-                                                    key={`${message.id}-get-weather-${index}`}
-                                                    className="border border-zinc-700 p-2 rounded mt-1 bg-zinc-800/50"
-                                                >
-                                                    <div className="text-sm text-zinc-500">
-                                                        Receiving weather request...
-                                                    </div>
-                                                    <pre className="text-sm text-zinc-600 mt-1">
-                                                        {JSON.stringify(part.input, null, 2)}
-                                                    </pre>
-                                                </div>
-                                            );
-                                        case "input-available":
-                                            return (
-                                                <div
-                                                    key={`${message.id}-get-weather-${index}`}
-                                                    className="border border-zinc-700 p-2 rounded mt-1 bg-zinc-800/50"
-                                                >
-                                                    <div className="text-sm text-zinc-500">
-                                                        Getting weather for {part.input.city}...
-                                                    </div>
-                                                </div>
-                                            );
-                                        case "output-available":
-                                            return (
-                                                <div key={`${message.id}-get-weather-${index}`}>
-                                                    <WeatherCard weather={part.output} />
-                                                </div>
-                                            );
-                                        case "output-error":
-                                            return (
-                                                <div
-                                                    key={`${message.id}-get-weather-${index}`}
-                                                    className="border border-zinc-700 p-2 rounded mt-1 bg-red-900/20"
-                                                >
-                                                    <div className="text-sm text-red-400">
-                                                        Error: {part.errorText}
+                                                    <div className="text-sm text-red-600">
+                                                        {part.errorText}
                                                     </div>
                                                 </div>
                                             );

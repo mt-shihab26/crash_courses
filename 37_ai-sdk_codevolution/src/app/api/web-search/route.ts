@@ -1,26 +1,10 @@
 import type { InferUITools, UIDataTypes, UIMessage } from "ai";
 
 import { openai } from "@ai-sdk/openai";
-import { convertToModelMessages, streamText, tool, stepCountIs } from "ai";
-import { z } from "zod";
-import { getWeather } from "@/tools/get-weather";
-import { getLocation } from "@/tools/get-location";
+import { convertToModelMessages, streamText, stepCountIs } from "ai";
 
 const tools = {
-    getLocation: tool({
-        description: "Get the location of a person",
-        inputSchema: z.object({
-            name: z.string().describe("The name of a person"),
-        }),
-        execute: async ({ name }) => getLocation(name),
-    }),
-    getWeather: tool({
-        description: "Get the weather for a location",
-        inputSchema: z.object({
-            city: z.string().describe("The city to get the weather for"),
-        }),
-        execute: ({ city }) => getWeather(city),
-    }),
+    web_search_preview: openai.tools.webSearch({}),
 };
 
 export type TTools = InferUITools<typeof tools>;
@@ -31,13 +15,14 @@ export const POST = async (req: Request) => {
         const { messages }: { messages: TMessage[] } = await req.json();
 
         const result = streamText({
-            model: openai("gpt-4.1-nano"),
+            model: openai("gpt-4o-mini"),
             messages: convertToModelMessages(messages),
             tools,
-            stopWhen: stepCountIs(3),
+            maxSteps: 3,
+            stopWhen: stepCountIs(2),
         });
 
-        result.usage.then((usage) => {
+        result.usage.then(usage => {
             console.log({
                 messagesCount: messages.length,
                 inputTokens: usage.inputTokens,
@@ -49,11 +34,8 @@ export const POST = async (req: Request) => {
         return result.toUIMessageStreamResponse();
     } catch (e: any) {
         console.error("Error chat:", e);
-        return new Response(
-            e instanceof Error ? e.message : "Something went wrong",
-            {
-                status: 500,
-            },
-        );
+        return new Response(e instanceof Error ? e.message : "Something went wrong", {
+            status: 500,
+        });
     }
 };
