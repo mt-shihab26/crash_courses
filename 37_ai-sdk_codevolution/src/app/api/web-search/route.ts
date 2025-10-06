@@ -1,7 +1,7 @@
 import type { InferUITools, UIDataTypes, UIMessage } from "ai";
 
 import { openai } from "@ai-sdk/openai";
-import { convertToModelMessages, streamText, stepCountIs } from "ai";
+import { convertToModelMessages, streamText } from "ai";
 
 const tools = {
     web_search_preview: openai.tools.webSearch({}),
@@ -18,10 +18,9 @@ export const POST = async (req: Request) => {
             model: openai("gpt-4o-mini"),
             messages: convertToModelMessages(messages),
             tools,
-            stopWhen: stepCountIs(2),
         });
 
-        result.usage.then(usage => {
+        result.usage.then((usage) => {
             console.log({
                 messagesCount: messages.length,
                 inputTokens: usage.inputTokens,
@@ -33,8 +32,11 @@ export const POST = async (req: Request) => {
         return result.toUIMessageStreamResponse();
     } catch (e: any) {
         console.error("Error chat:", e);
-        return new Response(e instanceof Error ? e.message : "Something went wrong", {
-            status: 500,
-        });
+        return new Response(
+            e instanceof Error ? e.message : "Something went wrong",
+            {
+                status: 500,
+            },
+        );
     }
 };
