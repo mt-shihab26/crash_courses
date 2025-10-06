@@ -5,6 +5,21 @@ import { convertToModelMessages, streamText, tool, stepCountIs } from "ai";
 import { z } from "zod";
 
 const tools = {
+    getLocation: tool({
+        description: "Get the location of a person",
+        inputSchema: z.object({
+            name: z.string().describe("The name of a person"),
+        }),
+        execute: async ({ name }) => {
+            if (name.toLowerCase().includes("bruce wayne")) {
+                return "gotham city";
+            }
+            if (name.toLowerCase().includes("clark kent")) {
+                return "metropolis";
+            }
+            return "Unknown";
+        },
+    }),
     getWeather: tool({
         description: "Get the weather for a location",
         inputSchema: z.object({
@@ -22,6 +37,9 @@ const tools = {
                 return "80F and sunny";
             }
             if (city.toLowerCase().includes("gotham")) {
+                return "90F and cloudy";
+            }
+            if (city.toLowerCase().includes("metropolis")) {
                 return "90F and cloudy";
             }
             return `Unknown`;
@@ -42,7 +60,7 @@ export const POST = async (req: Request) => {
             model: openai("gpt-4.1-nano"),
             messages: convertToModelMessages(messages),
             tools,
-            stopWhen: stepCountIs(2),
+            stopWhen: stepCountIs(3),
         });
 
         result.usage.then((usage) => {
