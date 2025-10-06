@@ -63,7 +63,7 @@ const AudioGenerationPage = () => {
                 </div>
             )}
             <form
-                onSubmit={e => {
+                onSubmit={(e) => {
                     e.preventDefault();
                     submit();
                 }}
@@ -74,7 +74,7 @@ const AudioGenerationPage = () => {
                         placeholder="Enter text to convert to speech"
                         className="flex-1 p-2 border border-zinc-300"
                         value={text}
-                        onChange={e => setText(e.target.value)}
+                        onChange={(e) => setText(e.target.value)}
                         disabled={loading}
                     />
                     <button type="submit" disabled={loading || !text}>

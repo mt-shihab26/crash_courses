@@ -1,6 +1,12 @@
 "use client";
 
-import { SignedIn, SignedOut, SignInButton, SignOutButton, SignUpButton } from "@clerk/nextjs";
+import {
+    SignedIn,
+    SignedOut,
+    SignInButton,
+    SignOutButton,
+    SignUpButton,
+} from "@clerk/nextjs";
 import { Button } from "./ui/button";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -47,7 +53,7 @@ export const Navigation = () => {
 
                     <div className="flex w-full justify-between items-center">
                         <div className="hidden md:flex gap-1 items-center">
-                            {navigationLinks.map(link => (
+                            {navigationLinks.map((link) => (
                                 <Link
                                     key={link.href}
                                     href={link.href}
@@ -65,7 +71,7 @@ export const Navigation = () => {
                         </div>
 
                         <div className="hidden md:flex gap-1 items-center">
-                            {secondaryLinks.map(link => (
+                            {secondaryLinks.map((link) => (
                                 <Link
                                     key={link.href}
                                     href={link.href}
