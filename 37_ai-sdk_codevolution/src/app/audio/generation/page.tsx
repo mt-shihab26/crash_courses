@@ -6,6 +6,7 @@ const AudioGenerationPage = () => {
     const [text, setText] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+    const [audioUrl, setAudioUrl] = useState<string | null>(null);
 
     const submit = async () => {
         try {
@@ -24,14 +25,15 @@ const AudioGenerationPage = () => {
 
             const blob = await response.blob();
 
-            const audioUrl = URL.createObjectURL(blob);
-            const audio = new Audio(audioUrl);
-
-            audio.play();
-
-            audio.addEventListener("ended", () => {
+            if (audioUrl) {
                 URL.revokeObjectURL(audioUrl);
-            });
+            }
+
+            const newAudioUrl = URL.createObjectURL(blob);
+            setAudioUrl(newAudioUrl);
+
+            const audio = new Audio(newAudioUrl);
+            audio.play();
         } catch (e: any) {
             console.error("Error: ", e);
             setError(e?.message || "Something went wrong");
@@ -44,6 +46,22 @@ const AudioGenerationPage = () => {
         <div className="flex relative flex-col w-full max-w-md py-24 mx-auto content-stretch">
             {loading && <div>Generating audio...</div>}
             {error && <div className="text-red-500">{error}</div>}
+            {audioUrl && (
+                <div className="mb-4 p-4 border border-zinc-300 rounded">
+                    <audio controls src={audioUrl} className="w-full mb-2">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <button
+                        onClick={() => {
+                            const audio = new Audio(audioUrl);
+                            audio.play();
+                        }}
+                        className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    >
+                        Replay
+                    </button>
+                </div>
+            )}
             <form
                 onSubmit={e => {
                     e.preventDefault();
