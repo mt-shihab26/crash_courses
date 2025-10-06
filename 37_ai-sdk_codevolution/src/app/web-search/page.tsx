@@ -28,6 +28,10 @@ const WebSearchPage = () => {
                             {message.role === "user" ? "You" : "AI"}:{" "}
                         </div>
                         {message.parts.map((part, index) => {
+                            const sourcesParts = message.parts.filter(
+                                (p) => p.type === "source-url",
+                            );
+
                             switch (part.type) {
                                 case "text":
                                     return (
@@ -71,6 +75,78 @@ const WebSearchPage = () => {
                                                     <div className="text-sm text-green-700 font-semibold mb-2">
                                                         Web Search Complete
                                                     </div>
+                                                    {message.role ===
+                                                        "assistant" &&
+                                                        sourcesParts.length >
+                                                            0 && (
+                                                            <div className="mt-4 p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
+                                                                <div className="mb-3">
+                                                                    <div className="flex items-center gap-2 mb-3">
+                                                                        <svg
+                                                                            className="w-4 h-4 text-gray-600"
+                                                                            fill="none"
+                                                                            stroke="currentColor"
+                                                                            viewBox="0 0 24 24"
+                                                                        >
+                                                                            <path
+                                                                                strokeLinecap="round"
+                                                                                strokeLinejoin="round"
+                                                                                strokeWidth={
+                                                                                    2
+                                                                                }
+                                                                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                                                                            />
+                                                                        </svg>
+                                                                        <span className="text-sm font-semibold text-gray-700">
+                                                                            Sources
+                                                                            (
+                                                                            {
+                                                                                sourcesParts.length
+                                                                            }
+                                                                            )
+                                                                        </span>
+                                                                    </div>
+                                                                    <div className="grid gap-2">
+                                                                        {sourcesParts.map(
+                                                                            (
+                                                                                source,
+                                                                                i,
+                                                                            ) => (
+                                                                                <a
+                                                                                    key={`source-${i}`}
+                                                                                    href={
+                                                                                        source.url
+                                                                                    }
+                                                                                    target="_blank"
+                                                                                    rel="noopener noreferrer"
+                                                                                    className="flex items-center gap-2 p-2 text-sm text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-md transition-colors duration-200 border border-transparent hover:border-blue-200"
+                                                                                >
+                                                                                    <svg
+                                                                                        className="w-3 h-3 flex-shrink-0"
+                                                                                        fill="none"
+                                                                                        stroke="currentColor"
+                                                                                        viewBox="0 0 24 24"
+                                                                                    >
+                                                                                        <path
+                                                                                            strokeLinecap="round"
+                                                                                            strokeLinejoin="round"
+                                                                                            strokeWidth={
+                                                                                                2
+                                                                                            }
+                                                                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                                                                        />
+                                                                                    </svg>
+                                                                                    <span className="truncate">
+                                                                                        {source?.title ||
+                                                                                            source.url}
+                                                                                    </span>
+                                                                                </a>
+                                                                            ),
+                                                                        )}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        )}
                                                 </div>
                                             );
                                         case "output-error":

@@ -29,7 +29,7 @@ export const POST = async (req: Request) => {
             });
         });
 
-        return result.toUIMessageStreamResponse();
+        return result.toUIMessageStreamResponse({ sendSources: true });
     } catch (e: any) {
         console.error("Error chat:", e);
         return new Response(
