@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import { DefaultChatTransport } from "ai";
 
-const ChatPage = () => {
+const ToolsPage = () => {
     const [prompt, setPrompt] = useState<string>("");
 
     const { messages, error, sendMessage, status, stop } = useChat<TMessage>({
@@ -97,7 +97,6 @@ const ChatPage = () => {
                                                 </div>
                                             );
                                     }
-                                    return null;
                                 default:
                                     return null;
                             }
@@ -146,4 +145,4 @@ const ChatPage = () => {
     );
 };
 
-export default ChatPage;
+export default ToolsPage;
