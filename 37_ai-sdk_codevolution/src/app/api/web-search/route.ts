@@ -18,7 +18,6 @@ export const POST = async (req: Request) => {
             model: openai("gpt-4o-mini"),
             messages: convertToModelMessages(messages),
             tools,
-            maxSteps: 3,
             stopWhen: stepCountIs(2),
         });
 
