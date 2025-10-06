@@ -1,7 +1,7 @@
 import type { InferUITools, UIDataTypes, UIMessage } from "ai";
 
 import { openai } from "@ai-sdk/openai";
-import { convertToModelMessages, streamText, tool } from "ai";
+import { convertToModelMessages, streamText, tool, stepCountIs } from "ai";
 import { z } from "zod";
 
 const tools = {
@@ -11,7 +11,7 @@ const tools = {
             city: z.string().describe("The city to get the weather for"),
         }),
         execute: async ({ city }) => {
-            if (city.toLowerCase().includes("tokiyo")) {
+            if (city.toLowerCase().includes("tokyio")) {
                 return "70F and cloudy";
             }
             if (city.toLowerCase().includes("dhaka")) {
@@ -33,6 +33,7 @@ export const POST = async (req: Request) => {
             model: openai("gpt-4.1-nano"),
             messages: convertToModelMessages(messages),
             tools,
+            stopWhen: stepCountIs(2),
         });
 
         result.usage.then(usage => {
