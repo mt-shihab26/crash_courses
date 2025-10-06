@@ -54,8 +54,6 @@ export const POST = async (req: Request) => {
     try {
         const { messages }: { messages: TMessage[] } = await req.json();
 
-        console.log("Messages: ", JSON.stringify(messages));
-
         const result = streamText({
             model: openai("gpt-4.1-nano"),
             messages: convertToModelMessages(messages),
