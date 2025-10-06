@@ -1,16 +1,26 @@
 export const getWeather = async (city: string) => {
     console.log("city: ", city);
-    if (city.toLowerCase().includes("tokiyo") || city.toLowerCase().includes("tokyo")) {
-        return "70F and cloudy";
-    }
-    if (city.toLowerCase().includes("dhaka")) {
-        return "80F and sunny";
-    }
-    if (city.toLowerCase().includes("gotham")) {
-        return "90F and cloudy";
-    }
-    if (city.toLowerCase().includes("metropolis")) {
-        return "90F and cloudy";
-    }
-    return `Unknown`;
+
+    const response = await fetch(
+        `http://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API_KEY}&q=${city}`,
+    );
+
+    const data = await response.json();
+
+    const weather = {
+        location: {
+            name: data.location.name,
+            country: data.location.country,
+            localtime: data.location.localtime,
+        },
+        current: {
+            temp_c: data.current.temp_c,
+            condition: {
+                text: data.current.condition.text,
+                code: data.current.condition.code,
+            },
+        },
+    };
+
+    return weather;
 };
