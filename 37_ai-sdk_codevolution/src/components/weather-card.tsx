@@ -24,7 +24,9 @@ export const WeatherCard = ({
                         <h3 className="text-lg font-semibold text-gray-800">
                             {weather.location.name}
                         </h3>
-                        <p className="text-sm text-gray-600">{weather.location.country}</p>
+                        <p className="text-sm text-gray-600">
+                            {weather.location.country}
+                        </p>
                     </div>
                     <div className="text-right">
                         <div className="text-2xl font-bold text-blue-600">
@@ -40,7 +42,9 @@ export const WeatherCard = ({
                         </span>
                     </div>
                     <div className="text-xs text-gray-500">
-                        {new Date(weather.location.localtime).toLocaleTimeString([], {
+                        {new Date(
+                            weather.location.localtime,
+                        ).toLocaleTimeString([], {
                             hour: "2-digit",
                             minute: "2-digit",
                         })}
