@@ -3,47 +3,19 @@ import type { InferUITools, UIDataTypes, UIMessage } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { convertToModelMessages, streamText, tool, stepCountIs } from "ai";
 import { z } from "zod";
+import { getWeather } from "@/tools/get-weather";
+import { getLocation } from "@/tools/get-location";
 
 const tools = {
     getLocation: tool({
         description: "Get the location of a person",
-        inputSchema: z.object({
-            name: z.string().describe("The name of a person"),
-        }),
-        execute: async ({ name }) => {
-            if (name.toLowerCase().includes("bruce wayne")) {
-                return "gotham city";
-            }
-            if (name.toLowerCase().includes("clark kent")) {
-                return "metropolis";
-            }
-            return "Unknown";
-        },
+        inputSchema: z.object({ name: z.string().describe("The name of a person") }),
+        execute: async ({ name }) => getLocation(name),
     }),
     getWeather: tool({
         description: "Get the weather for a location",
-        inputSchema: z.object({
-            city: z.string().describe("The city to get the weather for"),
-        }),
-        execute: async ({ city }) => {
-            console.log("city: ", city);
-            if (
-                city.toLowerCase().includes("tokiyo") ||
-                city.toLowerCase().includes("tokyo")
-            ) {
-                return "70F and cloudy";
-            }
-            if (city.toLowerCase().includes("dhaka")) {
-                return "80F and sunny";
-            }
-            if (city.toLowerCase().includes("gotham")) {
-                return "90F and cloudy";
-            }
-            if (city.toLowerCase().includes("metropolis")) {
-                return "90F and cloudy";
-            }
-            return `Unknown`;
-        },
+        inputSchema: z.object({ city: z.string().describe("The city to get the weather for") }),
+        execute: ({ city }) => getWeather(city),
     }),
 };
 
@@ -61,7 +33,7 @@ export const POST = async (req: Request) => {
             stopWhen: stepCountIs(3),
         });
 
-        result.usage.then((usage) => {
+        result.usage.then(usage => {
             console.log({
                 messagesCount: messages.length,
                 inputTokens: usage.inputTokens,
@@ -73,11 +45,8 @@ export const POST = async (req: Request) => {
         return result.toUIMessageStreamResponse();
     } catch (e: any) {
         console.error("Error chat:", e);
-        return new Response(
-            e instanceof Error ? e.message : "Something went wrong",
-            {
-                status: 500,
-            },
-        );
+        return new Response(e instanceof Error ? e.message : "Something went wrong", {
+            status: 500,
+        });
     }
 };
