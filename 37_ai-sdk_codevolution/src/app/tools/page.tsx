@@ -22,7 +22,7 @@ const ToolsPage = () => {
     return (
         <div className="flex flex-col w-full max-w-xl mx-auto h-[calc(100vh-6rem)] bg-gray-50 min-h-screen">
             <div className="flex-1 overflow-y-auto py-4 px-4 pb-20">
-                {messages.map(message => (
+                {messages.map((message) => (
                     <div key={message.id} className="mb-4">
                         <div className="font-semibold">
                             {message.role === "user" ? "You" : "AI"}:{" "}
@@ -55,10 +55,15 @@ const ToolsPage = () => {
                                                     className="border border-zinc-700 p-2 rounded mt-1 bg-zinc-800/50"
                                                 >
                                                     <div className="text-sm text-zinc-500">
-                                                        Receiving location request...
+                                                        Receiving location
+                                                        request...
                                                     </div>
                                                     <pre className="text-sm text-zinc-600 mt-1">
-                                                        {JSON.stringify(part.input, null, 2)}
+                                                        {JSON.stringify(
+                                                            part.input,
+                                                            null,
+                                                            2,
+                                                        )}
                                                     </pre>
                                                 </div>
                                             );
@@ -69,7 +74,8 @@ const ToolsPage = () => {
                                                     className="border border-zinc-700 p-2 rounded mt-1 bg-zinc-800/50"
                                                 >
                                                     <div className="text-sm text-zinc-500">
-                                                        Getting location for {part.input.name}...
+                                                        Getting location for{" "}
+                                                        {part.input.name}...
                                                     </div>
                                                 </div>
                                             );
@@ -112,10 +118,15 @@ const ToolsPage = () => {
                                                     className="border border-zinc-700 p-2 rounded mt-1 bg-zinc-800/50"
                                                 >
                                                     <div className="text-sm text-zinc-500">
-                                                        Receiving weather request...
+                                                        Receiving weather
+                                                        request...
                                                     </div>
                                                     <pre className="text-sm text-zinc-600 mt-1">
-                                                        {JSON.stringify(part.input, null, 2)}
+                                                        {JSON.stringify(
+                                                            part.input,
+                                                            null,
+                                                            2,
+                                                        )}
                                                     </pre>
                                                 </div>
                                             );
@@ -126,7 +137,8 @@ const ToolsPage = () => {
                                                     className="border border-zinc-700 p-2 rounded mt-1 bg-zinc-800/50"
                                                 >
                                                     <div className="text-sm text-zinc-500">
-                                                        Getting weather for {part.input.city}...
+                                                        Getting weather for{" "}
+                                                        {part.input.city}...
                                                     </div>
                                                 </div>
                                             );
@@ -165,12 +177,14 @@ const ToolsPage = () => {
                         })}
                     </div>
                 ))}
-                {error && <div className="text-red-500 mb-4">{error.message}</div>}
+                {error && (
+                    <div className="text-red-500 mb-4">{error.message}</div>
+                )}
                 {status !== "ready" && <div>Loading...</div>}
             </div>
             <form
                 className="fixed bottom-0 w-full max-w-md mx-auto left-0 right-0 p-4 bg-zinc-50"
-                onSubmit={e => {
+                onSubmit={(e) => {
                     e.preventDefault();
                     submit();
                 }}
@@ -180,7 +194,7 @@ const ToolsPage = () => {
                         placeholder="How can I help you?"
                         className="flex-1 p-2 border border-zinc-300"
                         value={prompt}
-                        onChange={e => setPrompt(e.target.value)}
+                        onChange={(e) => setPrompt(e.target.value)}
                     />
                     {status !== "ready" ? (
                         <button
