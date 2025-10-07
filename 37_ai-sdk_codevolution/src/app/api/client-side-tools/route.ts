@@ -1,49 +1,15 @@
 import {
     convertToModelMessages,
-    experimental_generateImage as generateImage,
+    experimental_generateImage,
     stepCountIs,
     streamText,
-    tool,
 } from "ai";
 
 import type { InferUITools, UIDataTypes, UIMessage } from "ai";
 
 import { openai } from "@ai-sdk/openai";
-import { z } from "zod";
 
-const tools = {
-    generateImage: tool({
-        description: "Generate an image from a prompt",
-        inputSchema: z.object({
-            prompt: z.string().describe("The prompt to generate an image for"),
-        }),
-        execute: async ({ prompt }) => {
-            const { image } = await generateImage({
-                model: openai.imageModel("dall-e-3"),
-                prompt,
-                size: "1024x1024",
-                providerOptions: {
-                    openai: {
-                        style: "vivid",
-                        quality: "hd",
-                    },
-                },
-            });
-            return image.base64;
-        },
-        toModelOutput: () => {
-            return {
-                type: "content",
-                value: [
-                    {
-                        type: "text",
-                        text: "generated image in base64",
-                    },
-                ],
-            };
-        },
-    }),
-};
+const tools = {};
 
 export type TTools = InferUITools<typeof tools>;
 export type TMessage = UIMessage<never, UIDataTypes, TTools>;
