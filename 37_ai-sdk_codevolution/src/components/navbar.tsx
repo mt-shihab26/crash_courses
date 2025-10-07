@@ -20,13 +20,13 @@ const navigationItems = [
         href: "/",
     },
     {
+        title: "Chatbot",
+        href: "/chatbot",
+        description: "Interactive chatbot interface",
+    },
+    {
         title: "Chat & Messaging",
         items: [
-            {
-                title: "Chatbot",
-                href: "/chatbot",
-                description: "Interactive chatbot interface",
-            },
             {
                 title: "Chat System",
                 href: "/pages/chat-system",
