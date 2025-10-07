@@ -58,6 +58,7 @@ const ImagePage = () => {
                                             />
                                         );
                                     }
+                                    return null;
                                 default:
                                     return null;
                             }

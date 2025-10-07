@@ -78,6 +78,7 @@ const GenerateImageTool = () => {
                                             />
                                         );
                                     }
+                                    return null;
                                 case "tool-generateImage":
                                     if (!("state" in part)) return null;
                                     switch (part.state) {

@@ -18,7 +18,10 @@ const StructuredPage = () => {
                 <div className="space-y-6 px-4">
                     <h2 className="text-2xl font-bold">Pokemon List</h2>
                     {object.map((pokemon, index) => (
-                        <div key={index} className="bg-zinc-50 p-4 rounded-lg">
+                        <div
+                            key={`${pokemon?.name || ""}-${index}`}
+                            className="bg-zinc-50 p-4 rounded-lg"
+                        >
                             <h3 className="text-xl font-semibold mb-2">
                                 {pokemon?.name}
                             </h3>
@@ -31,7 +34,7 @@ const StructuredPage = () => {
                                         {pokemon.abilities.map(
                                             (ability, abilityIndex) => (
                                                 <li
-                                                    key={abilityIndex}
+                                                    key={`${pokemon?.name || ""}-${index}-${abilityIndex}`}
                                                     className="text-zinc-600"
                                                 >
                                                     {ability}
@@ -64,6 +67,7 @@ const StructuredPage = () => {
                     />
                     {isLoading ? (
                         <button
+                            type="button"
                             onClick={stop}
                             className="bg-red-500 text-white px-4 py-2 rounded transition"
                         >

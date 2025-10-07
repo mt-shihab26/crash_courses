@@ -25,7 +25,7 @@ const StructuredPage = () => {
                             {object.recipe.ingredients.map(
                                 (ingredient, index) => (
                                     <div
-                                        key={index}
+                                        key={`${ingredient?.name || ""}-${index}`}
                                         className="bg-zinc-50 p-4 rounded-lg"
                                     >
                                         <p className="font-medium">
@@ -47,7 +47,7 @@ const StructuredPage = () => {
                             <ol className="space-y-4">
                                 {object.recipe.steps.map((step, index) => (
                                     <li
-                                        key={index}
+                                        key={`${step || ""}-${index}`}
                                         className="bg-zinc-50 p-4 rounded-lg"
                                     >
                                         <span className="font-medium mr-2">
@@ -80,6 +80,7 @@ const StructuredPage = () => {
                     />
                     {isLoading ? (
                         <button
+                            type="button"
                             onClick={stop}
                             className="bg-red-500 text-white px-4 py-2 rounded transition"
                         >

@@ -52,6 +52,7 @@ const AudioGenerationPage = () => {
                         Your browser does not support the audio element.
                     </audio>
                     <button
+                        type="button"
                         onClick={() => {
                             const audio = new Audio(audioUrl);
                             audio.play();

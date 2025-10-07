@@ -40,6 +40,7 @@ const StreamPage = () => {
                     />
                     {isLoading && (
                         <button
+                            type="button"
                             onClick={stop}
                             className="bg-red-500 text-white px-4 py-2 rounded transition"
                         >

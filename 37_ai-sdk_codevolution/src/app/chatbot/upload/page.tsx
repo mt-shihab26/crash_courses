@@ -45,7 +45,7 @@ const UploadPage = () => {
         } catch (e: any) {
             setMessage({
                 type: "error",
-                text: "An error occurred while uploading PDF",
+                text: e?.message || "An error occurred while uploading PDF",
             });
         } finally {
             setLoading(false);
