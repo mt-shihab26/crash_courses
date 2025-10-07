@@ -65,21 +65,24 @@ const AudioPage = () => {
             </div>
             <form
                 className="fixed flex justify-between bottom-0 w-full max-w-md mx-auto left-0 right-0 p-4 bg-zinc-50"
-                onSubmit={e => {
+                onSubmit={(e) => {
                     e.preventDefault();
                     submit();
                 }}
             >
                 <div className="flex gap-3">
                     <div className="flex items-center gap-2">
-                        <label htmlFor="audio-upload" className="flex-1 p-2 border border-zinc-300">
+                        <label
+                            htmlFor="audio-upload"
+                            className="flex-1 p-2 border border-zinc-300"
+                        >
                             {selectedFile ? "Change File" : "Select audio file"}
                         </label>
                         <input
                             id="audio-upload"
                             type="file"
                             className="hidden"
-                            onChange={e => {
+                            onChange={(e) => {
                                 setSelectedFile(e.target.files?.[0] || null);
                                 setTranscript(null);
                                 setError(null);
