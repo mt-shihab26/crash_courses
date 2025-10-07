@@ -1,11 +1,9 @@
 "use client";
 
-import type { TMessage } from "@/app/api/multi-steps-tools/route";
-
 import { useChat } from "@ai-sdk/react";
-import { useState } from "react";
-
 import { DefaultChatTransport } from "ai";
+import { useState } from "react";
+import type { TMessage } from "@/app/api/multi-steps-tools/route";
 import { WeatherCard } from "@/components/weather-card";
 
 const ToolsPage = () => {

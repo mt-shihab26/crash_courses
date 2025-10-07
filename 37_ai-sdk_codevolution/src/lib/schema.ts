@@ -1,4 +1,4 @@
-import { pgTable, serial, text, vector, index } from "drizzle-orm/pg-core";
+import { index, pgTable, serial, text, vector } from "drizzle-orm/pg-core";
 
 export const documents = pgTable(
     "documents",

@@ -1,5 +1,5 @@
 import { openai } from "@ai-sdk/openai";
-import { embed, Embedding, embedMany } from "ai";
+import { type Embedding, embed, embedMany } from "ai";
 
 export const generateEmbedding = async (text: string): Promise<Embedding> => {
     const value = text.replace("\n", " ");

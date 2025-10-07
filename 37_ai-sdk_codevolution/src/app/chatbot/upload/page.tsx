@@ -1,15 +1,13 @@
 "use client";
 
-import type { ChangeEvent } from "react";
-
-import { useState } from "react";
-import { processPDFFile } from "./actions";
-
-import { Card, CardContent } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
+import type { ChangeEvent } from "react";
+import { useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { processPDFFile } from "./actions";
 
 const UploadPage = () => {
     const [loading, setLoading] = useState<boolean>(false);

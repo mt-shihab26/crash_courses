@@ -1,11 +1,9 @@
 "use client";
 
-import type { TMessage } from "@/app/api/web-search-tool/route";
-
 import { useChat } from "@ai-sdk/react";
-import { useState } from "react";
-
 import { DefaultChatTransport } from "ai";
+import { useState } from "react";
+import type { TMessage } from "@/app/api/web-search-tool/route";
 
 const WebSearchPage = () => {
     const [prompt, setPrompt] = useState<string>("");

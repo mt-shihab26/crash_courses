@@ -1,6 +1,5 @@
-import type { InferUITools, UIDataTypes, UIMessage } from "ai";
-
 import { openai } from "@ai-sdk/openai";
+import type { InferUITools, UIDataTypes, UIMessage } from "ai";
 import { convertToModelMessages, streamText } from "ai";
 
 const tools = {

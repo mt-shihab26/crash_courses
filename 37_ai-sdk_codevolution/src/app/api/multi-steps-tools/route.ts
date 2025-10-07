@@ -1,10 +1,9 @@
-import type { InferUITools, UIDataTypes, UIMessage } from "ai";
-
 import { openai } from "@ai-sdk/openai";
-import { convertToModelMessages, streamText, tool, stepCountIs } from "ai";
+import type { InferUITools, UIDataTypes, UIMessage } from "ai";
+import { convertToModelMessages, stepCountIs, streamText, tool } from "ai";
 import { z } from "zod";
-import { getWeather } from "@/tools/get-weather";
 import { getLocation } from "@/tools/get-location";
+import { getWeather } from "@/tools/get-weather";
 
 const tools = {
     getLocation: tool({

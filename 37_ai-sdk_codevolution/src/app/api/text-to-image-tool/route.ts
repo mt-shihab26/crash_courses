@@ -1,14 +1,13 @@
+import { openai } from "@ai-sdk/openai";
+
+import type { InferUITools, UIDataTypes, UIMessage } from "ai";
 import {
     convertToModelMessages,
-    streamText,
     experimental_generateImage as generateImage,
-    tool,
     stepCountIs,
+    streamText,
+    tool,
 } from "ai";
-
-import type { UIMessage, InferUITools, UIDataTypes } from "ai";
-
-import { openai } from "@ai-sdk/openai";
 import { z } from "zod";
 
 const tools = {

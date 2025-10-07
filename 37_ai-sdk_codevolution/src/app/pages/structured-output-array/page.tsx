@@ -1,8 +1,8 @@
 "use client";
 
-import { pokemonsSchema } from "@/app/api/structured-ouput-array/schema";
 import { experimental_useObject as useObject } from "@ai-sdk/react";
 import { useState } from "react";
+import { pokemonsSchema } from "@/app/api/structured-ouput-array/schema";
 
 const StructuredPage = () => {
     const [type, setType] = useState<string>("");

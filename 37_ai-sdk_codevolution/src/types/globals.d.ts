@@ -1,5 +1,3 @@
-export {};
-
 export type TRoles = "admin" | "user";
 
 declare global {

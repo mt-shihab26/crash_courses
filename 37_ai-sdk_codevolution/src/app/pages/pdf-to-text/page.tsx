@@ -1,11 +1,9 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import { useRef, useState } from "react";
-
 import { DefaultChatTransport } from "ai";
-
 import Image from "next/image";
+import { useRef, useState } from "react";
 
 const ImagePage = () => {
     const [text, setText] = useState<string>("");

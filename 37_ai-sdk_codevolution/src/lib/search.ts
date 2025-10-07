@@ -1,7 +1,7 @@
 import { cosineDistance, desc, gt, sql } from "drizzle-orm";
 import { db } from "./db";
-import { documents } from "./schema";
 import { generateEmbedding } from "./embeddings";
+import { documents } from "./schema";
 
 export const searchDocuments = async (
     query: string,

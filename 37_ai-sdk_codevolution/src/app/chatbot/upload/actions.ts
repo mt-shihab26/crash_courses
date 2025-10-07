@@ -1,11 +1,10 @@
 "use server";
 
-import { db } from "@/lib/db";
-import { documents } from "@/lib/schema";
-import { generateEmbeddings } from "@/lib/embeddings";
-import { chunkContent } from "@/lib/chunking";
-
 import pdfParse from "pdf-parse";
+import { chunkContent } from "@/lib/chunking";
+import { db } from "@/lib/db";
+import { generateEmbeddings } from "@/lib/embeddings";
+import { documents } from "@/lib/schema";
 
 export const processPDFFile = async (formData: FormData) => {
     try {

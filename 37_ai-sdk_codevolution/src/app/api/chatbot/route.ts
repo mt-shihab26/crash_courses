@@ -1,15 +1,14 @@
-import type { InferUITools, UIDataTypes } from "ai";
-
 import { openai } from "@ai-sdk/openai";
+import type { InferUITools, UIDataTypes } from "ai";
 import {
     convertToModelMessages,
-    streamText,
-    UIMessage,
-    tool,
     stepCountIs,
+    streamText,
+    tool,
+    type UIMessage,
 } from "ai";
-import { searchDocuments } from "@/lib/search";
 import { z } from "zod";
+import { searchDocuments } from "@/lib/search";
 
 const tools = {
     searchKnowledgeBase: tool({

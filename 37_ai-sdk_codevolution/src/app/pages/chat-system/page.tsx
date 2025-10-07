@@ -1,9 +1,8 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import { useState } from "react";
-
 import { DefaultChatTransport } from "ai";
+import { useState } from "react";
 
 const ChatPage = () => {
     const [prompt, setPrompt] = useState<string>("");
