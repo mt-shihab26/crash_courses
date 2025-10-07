@@ -1,6 +1,6 @@
 "use client";
 
-import type { TMessage } from "@/app/api/image/generate-tool/route";
+import type { TMessage } from "@/app/api/text-to-image-tool/route";
 
 import { useChat } from "@ai-sdk/react";
 import { useRef, useState } from "react";
@@ -17,7 +17,7 @@ const GenerateImageTool = () => {
 
     const { messages, error, sendMessage, status, stop } = useChat<TMessage>({
         transport: new DefaultChatTransport({
-            api: "/api/image/generate-tool",
+            api: "/api/text-to-image-tool",
         }),
     });
 

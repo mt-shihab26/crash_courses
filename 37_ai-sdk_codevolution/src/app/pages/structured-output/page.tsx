@@ -1,14 +1,14 @@
 "use client";
 
 import { experimental_useObject as useObject } from "@ai-sdk/react";
-import { recipeSchema } from "../api/structured/schema";
+import { recipeSchema } from "@/app/api/structured-ouput/schema";
 import { useState } from "react";
 
 const StructuredPage = () => {
     const [dish, setDish] = useState<string>("");
 
     const { submit, error, isLoading, stop, object } = useObject({
-        api: "/api/structured",
+        api: "/api/structured-ouput",
         schema: recipeSchema,
     });
 

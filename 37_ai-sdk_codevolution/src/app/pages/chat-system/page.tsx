@@ -9,7 +9,7 @@ const ChatPage = () => {
     const [prompt, setPrompt] = useState<string>("");
 
     const { messages, error, sendMessage, status, stop } = useChat({
-        transport: new DefaultChatTransport({ api: "/api/chat" }),
+        transport: new DefaultChatTransport({ api: "/api/chat-system" }),
     });
 
     const submit = async () => {

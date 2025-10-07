@@ -1,6 +1,6 @@
 "use client";
 
-import type { TMessage } from "@/app/api/tools/route";
+import type { TMessage } from "@/app/api/multi-steps-tools/route";
 
 import { useChat } from "@ai-sdk/react";
 import { useState } from "react";
@@ -12,7 +12,7 @@ const ToolsPage = () => {
     const [prompt, setPrompt] = useState<string>("");
 
     const { messages, error, sendMessage, status, stop } = useChat<TMessage>({
-        transport: new DefaultChatTransport({ api: "/api/tools" }),
+        transport: new DefaultChatTransport({ api: "/api/multi-steps-tools" }),
     });
 
     const submit = async () => {

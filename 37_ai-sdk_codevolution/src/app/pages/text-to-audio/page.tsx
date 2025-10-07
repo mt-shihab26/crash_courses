@@ -14,7 +14,7 @@ const AudioGenerationPage = () => {
             setError(null);
             setText("");
 
-            const response = await fetch("/api/audio/generation", {
+            const response = await fetch("/api/text-to-audio", {
                 method: "POST",
                 body: JSON.stringify({ text }),
             });

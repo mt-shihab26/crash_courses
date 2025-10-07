@@ -1,6 +1,6 @@
 "use client";
 
-import type { TMessage } from "@/app/api/web-search/route";
+import type { TMessage } from "@/app/api/web-search-tool/route";
 
 import { useChat } from "@ai-sdk/react";
 import { useState } from "react";
@@ -11,7 +11,7 @@ const WebSearchPage = () => {
     const [prompt, setPrompt] = useState<string>("");
 
     const { messages, error, sendMessage, status, stop } = useChat<TMessage>({
-        transport: new DefaultChatTransport({ api: "/api/web-search" }),
+        transport: new DefaultChatTransport({ api: "/api/web-search-tool" }),
     });
 
     const submit = async () => {

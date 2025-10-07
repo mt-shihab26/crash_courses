@@ -15,7 +15,7 @@ const EnumPage = () => {
         setResult(null);
 
         try {
-            const response = await fetch("/api/structured/enum", {
+            const response = await fetch("/api/structured-ouput-enum", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

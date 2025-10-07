@@ -15,7 +15,7 @@ const GenerateImagePage = () => {
             setImage(null);
             setError(null);
 
-            const response = await fetch("/api/image/generation", {
+            const response = await fetch("/api/text-to-image", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ prompt }),

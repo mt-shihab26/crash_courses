@@ -14,7 +14,7 @@ const ImagePage = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const { messages, error, sendMessage, status, stop } = useChat({
-        transport: new DefaultChatTransport({ api: "/api/pdf" }),
+        transport: new DefaultChatTransport({ api: "/api/pdf-to-text" }),
     });
 
     const submit = async () => {

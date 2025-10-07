@@ -12,7 +12,7 @@ const StreamPage = () => {
         isLoading,
         completion,
         stop,
-    } = useCompletion({ api: "/api/stream" });
+    } = useCompletion({ api: "/api/text-stream" });
 
     return (
         <div className="flex flex-col w-full max-w-md py-24 mx-auto content-stretch">
