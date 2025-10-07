@@ -59,7 +59,7 @@ export const POST = async (req: Request) => {
             stopWhen: stepCountIs(2),
         });
 
-        result.usage.then(usage => {
+        result.usage.then((usage) => {
             console.log({
                 messagesCount: messages.length,
                 inputTokens: usage.inputTokens,
@@ -71,8 +71,11 @@ export const POST = async (req: Request) => {
         return result.toUIMessageStreamResponse();
     } catch (e: any) {
         console.error("Error chat:", e);
-        return new Response(e instanceof Error ? e.message : "Something went wrong", {
-            status: 500,
-        });
+        return new Response(
+            e instanceof Error ? e.message : "Something went wrong",
+            {
+                status: 500,
+            },
+        );
     }
 };

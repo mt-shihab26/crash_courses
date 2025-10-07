@@ -16,7 +16,9 @@ const GenerateImageTool = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const { messages, error, sendMessage, status, stop } = useChat<TMessage>({
-        transport: new DefaultChatTransport({ api: "/api/image/generate-tool" }),
+        transport: new DefaultChatTransport({
+            api: "/api/image/generate-tool",
+        }),
     });
 
     const submit = async () => {
@@ -31,7 +33,7 @@ const GenerateImageTool = () => {
     return (
         <div className="flex flex-col w-full max-w-md mx-auto h-[calc(100vh-6rem)]">
             <div className="flex-1 overflow-y-auto py-4 px-4 pb-20">
-                {messages.map(message => (
+                {messages.map((message) => (
                     <div key={message.id} className="mb-4">
                         <div className="font-semibold">
                             {message.role === "user" ? "You" : "AI"}:{" "}
@@ -53,17 +55,27 @@ const GenerateImageTool = () => {
                                             <Image
                                                 key={`${message.id}-${index}`}
                                                 src={part.url}
-                                                alt={part.filename || `attachment-${index}`}
+                                                alt={
+                                                    part.filename ||
+                                                    `attachment-${index}`
+                                                }
                                                 width={500}
                                                 height={500}
                                             />
                                         );
-                                    } else if (part.mediaType.startsWith("application/pdf")) {
+                                    } else if (
+                                        part.mediaType.startsWith(
+                                            "application/pdf",
+                                        )
+                                    ) {
                                         return (
                                             <iframe
                                                 key={`${message.id}-${index}`}
                                                 src={part.url}
-                                                title={part.filename || `attachment-${index}`}
+                                                title={
+                                                    part.filename ||
+                                                    `attachment-${index}`
+                                                }
                                                 width={500}
                                                 height={500}
                                             />
@@ -79,7 +91,8 @@ const GenerateImageTool = () => {
                                                     className="border border-blue-300 p-3 rounded-lg mt-2 bg-blue-50"
                                                 >
                                                     <div className="text-sm text-blue-600 font-medium mb-2">
-                                                        Preparing image generation...
+                                                        Preparing image
+                                                        generation...
                                                     </div>
                                                 </div>
                                             );
@@ -90,7 +103,8 @@ const GenerateImageTool = () => {
                                                     className="border border-yellow-300 p-3 rounded-lg mt-2 bg-yellow-50"
                                                 >
                                                     <div className="text-sm text-yellow-700 font-medium">
-                                                        Generating image: "{part.input.prompt}"
+                                                        Generating image: "
+                                                        {part.input.prompt}"
                                                     </div>
                                                 </div>
                                             );
@@ -101,13 +115,17 @@ const GenerateImageTool = () => {
                                                     className="border border-green-300 p-3 rounded-lg mt-2 bg-green-50"
                                                 >
                                                     <div className="text-sm text-green-700 font-semibold mb-2">
-                                                        Image Generated Successfully
+                                                        Image Generated
+                                                        Successfully
                                                     </div>
                                                     {part.output && (
                                                         <div className="mt-3">
                                                             <Image
                                                                 src={`data:image/png;base64,${part.output}`}
-                                                                alt={part.input.prompt}
+                                                                alt={
+                                                                    part.input
+                                                                        .prompt
+                                                                }
                                                                 width={300}
                                                                 height={300}
                                                                 className="rounded-lg shadow-md"
@@ -139,12 +157,14 @@ const GenerateImageTool = () => {
                         })}
                     </div>
                 ))}
-                {error && <div className="text-red-500 mb-4">{error.message}</div>}
+                {error && (
+                    <div className="text-red-500 mb-4">{error.message}</div>
+                )}
                 {status !== "ready" && <div>Loading...</div>}
             </div>
             <form
                 className="fixed bottom-0 w-full max-w-md mx-auto left-0 right-0 p-4 bg-zinc-50"
-                onSubmit={e => {
+                onSubmit={(e) => {
                     e.preventDefault();
                     submit();
                 }}
@@ -155,13 +175,15 @@ const GenerateImageTool = () => {
                             htmlFor="file-upload"
                             className="flex items-center gap-2 text-sm text-zinc-600"
                         >
-                            {files?.length ? `${files.length} file(s)` : "Attach files"}
+                            {files?.length
+                                ? `${files.length} file(s)`
+                                : "Attach files"}
                         </label>
                         <input
                             id="file-upload"
                             type="file"
                             className="hidden"
-                            onChange={e => setFiles(e.target.files)}
+                            onChange={(e) => setFiles(e.target.files)}
                             multiple={true}
                             ref={fileInputRef}
                         />
@@ -172,7 +194,7 @@ const GenerateImageTool = () => {
                         placeholder="How can I help you?"
                         className="flex-1 p-2 border border-zinc-300"
                         value={text}
-                        onChange={e => setText(e.target.value)}
+                        onChange={(e) => setText(e.target.value)}
                     />
                     {status !== "ready" ? (
                         <button
