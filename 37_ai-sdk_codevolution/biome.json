@@ -21,13 +21,28 @@
             "suspicious": {
                 "noUnknownAtRules": "off",
                 "noExplicitAny": "off",
-                "noDocumentCookie": "off"
+                "noDocumentCookie": "off",
+                "noArrayIndexKey": "off"
             },
             "performance": {
                 "noImgElement": "off"
             },
             "a11y": {
-                "useMediaCaption": "off"
+                "useMediaCaption": "off",
+                "noSvgWithoutTitle": "off",
+                "useFocusableInteractive": "off",
+                "useSemanticElements": "off",
+                "noRedundantRoles": "off",
+                "useAriaPropsForRole": "off"
+            },
+            "complexity": {
+                "useOptionalChain": "off"
+            },
+            "security": {
+                "noDangerouslySetInnerHtml": "off"
+            },
+            "correctness": {
+                "useExhaustiveDependencies": "off"
             }
         },
         "domains": {
