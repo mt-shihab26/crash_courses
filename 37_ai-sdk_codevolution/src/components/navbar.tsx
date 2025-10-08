@@ -120,8 +120,12 @@ const navigationItems = [
             {
                 title: "Client Side Tools",
                 href: "/pages/client-side-tools",
-                description:
-                    "Client-side tools for image manipulation and processing",
+                description: "Client-side tools for image manipulation and processing",
+            },
+            {
+                title: "MCP Tools",
+                href: "/pages/mcp-tools",
+                description: "Model Context Protocol tools and integrations",
             },
         ],
     },
@@ -135,23 +139,20 @@ export function Navbar() {
             <div className="container flex h-14 items-center justify-center">
                 <NavigationMenu>
                     <NavigationMenuList>
-                        {navigationItems.map((item) => (
+                        {navigationItems.map(item => (
                             <NavigationMenuItem key={item.title}>
                                 {item.items ? (
                                     <>
-                                        <NavigationMenuTrigger>
-                                            {item.title}
-                                        </NavigationMenuTrigger>
+                                        <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
                                         <NavigationMenuContent>
                                             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                                                {item.items.map((subItem) => (
+                                                {item.items.map(subItem => (
                                                     <ListItem
                                                         key={subItem.title}
                                                         title={subItem.title}
                                                         href={subItem.href}
                                                         className={cn(
-                                                            pathname ===
-                                                                subItem.href &&
+                                                            pathname === subItem.href &&
                                                                 "bg-accent text-accent-foreground",
                                                         )}
                                                     >
@@ -208,9 +209,7 @@ const ListItem = ({
                     )}
                     {...props}
                 >
-                    <div className="text-sm font-medium leading-none">
-                        {title}
-                    </div>
+                    <div className="text-sm font-medium leading-none">{title}</div>
                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                         {children}
                     </p>
