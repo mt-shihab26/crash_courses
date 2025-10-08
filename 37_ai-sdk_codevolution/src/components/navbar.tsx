@@ -127,6 +127,11 @@ const navigationItems = [
                 href: "/pages/mcp-tools",
                 description: "Model Context Protocol tools and integrations",
             },
+            {
+                title: "Reasoning",
+                href: "/pages/reasoning",
+                description: "AI reasoning and analysis capabilities",
+            },
         ],
     },
 ];
