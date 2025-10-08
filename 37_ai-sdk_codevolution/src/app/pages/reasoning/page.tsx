@@ -36,6 +36,18 @@ const ReasoningPage = () => {
                                             {part.text}
                                         </div>
                                     );
+                                case "reasoning":
+                                    return (
+                                        <div
+                                            key={`${message.id}-${index}`}
+                                            className="mt-2 p-3 bg-amber-50 border-l-4 border-amber-400 rounded-r text-sm text-gray-700 italic whitespace-pre-wrap"
+                                        >
+                                            <div className="font-semibold text-amber-800 mb-1">
+                                                Reasoning:
+                                            </div>
+                                            {part.text}
+                                        </div>
+                                    );
                                 default:
                                     return null;
                             }

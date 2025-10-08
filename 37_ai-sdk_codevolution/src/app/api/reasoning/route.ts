@@ -6,8 +6,14 @@ export const POST = async (req: Request) => {
         const { messages }: { messages: UIMessage[] } = await req.json();
 
         const result = streamText({
-            model: openai("gpt-4.1-nano"),
+            model: openai("gpt-5-nano"),
             messages: convertToModelMessages(messages),
+            providerOptions: {
+                openai: {
+                    reasoningSummary: "auto",
+                    reasoningEffort: "low",
+                },
+            },
         });
 
         result.usage.then(usage => {
@@ -19,7 +25,9 @@ export const POST = async (req: Request) => {
             });
         });
 
-        return result.toUIMessageStreamResponse();
+        return result.toUIMessageStreamResponse({
+            sendReasoning: true,
+        });
     } catch (e: any) {
         console.error("Error chat:", e);
         return new Response(e instanceof Error ? e.message : "Something went wrong", {
