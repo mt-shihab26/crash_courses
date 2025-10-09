@@ -80,7 +80,7 @@ export const POST = async (req: Request) => {
 
     moviesWithScores.sort((a, b) => b.similarity - a.similarity);
 
-    const tops = moviesWithScores.slice(0, 3);
+    const tops = moviesWithScores.filter(m => m.similarity > 0.4).slice(0, 3);
 
     return Response.json(tops.map(x => ({ name: x.title, similarity: x.similarity })));
 };
