@@ -11,6 +11,7 @@ export const POST = async (req: Request) => {
         const { values, embeddings, usage } = await embedMany({
             model: openai.textEmbedding("text-embedding-3-small"),
             values: body.texts,
+            maxParallelCalls: 5,
         });
 
         return Response.json({
