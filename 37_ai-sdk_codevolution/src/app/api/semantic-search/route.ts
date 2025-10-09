@@ -1,6 +1,9 @@
 import { openai } from "@ai-sdk/openai";
 import { embed, embedMany, cosineSimilarity } from "ai";
 
+// curl -X POST http://localhost:3000/api/semantic-search -H "Content-Type: application/json" -d '{"query": "movies about artificial intelligence and robots"}'
+// curl -X POST http://localhost:3000/api/semantic-search -H "Content-Type: application/json" -d '{"query": "romantic love stories"}'
+
 const movies = [
     {
         id: 1,
@@ -75,5 +78,9 @@ export const POST = async (req: Request) => {
         };
     });
 
-    return Response.json({ moviesWithScores });
+    moviesWithScores.sort((a, b) => b.similarity - a.similarity);
+
+    const tops = moviesWithScores.slice(0, 3);
+
+    return Response.json(tops.map(x => ({ name: x.title, similarity: x.similarity })));
 };
