@@ -2,6 +2,7 @@
     "name": "39_react-native-course-2025_pedro-tech",
     "main": "expo-router/entry",
     "version": "1.0.0",
+    "private": true,
     "scripts": {
         "start": "expo start",
         "reset-project": "node ./scripts/reset-project.js",
@@ -45,6 +46,5 @@
         "prettier": "^3.7.4",
         "prettier-plugin-organize-imports": "^4.3.0",
         "typescript": "~5.9.2"
-    },
-    "private": true
+    }
 }
