@@ -3,20 +3,19 @@ import { HouseIcon, LogInIcon } from 'lucide-react-native';
 
 const Layout = () => {
     return (
-        <Tabs screenOptions={{ tabBarActiveTintColor: 'coral' }}>
+        <Tabs screenOptions={{ tabBarActiveTintColor: 'red' }}>
             <Tabs.Screen
                 name="index"
                 options={{
                     title: 'Home',
-                    tabBarIcon: ({ color, size, focused }) =>
-                        focused ? <HouseIcon color={color} size={size} /> : <HouseIcon color={color} size={size} />,
+                    tabBarIcon: ({ color, size }) => <HouseIcon color={color} size={size} />,
                 }}
             />
             <Tabs.Screen
                 name="login"
                 options={{
                     title: 'Login',
-                    tabBarIcon: ({ color }) => <LogInIcon size={24} color={color} />,
+                    tabBarIcon: ({ color, size }) => <LogInIcon size={size} color={color} />,
                 }}
             />
         </Tabs>
