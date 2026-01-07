@@ -14,7 +14,7 @@ else
   puts 'you are child'
 end
 
-print 'true and false = ', (true and false), "\n"
+print 'true and false = ', false, "\n"
 print 'true or false = ', (true or false), "\n"
 print 'not false = ', (!false), "\n"
 
