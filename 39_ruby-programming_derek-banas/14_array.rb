@@ -19,3 +19,7 @@ arr.pop
 puts arr
 
 puts arr.size
+
+arr.each do |val|
+  puts val
+end
