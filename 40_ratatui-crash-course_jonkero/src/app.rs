@@ -49,6 +49,11 @@ impl App {
                             'q' => return Ok(true),
                             'k' => self.list.select_previous(),
                             'j' => self.list.select_next(),
+                            'D' => {
+                                if let Some(index) = self.list.selected() {
+                                    self.todos.remove(index);
+                                }
+                            }
                             _ => {}
                         },
                         _ => {}
