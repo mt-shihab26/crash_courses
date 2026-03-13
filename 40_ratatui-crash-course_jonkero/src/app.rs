@@ -4,7 +4,7 @@ use std::io::Result;
 use ratatui::{
     DefaultTerminal, Frame,
     crossterm::event::{Event, KeyCode, KeyEventKind, read},
-    widgets::{Paragraph, Widget},
+    widgets::{List, Widget},
 };
 
 pub struct App {
@@ -45,8 +45,7 @@ impl App {
     }
 
     fn render(&self, frame: &mut Frame) {
-        self.todos.iter().for_each(|todo| {
-            Paragraph::new(todo.desc.as_str()).render(frame.area(), frame.buffer_mut())
-        });
+        List::new(self.todos.iter().map(|t| t.desc.to_string()))
+            .render(frame.area(), frame.buffer_mut());
     }
 }
