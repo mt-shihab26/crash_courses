@@ -64,10 +64,10 @@ impl Widget for &App {
     where
         Self: Sized,
     {
-        let vertical_layout =
-            Layout::vertical([Constraint::Percentage(10), Constraint::Fill(1)]).margin(5);
-
-        let [title_area, gauge_area] = vertical_layout.areas(area);
+        let [title_area, gauge_area] =
+            Layout::vertical([Constraint::Percentage(10), Constraint::Fill(1)])
+                .margin(5)
+                .areas(area);
 
         Line::from("BP Overview")
             .style(Style::new().yellow())
