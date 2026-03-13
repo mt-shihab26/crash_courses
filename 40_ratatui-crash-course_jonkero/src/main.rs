@@ -4,7 +4,7 @@ use ratatui::{
     DefaultTerminal, Frame,
     crossterm::event::{Event, KeyCode, KeyEventKind, read},
     init, restore,
-    widgets::Paragraph,
+    widgets::{Paragraph, Widget},
 };
 
 fn main() -> Result<()> {
@@ -27,8 +27,7 @@ fn run(terminal: &mut DefaultTerminal) -> Result<()> {
 }
 
 fn render(frame: &mut Frame) {
-    let text = Paragraph::new("Hello World!");
-    frame.render_widget(text, frame.area());
+    Paragraph::new("Hello World!").render(frame.area(), frame.buffer_mut());
 }
 
 fn handle_events() -> Result<bool> {
