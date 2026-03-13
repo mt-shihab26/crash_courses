@@ -4,7 +4,7 @@ use todos::app::App;
 
 fn main() -> Result<()> {
     let mut terminal = init();
-    let app = App::new();
+    let mut app = App::new();
 
     let result = app.run(&mut terminal);
 

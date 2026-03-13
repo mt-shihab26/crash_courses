@@ -18,7 +18,7 @@ impl App {
         }
     }
 
-    pub fn run(&self, terminal: &mut DefaultTerminal) -> Result<()> {
+    pub fn run(&mut self, terminal: &mut DefaultTerminal) -> Result<()> {
         loop {
             terminal.draw(|frame| self.render(frame))?;
             if self.handle_events()? {
@@ -27,7 +27,7 @@ impl App {
         }
     }
 
-    fn handle_events(&self) -> Result<bool> {
+    fn handle_events(&mut self) -> Result<bool> {
         match read()? {
             Event::Key(key) => {
                 if key.kind == KeyEventKind::Press {
