@@ -1,11 +1,13 @@
-use crate::todo::Todo;
-use std::io::Result;
-
 use ratatui::{
     DefaultTerminal, Frame,
     crossterm::event::{Event, KeyCode, KeyEventKind, read},
-    widgets::{List, Widget},
+    layout::{Constraint, Layout},
+    style::{Color, Stylize},
+    widgets::{Block, BorderType, List, ListItem, Widget},
 };
+
+use crate::todo::Todo;
+use std::io::Result;
 
 pub struct App {
     todos: Vec<Todo>,
@@ -45,7 +47,20 @@ impl App {
     }
 
     fn render(&self, frame: &mut Frame) {
-        List::new(self.todos.iter().map(|t| t.desc.to_string()))
-            .render(frame.area(), frame.buffer_mut());
+        let [border_area] = Layout::vertical([Constraint::Fill(1)])
+            .margin(1)
+            .areas(frame.area());
+
+        Block::bordered()
+            .border_type(BorderType::Rounded)
+            .fg(Color::Yellow)
+            .render(border_area, frame.buffer_mut());
+
+        List::new(
+            self.todos
+                .iter()
+                .map(|todo| ListItem::from(todo.desc.clone())),
+        )
+        .render(border_area, frame.buffer_mut());
     }
 }
