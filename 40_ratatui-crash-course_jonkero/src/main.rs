@@ -3,6 +3,7 @@ use std::io::Result;
 use ratatui::{
     DefaultTerminal, Frame,
     crossterm::event::{self, Event, KeyCode, KeyEventKind},
+    widgets::Paragraph,
 };
 
 fn main() -> Result<()> {
@@ -25,7 +26,8 @@ fn run(terminal: &mut DefaultTerminal) -> Result<()> {
 }
 
 fn render(frame: &mut Frame) {
-    //
+    let text = Paragraph::new("Hello World!");
+    frame.render_widget(text, frame.area());
 }
 
 fn handle_events() -> Result<bool> {
@@ -33,7 +35,8 @@ fn handle_events() -> Result<bool> {
         Event::Key(key) => {
             if key.kind == KeyEventKind::Press {
                 match key.code {
-                    KeyCode::Char('q') => return Ok(true)
+                    KeyCode::Esc => return Ok(true),
+                    KeyCode::Char('q') => return Ok(true),
                     _ => {}
                 }
             }
