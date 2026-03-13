@@ -1,6 +1,6 @@
 use ratatui::{
     DefaultTerminal, Frame,
-    crossterm::event::{Event, KeyCode, KeyEvent, KeyEventKind, read},
+    crossterm::event::{Event, KeyCode, KeyEvent, KeyEventKind, KeyModifiers, read},
     prelude::{Buffer, Rect},
     style::Stylize,
     text::Line,
@@ -37,7 +37,12 @@ impl App {
 
     fn handle_key_press_event(&mut self, event: KeyEvent) -> Result<()> {
         match event.code {
-            KeyCode::Char('q') => self.exit = true,
+            KeyCode::Char('c') if event.modifiers.contains(KeyModifiers::CONTROL) => {
+                self.exit = true
+            }
+            KeyCode::Char('q') => {
+                self.exit = true;
+            }
             _ => {}
         }
         Ok(())
