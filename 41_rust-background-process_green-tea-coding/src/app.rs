@@ -1,20 +1,26 @@
 use ratatui::{
     DefaultTerminal, Frame,
     crossterm::event::{Event, KeyCode, KeyEvent, KeyEventKind, KeyModifiers, read},
+    layout::{Alignment, Constraint, Layout},
     prelude::{Buffer, Rect},
-    style::Stylize,
+    style::{Color, Style, Stylize},
+    symbols::border,
     text::Line,
-    widgets::Widget,
+    widgets::{Block, Gauge, Widget},
 };
 use std::io::Result;
 
 pub struct App {
     exit: bool,
+    progress_bar_color: Color,
 }
 
 impl App {
     pub fn new() -> Self {
-        Self { exit: false }
+        Self {
+            exit: false,
+            progress_bar_color: Color::Reset,
+        }
     }
 
     pub fn run(&mut self, terminal: &mut DefaultTerminal) -> Result<()> {
@@ -58,6 +64,26 @@ impl Widget for &App {
     where
         Self: Sized,
     {
-        Line::from("Hello World").bold().render(area, buf);
+        let vertical_layout =
+            Layout::vertical([Constraint::Percentage(10), Constraint::Fill(1)]).margin(5);
+
+        let [title_area, gauge_area] = vertical_layout.areas(area);
+
+        Line::from("BP Overview")
+            .style(Style::new().yellow())
+            .bold()
+            .alignment(Alignment::Center)
+            .render(title_area, buf);
+
+        Gauge::default()
+            .gauge_style(Style::default().fg(self.progress_bar_color))
+            .block(
+                Block::bordered()
+                    .title(Line::from(" Background Processes "))
+                    .border_set(border::THICK),
+            )
+            .label(format!("Process 1: 50%"))
+            .ratio(0.5)
+            .render(gauge_area, buf);
     }
 }
