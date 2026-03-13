@@ -19,7 +19,7 @@ impl App {
     pub fn new() -> Self {
         Self {
             exit: false,
-            progress_bar_color: Color::Reset,
+            progress_bar_color: Color::Yellow,
         }
     }
 
@@ -76,14 +76,23 @@ impl Widget for &App {
             .render(title_area, buf);
 
         Gauge::default()
-            .gauge_style(Style::default().fg(self.progress_bar_color))
             .block(
                 Block::bordered()
                     .title(Line::from(" Background Processes "))
+                    .title_bottom(Line::from(vec![
+                        " Change color ".into(),
+                        " <C> ".blue().bold(),
+                        " Quit ".into(),
+                        " <Q> ".blue().bold(),
+                    ]))
                     .border_set(border::THICK),
             )
+            .gauge_style(Style::default().fg(self.progress_bar_color))
             .label(format!("Process 1: 50%"))
             .ratio(0.5)
-            .render(gauge_area, buf);
+            .render(
+                Rect::new(gauge_area.left(), gauge_area.top(), gauge_area.width, 3),
+                buf,
+            );
     }
 }
