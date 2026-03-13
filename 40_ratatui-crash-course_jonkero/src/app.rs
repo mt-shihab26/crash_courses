@@ -1,6 +1,6 @@
 use ratatui::{
     DefaultTerminal, Frame,
-    crossterm::event::{Event, KeyCode, KeyEventKind, read},
+    crossterm::event::{Event, KeyCode, KeyEvent, KeyEventKind, read},
     layout::{Constraint, Layout},
     style::{Color, Style, Stylize},
     widgets::{Block, BorderType, List, ListItem, ListState, Widget},
@@ -41,25 +41,31 @@ impl App {
 
     fn handle_events(&mut self) -> Result<bool> {
         match read()? {
-            Event::Key(key) => {
-                if key.kind == KeyEventKind::Press {
-                    match key.code {
-                        KeyCode::Esc => return Ok(true),
-                        KeyCode::Char(c) => match c {
-                            'q' => return Ok(true),
-                            'k' => self.list.select_previous(),
-                            'j' => self.list.select_next(),
-                            'D' => {
-                                if let Some(index) = self.list.selected() {
-                                    self.todos.remove(index);
-                                }
-                            }
-                            _ => {}
-                        },
-                        _ => {}
-                    }
+            Event::Key(event) => {
+                if event.kind == KeyEventKind::Press {
+                    return self.handle_press_events(event);
                 }
             }
+            _ => {}
+        }
+
+        Ok(false)
+    }
+
+    fn handle_press_events(&mut self, event: KeyEvent) -> Result<bool> {
+        match event.code {
+            KeyCode::Esc => return Ok(true),
+            KeyCode::Char(c) => match c {
+                'q' => return Ok(true),
+                'k' => self.list.select_previous(),
+                'j' => self.list.select_next(),
+                'D' => {
+                    if let Some(index) = self.list.selected() {
+                        self.todos.remove(index);
+                    }
+                }
+                _ => {}
+            },
             _ => {}
         }
 
