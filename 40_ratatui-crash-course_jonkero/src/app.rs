@@ -2,7 +2,7 @@ use ratatui::{
     DefaultTerminal, Frame,
     crossterm::event::{Event, KeyCode, KeyEventKind, read},
     layout::{Constraint, Layout},
-    style::{Color, Stylize},
+    style::{Color, Style, Stylize},
     widgets::{Block, BorderType, List, ListItem, ListState, Widget},
 };
 
@@ -16,14 +16,18 @@ pub struct App {
 
 impl App {
     pub fn new() -> Self {
-        Self {
+        let mut s = Self {
             todos: vec![
                 Todo::new("Hello"),
                 Todo::new("World"),
                 Todo::new("Rust is crazy"),
             ],
             list: ListState::default(),
-        }
+        };
+
+        s.list.select_first();
+
+        s
     }
 
     pub fn run(&mut self, terminal: &mut DefaultTerminal) -> Result<()> {
@@ -41,7 +45,12 @@ impl App {
                 if key.kind == KeyEventKind::Press {
                     match key.code {
                         KeyCode::Esc => return Ok(true),
-                        KeyCode::Char('q') => return Ok(true),
+                        KeyCode::Char(c) => match c {
+                            'q' => return Ok(true),
+                            'k' => self.list.select_previous(),
+                            'j' => self.list.select_next(),
+                            _ => {}
+                        },
                         _ => {}
                     }
                 }
@@ -70,7 +79,8 @@ impl App {
             self.todos
                 .iter()
                 .map(|todo| ListItem::from(todo.desc.clone())),
-        );
+        )
+        .highlight_style(Style::default().fg(Color::Green));
 
         frame.render_stateful_widget(list, inner_area, &mut self.list);
     }
