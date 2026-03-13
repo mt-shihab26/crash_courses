@@ -16,18 +16,14 @@ pub struct App {
 
 impl App {
     pub fn new() -> Self {
-        let mut s = Self {
-            todos: vec![
-                Todo::new("Hello"),
-                Todo::new("World"),
-                Todo::new("Rust is crazy"),
-            ],
+        let mut app = Self {
+            todos: Todo::fakes(),
             list: ListState::default(),
         };
 
-        s.list.select_first();
+        app.list.select_first();
 
-        s
+        app
     }
 
     pub fn run(&mut self, terminal: &mut DefaultTerminal) -> Result<()> {

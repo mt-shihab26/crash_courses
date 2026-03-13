@@ -11,4 +11,12 @@ impl Todo {
             done: false,
         }
     }
+
+    pub fn fakes() -> Vec<Todo> {
+        return vec![
+            Todo::new("Hello"),
+            Todo::new("World"),
+            Todo::new("Rust is crazy"),
+        ];
+    }
 }
