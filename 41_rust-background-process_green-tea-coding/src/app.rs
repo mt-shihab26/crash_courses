@@ -1,6 +1,6 @@
 use ratatui::{
     DefaultTerminal, Frame,
-    crossterm::event::{Event, KeyEvent, read},
+    crossterm::event::{Event, KeyCode, KeyEvent, KeyEventKind, read},
     prelude::{Buffer, Rect},
     style::Stylize,
     text::Line,
@@ -20,16 +20,27 @@ impl App {
     pub fn run(&mut self, terminal: &mut DefaultTerminal) -> Result<()> {
         while !self.exit {
             terminal.draw(|frame| self.draw(frame))?;
-            match read()? {
-                Event::Key(event) => self.handle_key_event(event),
-                _ => {}
-            }
+            self.handle_events()?;
         }
         Ok(())
     }
 
-    fn handle_key_event(&mut self, event: KeyEvent) {
-        //
+    fn handle_events(&mut self) -> Result<()> {
+        match read()? {
+            Event::Key(event) if event.kind == KeyEventKind::Press => {
+                self.handle_key_press_event(event)?
+            }
+            _ => {}
+        }
+        Ok(())
+    }
+
+    fn handle_key_press_event(&mut self, event: KeyEvent) -> Result<()> {
+        match event.code {
+            KeyCode::Char('q') => self.exit = true,
+            _ => {}
+        }
+        Ok(())
     }
 
     fn draw(&self, frame: &mut Frame) {
