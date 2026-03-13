@@ -2,16 +2,17 @@ use std::io::Result;
 
 use ratatui::{
     DefaultTerminal, Frame,
-    crossterm::event::{self, Event, KeyCode, KeyEventKind},
+    crossterm::event::{Event, KeyCode, KeyEventKind, read},
+    init, restore,
     widgets::Paragraph,
 };
 
 fn main() -> Result<()> {
-    let mut terminal = ratatui::init();
+    let mut terminal = init();
 
     let result = run(&mut terminal);
 
-    ratatui::restore();
+    restore();
 
     result
 }
@@ -31,7 +32,7 @@ fn render(frame: &mut Frame) {
 }
 
 fn handle_events() -> Result<bool> {
-    match event::read()? {
+    match read()? {
         Event::Key(key) => {
             if key.kind == KeyEventKind::Press {
                 match key.code {
