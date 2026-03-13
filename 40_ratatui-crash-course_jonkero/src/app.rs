@@ -3,7 +3,7 @@ use ratatui::{
     crossterm::event::{Event, KeyCode, KeyEventKind, read},
     layout::{Constraint, Layout},
     style::{Color, Stylize},
-    widgets::{Block, BorderType, List, ListItem, Widget},
+    widgets::{Block, BorderType, List, ListItem, ListState, Widget},
 };
 
 use crate::todo::Todo;
@@ -11,6 +11,7 @@ use std::io::Result;
 
 pub struct App {
     todos: Vec<Todo>,
+    list: ListState,
 }
 
 impl App {
@@ -21,6 +22,7 @@ impl App {
                 Todo::new("World"),
                 Todo::new("Rust is crazy"),
             ],
+            list: ListState::default(),
         }
     }
 
@@ -50,7 +52,7 @@ impl App {
         Ok(false)
     }
 
-    fn render(&self, frame: &mut Frame) {
+    fn render(&mut self, frame: &mut Frame) {
         let [border_area] = Layout::vertical([Constraint::Fill(1)])
             .margin(1)
             .areas(frame.area());
@@ -64,11 +66,12 @@ impl App {
             .fg(Color::Yellow)
             .render(border_area, frame.buffer_mut());
 
-        List::new(
+        let list = List::new(
             self.todos
                 .iter()
                 .map(|todo| ListItem::from(todo.desc.clone())),
-        )
-        .render(inner_area, frame.buffer_mut());
+        );
+
+        frame.render_stateful_widget(list, inner_area, &mut self.list);
     }
 }
