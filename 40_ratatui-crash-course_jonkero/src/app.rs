@@ -16,7 +16,11 @@ pub struct App {
 impl App {
     pub fn new() -> Self {
         Self {
-            todos: vec![Todo::new("Hello"), Todo::new("World")],
+            todos: vec![
+                Todo::new("Hello"),
+                Todo::new("World"),
+                Todo::new("Rust is crazy"),
+            ],
         }
     }
 
@@ -51,6 +55,10 @@ impl App {
             .margin(1)
             .areas(frame.area());
 
+        let [inner_area] = Layout::vertical([Constraint::Fill(1)])
+            .margin(1)
+            .areas(border_area);
+
         Block::bordered()
             .border_type(BorderType::Rounded)
             .fg(Color::Yellow)
@@ -61,6 +69,6 @@ impl App {
                 .iter()
                 .map(|todo| ListItem::from(todo.desc.clone())),
         )
-        .render(border_area, frame.buffer_mut());
+        .render(inner_area, frame.buffer_mut());
     }
 }
