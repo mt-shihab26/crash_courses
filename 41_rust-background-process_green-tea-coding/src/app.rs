@@ -11,7 +11,7 @@ use ratatui::{
 
 use std::io::Result;
 
-use crate::color::{get_color, get_random_color_index_with_exclude_index};
+use crate::color::{color_at, next_random_color_index};
 
 pub struct App {
     exit: bool,
@@ -22,7 +22,7 @@ impl App {
     pub fn new() -> Self {
         Self {
             exit: false,
-            progress_bar_color_index: get_random_color_index_with_exclude_index(None),
+            progress_bar_color_index: next_random_color_index(None),
         }
     }
 
@@ -54,7 +54,7 @@ impl App {
             }
             KeyCode::Char('c') => {
                 self.progress_bar_color_index =
-                    get_random_color_index_with_exclude_index(Some(self.progress_bar_color_index));
+                    next_random_color_index(Some(self.progress_bar_color_index));
             }
             _ => {}
         }
@@ -99,7 +99,7 @@ impl Widget for &App {
             )
             .gauge_style(
                 Style::default()
-                    .fg(get_color(self.progress_bar_color_index))
+                    .fg(color_at(self.progress_bar_color_index))
                     .bg(Color::Black),
             )
             .label("Process 1: 50%")

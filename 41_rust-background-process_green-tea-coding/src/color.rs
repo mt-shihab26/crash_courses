@@ -9,7 +9,7 @@ const COLORS: [Color; 5] = [
     Color::Black,
 ];
 
-pub fn get_random_color_index_with_exclude_index(excluded_index: Option<usize>) -> usize {
+pub fn next_random_color_index(excluded_index: Option<usize>) -> usize {
     let index = random_range(0..COLORS.len());
 
     let Some(excluded_index) = excluded_index else {
@@ -27,7 +27,7 @@ pub fn get_random_color_index_with_exclude_index(excluded_index: Option<usize>) 
     }
 }
 
-pub fn get_color(index: usize) -> Color {
+pub fn color_at(index: usize) -> Color {
     if COLORS.len() <= index {
         return COLORS[0];
     }
