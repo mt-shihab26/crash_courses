@@ -80,9 +80,17 @@ impl App {
                 self.is_input = false;
             }
             KeyCode::Enter => {
+                if let Some(editing_index) = self.editing_index {
+                    self.todos.remove(editing_index);
+                    self.todos
+                        .insert(editing_index, Todo::new(&self.input_value));
+                } else {
+                    self.todos.push(Todo::new(&self.input_value));
+                }
+
                 self.is_input = false;
-                self.todos.push(Todo::new(&self.input_value));
-                self.input_value = "".to_string()
+                self.input_value = "".to_string();
+                self.editing_index = None;
             }
             KeyCode::Backspace => {
                 self.input_value.pop();
