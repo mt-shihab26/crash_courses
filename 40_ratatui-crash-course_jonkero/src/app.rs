@@ -10,6 +10,7 @@ use crate::todo::Todo;
 use std::io::Result;
 
 pub struct App {
+    alive: bool,
     todos: Vec<Todo>,
     list: ListState,
 }
@@ -17,6 +18,7 @@ pub struct App {
 impl App {
     pub fn new() -> Self {
         let mut app = Self {
+            alive: true,
             todos: Todo::fakes(),
             list: ListState::default(),
         };
@@ -27,32 +29,37 @@ impl App {
     }
 
     pub fn run(&mut self, terminal: &mut DefaultTerminal) -> Result<()> {
-        loop {
+        while !self.alive {
             terminal.draw(|frame| self.render(frame))?;
-            if self.handle_events()? {
-                break Ok(());
-            }
+            self.handle_events()?
         }
+
+        Ok(())
     }
 
-    fn handle_events(&mut self) -> Result<bool> {
+    fn handle_events(&mut self) -> Result<()> {
         match read()? {
-            Event::Key(event) => {
-                if event.kind == KeyEventKind::Press {
-                    return self.handle_press_events(event);
-                }
-            }
-            _ => {}
+            Event::Key(event) => return self.handle_key_event(event),
+            _ => (),
         }
 
-        Ok(false)
+        Ok(())
     }
 
-    fn handle_press_events(&mut self, event: KeyEvent) -> Result<bool> {
+    fn handle_key_event(&mut self, event: KeyEvent) -> Result<()> {
+        match event.kind {
+            KeyEventKind::Press => return self.handle_press_events(event),
+            _ => (),
+        }
+
+        Ok(())
+    }
+
+    fn handle_press_events(&mut self, event: KeyEvent) -> Result<()> {
         match event.code {
-            KeyCode::Esc => return Ok(true),
+            KeyCode::Esc => self.alive = false,
             KeyCode::Char(c) => match c {
-                'q' => return Ok(true),
+                'q' => self.alive = false,
                 'k' => self.list.select_previous(),
                 'j' => self.list.select_next(),
                 'D' => {
@@ -65,7 +72,7 @@ impl App {
             _ => {}
         }
 
-        Ok(false)
+        Ok(())
     }
 
     fn render(&mut self, frame: &mut Frame) {
