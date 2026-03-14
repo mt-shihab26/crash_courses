@@ -1,7 +1,7 @@
 use ratatui::{
     DefaultTerminal, Frame,
     crossterm::event::{Event, KeyCode, KeyEvent, KeyEventKind, read},
-    layout::{Constraint, Layout},
+    layout::{Constraint, Direction, Layout},
     style::{Color, Style, Stylize},
     widgets::{Block, BorderType, List, ListItem, ListState, Padding, Paragraph, Widget},
 };
@@ -114,19 +114,30 @@ impl App {
             .margin(1)
             .areas(border_area);
 
+        let [_header_area, body_area, footer_area] = Layout::default()
+            .direction(Direction::Vertical)
+            .constraints([
+                Constraint::Length(3),
+                Constraint::Min(0),
+                Constraint::Length(3),
+            ])
+            .areas(inner_area);
+
         Block::bordered()
             .border_type(BorderType::Rounded)
             .fg(Color::Yellow)
             .render(border_area, frame.buffer_mut());
 
-        let list = List::new(
-            self.todos
-                .iter()
-                .map(|todo| ListItem::from(todo.desc.clone())),
-        )
-        .highlight_style(Style::default().fg(Color::Green));
-
-        frame.render_stateful_widget(list, inner_area, &mut self.list);
+        frame.render_stateful_widget(
+            List::new(
+                self.todos
+                    .iter()
+                    .map(|todo| ListItem::from(todo.desc.clone())),
+            )
+            .highlight_style(Style::default().fg(Color::Green)),
+            body_area,
+            &mut self.list,
+        );
 
         if self.is_input {
             Paragraph::new(self.input_value.as_str())
@@ -136,7 +147,7 @@ impl App {
                         .padding(Padding::uniform(1))
                         .border_type(BorderType::Rounded),
                 )
-                .render(frame.area(), frame.buffer_mut());
+                .render(footer_area, frame.buffer_mut());
         }
     }
 }
