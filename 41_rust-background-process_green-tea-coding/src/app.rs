@@ -9,7 +9,7 @@ use ratatui::{
     text::Line,
     widgets::{Block, Gauge, Widget},
 };
-use std::{io::Result, sync::mpsc::Sender};
+use std::{io::Result, os::unix::thread, sync::mpsc::Sender, thread::sleep, time::Duration};
 
 enum ProcessEvent {
     Input(KeyEvent),
@@ -25,9 +25,21 @@ fn handle_input_events(tx: Sender<ProcessEvent>) -> Result<()> {
     }
 }
 
+fn run_background_thread(tx: Sender<ProcessEvent>) -> Result<()> {
+    let mut percentage = 0;
+    let increment = 0;
+
+    loop {
+        sleep(Duration::from_secs(100));
+        percentage += increment;
+        tx.send(ProcessEvent::Percentage(percentage % 100)).unwrap()
+    }
+}
+
 pub struct App {
     exit: bool,
     progress_bar_color_index: usize,
+    progress_percentage: u8,
 }
 
 impl App {
@@ -35,6 +47,7 @@ impl App {
         Self {
             exit: false,
             progress_bar_color_index: next_random_color_index(None),
+            progress_percentage: 0,
         }
     }
 
