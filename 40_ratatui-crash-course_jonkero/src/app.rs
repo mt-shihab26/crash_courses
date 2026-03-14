@@ -15,6 +15,8 @@ pub struct App {
     list: ListState,
     is_input: bool,
     input_value: String,
+    removed_todo: Option<Todo>,
+    removed_index: Option<usize>,
 }
 
 impl App {
@@ -25,6 +27,8 @@ impl App {
             list: ListState::default(),
             is_input: false,
             input_value: "".to_string(),
+            removed_todo: None,
+            removed_index: None,
         };
 
         app.list.select_first();
@@ -95,7 +99,19 @@ impl App {
                 'j' => self.list.select_next(),
                 'D' => {
                     if let Some(index) = self.list.selected() {
-                        self.todos.remove(index);
+                        if let Some(removed_todo) = self.todos.get(index) {
+                            self.removed_todo = Some(removed_todo.clone());
+                            self.removed_index = Some(index);
+                            self.todos.remove(index);
+                        }
+                    }
+                }
+                'U' => {
+                    if let Some(removed_todo) = &self.removed_todo {
+                        match self.removed_index {
+                            Some(index) => self.todos.insert(index, removed_todo.clone()),
+                            None => self.todos.push(removed_todo.clone()),
+                        };
                     }
                 }
                 'A' => self.is_input = true,
