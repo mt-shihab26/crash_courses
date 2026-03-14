@@ -132,7 +132,8 @@ impl App {
                 .block(
                     Block::bordered()
                         .border_type(BorderType::Rounded)
-                        .fg(Color::Yellow),
+                        .fg(Color::Yellow)
+                        .padding(Padding::horizontal(1)),
                 ),
             header_area,
         );
@@ -158,7 +159,8 @@ impl App {
             Paragraph::new(self.input_value.as_str()).block(
                 Block::bordered()
                     .fg(Color::Green)
-                    .border_type(BorderType::Rounded),
+                    .border_type(BorderType::Rounded)
+                    .padding(Padding::horizontal(1)),
             ),
             footer_area,
         );
