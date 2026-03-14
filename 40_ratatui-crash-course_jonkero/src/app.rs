@@ -71,6 +71,8 @@ impl App {
             }
             KeyCode::Enter => {
                 self.is_input = false;
+                self.todos.push(Todo::new(&self.input_value));
+                self.input_value = "".to_string()
             }
             KeyCode::Backspace => {
                 self.input_value.pop();
@@ -144,7 +146,6 @@ impl App {
                 Paragraph::new(self.input_value.as_str()).block(
                     Block::bordered()
                         .fg(Color::Green)
-                        .padding(Padding::uniform(1))
                         .border_type(BorderType::Rounded),
                 ),
                 footer_area,
