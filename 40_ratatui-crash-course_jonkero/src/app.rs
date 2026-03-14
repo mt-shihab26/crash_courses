@@ -1,17 +1,13 @@
 use ratatui::{
     DefaultTerminal, Frame,
-    crossterm::{
-        cursor::SetCursorStyle,
-        event::{Event, KeyCode, KeyEvent, KeyEventKind, read},
-        execute,
-    },
+    crossterm::event::{Event, KeyCode, KeyEvent, KeyEventKind, read},
     layout::{Alignment, Constraint, Direction, Layout},
     style::{Color, Style, Stylize},
     widgets::{Block, BorderType, List, ListItem, ListState, Padding, Paragraph},
 };
 
 use crate::todo::Todo;
-use std::io::{Result, stdout};
+use std::io::Result;
 
 pub struct App {
     alive: bool,
@@ -159,12 +155,11 @@ impl App {
             self.render_todo(frame);
         }
     }
-
     fn render_keymaps(&mut self, frame: &mut Frame) {
         let modal_area = Layout::default()
             .direction(Direction::Vertical)
             .constraints([Constraint::Min(5)])
-            .horizontal_margin(40)
+            .horizontal_margin(50)
             .vertical_margin(3)
             .split(frame.area())[0];
 
@@ -253,7 +248,7 @@ impl App {
     fn render_todo(&mut self, frame: &mut Frame) {
         let [border_area] = Layout::vertical([Constraint::Fill(1)])
             .vertical_margin(1)
-            .horizontal_margin(40)
+            .horizontal_margin(50)
             .areas(frame.area());
 
         let [inner_area] = Layout::vertical([Constraint::Fill(1)]).areas(border_area);
