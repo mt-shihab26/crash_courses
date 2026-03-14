@@ -89,7 +89,7 @@ impl Widget for &App {
             )
             .gauge_style(Style::default().fg(self.progress_bar_color))
             .label(format!("Process 1: 50%"))
-            .ratio(0.8)
+            .percent(80)
             .render(
                 Rect::new(gauge_area.left(), gauge_area.top(), gauge_area.width, 3),
                 buf,
