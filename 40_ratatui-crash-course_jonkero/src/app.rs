@@ -3,7 +3,7 @@ use ratatui::{
     crossterm::event::{Event, KeyCode, KeyEvent, KeyEventKind, read},
     layout::{Alignment, Constraint, Direction, Layout},
     style::{Color, Style, Stylize},
-    widgets::{Block, BorderType, List, ListItem, ListState, Paragraph},
+    widgets::{Block, BorderType, List, ListItem, ListState, Padding, Paragraph},
 };
 
 use crate::todo::Todo;
@@ -147,7 +147,8 @@ impl App {
             .block(
                 Block::bordered()
                     .border_type(BorderType::Rounded)
-                    .fg(Color::Yellow),
+                    .fg(Color::Yellow)
+                    .padding(Padding::horizontal(1)),
             ),
             body_area,
             &mut self.list,
