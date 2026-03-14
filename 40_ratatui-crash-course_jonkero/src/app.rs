@@ -1,9 +1,9 @@
 use ratatui::{
     DefaultTerminal, Frame,
     crossterm::event::{Event, KeyCode, KeyEvent, KeyEventKind, read},
-    layout::{Constraint, Direction, Layout},
+    layout::{Alignment, Constraint, Direction, Layout},
     style::{Color, Style, Stylize},
-    widgets::{Block, BorderType, List, ListItem, ListState, Padding, Paragraph, Widget},
+    widgets::{Block, BorderType, List, ListItem, ListState, Paragraph},
 };
 
 use crate::todo::Todo;
@@ -110,13 +110,14 @@ impl App {
     fn render(&mut self, frame: &mut Frame) {
         let [border_area] = Layout::vertical([Constraint::Fill(1)])
             .margin(1)
+            .horizontal_margin(50)
             .areas(frame.area());
 
         let [inner_area] = Layout::vertical([Constraint::Fill(1)])
             .margin(1)
             .areas(border_area);
 
-        let [_header_area, body_area, footer_area] = Layout::default()
+        let [header_area, body_area, footer_area] = Layout::default()
             .direction(Direction::Vertical)
             .constraints([
                 Constraint::Length(3),
@@ -125,10 +126,16 @@ impl App {
             ])
             .areas(inner_area);
 
-        Block::bordered()
-            .border_type(BorderType::Rounded)
-            .fg(Color::Yellow)
-            .render(border_area, frame.buffer_mut());
+        frame.render_widget(
+            Paragraph::new("My Todos")
+                .alignment(Alignment::Center)
+                .block(
+                    Block::bordered()
+                        .border_type(BorderType::Rounded)
+                        .fg(Color::Yellow),
+                ),
+            header_area,
+        );
 
         frame.render_stateful_widget(
             List::new(
@@ -136,20 +143,23 @@ impl App {
                     .iter()
                     .map(|todo| ListItem::from(todo.desc.clone())),
             )
-            .highlight_style(Style::default().fg(Color::Green)),
+            .highlight_style(Style::default().fg(Color::Green))
+            .block(
+                Block::bordered()
+                    .border_type(BorderType::Rounded)
+                    .fg(Color::Yellow),
+            ),
             body_area,
             &mut self.list,
         );
 
-        if self.is_input {
-            frame.render_widget(
-                Paragraph::new(self.input_value.as_str()).block(
-                    Block::bordered()
-                        .fg(Color::Green)
-                        .border_type(BorderType::Rounded),
-                ),
-                footer_area,
-            );
-        }
+        frame.render_widget(
+            Paragraph::new(self.input_value.as_str()).block(
+                Block::bordered()
+                    .fg(Color::Green)
+                    .border_type(BorderType::Rounded),
+            ),
+            footer_area,
+        );
     }
 }
