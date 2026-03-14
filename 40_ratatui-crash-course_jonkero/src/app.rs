@@ -160,7 +160,7 @@ impl App {
             .direction(Direction::Vertical)
             .constraints([Constraint::Min(5)])
             .horizontal_margin(50)
-            .vertical_margin(3)
+            .vertical_margin(1)
             .split(frame.area())[0];
 
         let [header_area, content_area, footer_area] = Layout::default()
@@ -253,12 +253,13 @@ impl App {
 
         let [inner_area] = Layout::vertical([Constraint::Fill(1)]).areas(border_area);
 
-        let [header_area, body_area, footer_area] = Layout::default()
+        let [header_area, body_area, input_area, footer_area] = Layout::default()
             .direction(Direction::Vertical)
             .constraints([
                 Constraint::Length(3),
                 Constraint::Min(0),
                 Constraint::Length(3),
+                Constraint::Length(1),
             ])
             .areas(inner_area);
 
@@ -298,13 +299,20 @@ impl App {
                     .border_type(BorderType::Rounded)
                     .padding(Padding::horizontal(1)),
             ),
+            input_area,
+        );
+
+        frame.render_widget(
+            Paragraph::new("Press K for keymaps")
+                .alignment(Alignment::Center)
+                .style(Style::default().fg(Color::DarkGray)),
             footer_area,
         );
 
         if self.is_input {
             frame.set_cursor_position((
-                footer_area.x + self.input_value.len() as u16 + 2,
-                footer_area.y + 1,
+                input_area.x + self.input_value.len() as u16 + 2,
+                input_area.y + 1,
             ));
         }
     }
