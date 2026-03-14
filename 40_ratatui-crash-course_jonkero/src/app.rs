@@ -140,14 +140,15 @@ impl App {
         );
 
         if self.is_input {
-            Paragraph::new(self.input_value.as_str())
-                .block(
+            frame.render_widget(
+                Paragraph::new(self.input_value.as_str()).block(
                     Block::bordered()
                         .fg(Color::Green)
                         .padding(Padding::uniform(1))
                         .border_type(BorderType::Rounded),
-                )
-                .render(footer_area, frame.buffer_mut());
+                ),
+                footer_area,
+            );
         }
     }
 }
