@@ -7,7 +7,7 @@ pub const COLORS: [Color; 5] = [
     Color::Green,
     Color::Yellow,
     Color::Blue,
-    Color::Black,
+    Color::Gray,
 ];
 
 pub fn next_random_color_index(excluded_index: Option<usize>) -> usize {
