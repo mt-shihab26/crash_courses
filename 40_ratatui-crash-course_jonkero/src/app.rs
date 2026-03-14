@@ -159,48 +159,101 @@ impl App {
             self.render_todo(frame);
         }
     }
+
     fn render_keymaps(&mut self, frame: &mut Frame) {
-        let key_items = vec![
-            "q: Quit",
-            "k: Move Up",
-            "j: Move Down",
-            "A: Add Todo",
-            "E: Edit Todo",
-            "D: Delete Todo",
-            "U: Undo Delete",
-            "K: Toggle Keymap",
-            "Esc: Exit Input / Exit Keymap",
-            "Enter: Confirm Input",
-            "Backspace: Delete Input Char",
-        ];
-
-        let list_items: Vec<ListItem> = key_items.iter().map(|s| ListItem::new(*s)).collect();
-
-        let modal_block = Block::bordered()
-            .title("Keymap")
-            .border_type(BorderType::Rounded)
-            .fg(Color::Cyan)
-            .padding(Padding::horizontal(1));
-
         let modal_area = Layout::default()
             .direction(Direction::Vertical)
             .constraints([Constraint::Min(5)])
-            .horizontal_margin(50)
-            .vertical_margin(5)
+            .horizontal_margin(40)
+            .vertical_margin(3)
             .split(frame.area())[0];
 
+        let [header_area, content_area, footer_area] = Layout::default()
+            .direction(Direction::Vertical)
+            .constraints([
+                Constraint::Length(3),
+                Constraint::Min(0),
+                Constraint::Length(1),
+            ])
+            .areas(modal_area);
+
+        // Header
         frame.render_widget(
-            List::new(list_items)
-                .block(modal_block)
-                .highlight_style(Style::default().fg(Color::Yellow)),
-            modal_area,
+            Paragraph::new("Keyboard Shortcuts")
+                .alignment(Alignment::Center)
+                .block(
+                    Block::bordered()
+                        .border_type(BorderType::Rounded)
+                        .fg(Color::Cyan)
+                        .bold(),
+                ),
+            header_area,
+        );
+
+        // Content - split into two columns
+        let [normal_mode_area, input_mode_area] = Layout::default()
+            .direction(Direction::Horizontal)
+            .constraints([Constraint::Percentage(50), Constraint::Percentage(50)])
+            .areas(content_area);
+
+        // Normal Mode keymaps
+        let normal_mode_items = vec![
+            ListItem::new("q       - Quit").style(Style::default().fg(Color::White)),
+            ListItem::new("k       - Move Up").style(Style::default().fg(Color::White)),
+            ListItem::new("j       - Move Down").style(Style::default().fg(Color::White)),
+            ListItem::new("A       - Add Todo").style(Style::default().fg(Color::Green)),
+            ListItem::new("E       - Edit Todo").style(Style::default().fg(Color::Yellow)),
+            ListItem::new("D       - Delete Todo").style(Style::default().fg(Color::Red)),
+            ListItem::new("U       - Undo Delete").style(Style::default().fg(Color::Magenta)),
+            ListItem::new("K       - Toggle Keymap").style(Style::default().fg(Color::Cyan)),
+            ListItem::new("Esc     - Exit Keymap").style(Style::default().fg(Color::Gray)),
+        ];
+
+        frame.render_widget(
+            List::new(normal_mode_items).block(
+                Block::bordered()
+                    .title("Normal Mode")
+                    .title_style(Style::default().fg(Color::Green).bold())
+                    .border_type(BorderType::Rounded)
+                    .fg(Color::Green)
+                    .padding(Padding::horizontal(1)),
+            ),
+            normal_mode_area,
+        );
+
+        // Input Mode keymaps
+        let input_mode_items = vec![
+            ListItem::new("Esc     - Exit Input").style(Style::default().fg(Color::Gray)),
+            ListItem::new("Enter   - Confirm").style(Style::default().fg(Color::Green)),
+            ListItem::new("Bksp    - Delete Char").style(Style::default().fg(Color::Red)),
+            ListItem::new("Char    - Type").style(Style::default().fg(Color::White)),
+        ];
+
+        frame.render_widget(
+            List::new(input_mode_items).block(
+                Block::bordered()
+                    .title("Input Mode")
+                    .title_style(Style::default().fg(Color::Yellow).bold())
+                    .border_type(BorderType::Rounded)
+                    .fg(Color::Yellow)
+                    .padding(Padding::horizontal(1)),
+            ),
+            input_mode_area,
+        );
+
+        // Footer hint
+        frame.render_widget(
+            Paragraph::new("Press Esc to close")
+                .alignment(Alignment::Center)
+                .style(Style::default().fg(Color::DarkGray)),
+            footer_area,
         );
     }
 
     fn render_todo(&mut self, frame: &mut Frame) {
         let [border_area] = Layout::vertical([Constraint::Fill(1)])
             .vertical_margin(1)
-            .horizontal_margin(50)
+            .horizontal_margin(40)
             .areas(frame.area());
 
         let [inner_area] = Layout::vertical([Constraint::Fill(1)]).areas(border_area);
@@ -254,8 +307,6 @@ impl App {
         );
 
         if self.is_input {
-            execute!(stdout(), SetCursorStyle::SteadyBar).ok();
-
             frame.set_cursor_position((
                 footer_area.x + self.input_value.len() as u16 + 2,
                 footer_area.y + 1,
