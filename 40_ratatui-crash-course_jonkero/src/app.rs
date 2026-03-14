@@ -181,7 +181,11 @@ impl App {
         );
 
         frame.set_cursor_position((
-            footer_area.x + self.input_value.len() as u16 + 1,
+            if self.input_value.len() == 0 {
+                footer_area.x + 2
+            } else {
+                footer_area.x + self.input_value.len() as u16 + 1
+            },
             footer_area.y + 1,
         ));
     }
