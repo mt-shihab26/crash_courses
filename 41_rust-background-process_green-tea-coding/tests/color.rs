@@ -1,28 +1,39 @@
 #[cfg(test)]
+mod next_random_color_index {
+    use background_process::color::next_random_color_index;
+
+    #[test]
+    fn normal_case() {
+        let index = 2;
+        assert_ne!(next_random_color_index(Some(index)), index)
+    }
+}
+
+#[cfg(test)]
 mod color_at {
     use background_process::color::{COLORS, color_at};
     use rand::random_range;
 
     #[test]
-    fn color_at_normal_case() {
+    fn normal_case() {
         let index = COLORS.len() / 2;
         assert_eq!(color_at(index), COLORS[index]);
     }
 
     #[test]
-    fn color_at_zero_case() {
+    fn zero_case() {
         let index = 0;
         assert_eq!(color_at(index), COLORS[index]);
     }
 
     #[test]
-    fn color_at_out_of_bound_at_len() {
+    fn out_of_bound_at_len() {
         let index = COLORS.len();
         assert_eq!(color_at(index), COLORS[index % COLORS.len()]);
     }
 
     #[test]
-    fn color_at_out_of_bound_after_len() {
+    fn out_of_bound_after_len() {
         let index = COLORS.len() + 1;
         assert_eq!(color_at(index), COLORS[index % COLORS.len()]);
     }
