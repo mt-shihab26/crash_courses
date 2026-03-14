@@ -9,14 +9,19 @@ use ratatui::{
     text::Line,
     widgets::{Block, Gauge, Widget},
 };
-use std::{io::Result, os::unix::thread, sync::mpsc::Sender, thread::sleep, time::Duration};
+use std::{
+    io::Result,
+    sync::mpsc::{Receiver, Sender},
+    thread::sleep,
+    time::Duration,
+};
 
-enum ProcessEvent {
+pub enum ProcessEvent {
     Input(KeyEvent),
     Percentage(u8),
 }
 
-fn handle_input_events(tx: Sender<ProcessEvent>) -> Result<()> {
+pub fn handle_input_events(tx: Sender<ProcessEvent>) -> Result<()> {
     loop {
         match read()? {
             Event::Key(event) => tx.send(ProcessEvent::Input(event)).unwrap(),
@@ -25,7 +30,7 @@ fn handle_input_events(tx: Sender<ProcessEvent>) -> Result<()> {
     }
 }
 
-fn run_background_thread(tx: Sender<ProcessEvent>) -> Result<()> {
+pub fn run_background_thread(tx: Sender<ProcessEvent>) -> Result<()> {
     let mut percentage = 0;
     let increment = 0;
 
@@ -51,20 +56,28 @@ impl App {
         }
     }
 
-    pub fn run(&mut self, terminal: &mut DefaultTerminal) -> Result<()> {
+    pub fn run(
+        &mut self,
+        terminal: &mut DefaultTerminal,
+        rx: Receiver<ProcessEvent>,
+    ) -> Result<()> {
         while !self.exit {
             terminal.draw(|frame| self.draw(frame))?;
-            self.handle_events()?;
+            self.handle_events(&rx)?;
         }
         Ok(())
     }
 
-    fn handle_events(&mut self) -> Result<()> {
-        match read()? {
-            Event::Key(event) if event.kind == KeyEventKind::Press => {
-                self.handle_key_press_event(event)?
+    fn handle_events(&mut self, rx: &Receiver<ProcessEvent>) -> Result<()> {
+        match rx.recv().unwrap() {
+            ProcessEvent::Input(event) => {
+                if event.kind == KeyEventKind::Press {
+                    self.handle_key_press_event(event)?
+                }
             }
-            _ => {}
+            ProcessEvent::Percentage(percentage) => {
+                self.progress_percentage = percentage;
+            }
         }
         Ok(())
     }
