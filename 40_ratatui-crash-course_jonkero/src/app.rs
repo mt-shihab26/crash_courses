@@ -1,13 +1,17 @@
 use ratatui::{
     DefaultTerminal, Frame,
-    crossterm::event::{Event, KeyCode, KeyEvent, KeyEventKind, read},
+    crossterm::{
+        cursor::SetCursorStyle,
+        event::{Event, KeyCode, KeyEvent, KeyEventKind, read},
+        execute,
+    },
     layout::{Alignment, Constraint, Direction, Layout},
     style::{Color, Style, Stylize},
     widgets::{Block, BorderType, List, ListItem, ListState, Padding, Paragraph},
 };
 
 use crate::todo::Todo;
-use std::io::Result;
+use std::io::{Result, stdout};
 
 pub struct App {
     alive: bool,
@@ -181,12 +185,10 @@ impl App {
         );
 
         if self.is_input {
+            execute!(stdout(), SetCursorStyle::SteadyBar).ok();
+
             frame.set_cursor_position((
-                if self.input_value.len() == 0 {
-                    footer_area.x + 2
-                } else {
-                    footer_area.x + self.input_value.len() as u16 + 1
-                },
+                footer_area.x + self.input_value.len() as u16 + 2,
                 footer_area.y + 1,
             ));
         }
