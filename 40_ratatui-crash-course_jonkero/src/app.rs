@@ -109,6 +109,8 @@ impl App {
                             Some(index) => self.todos.insert(index, removed_todo.clone()),
                             None => self.todos.push(removed_todo.clone()),
                         };
+                        self.removed_todo = None;
+                        self.removed_index = None;
                     }
                 }
                 'A' => self.is_input = true,
