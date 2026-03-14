@@ -99,11 +99,8 @@ impl App {
                 'j' => self.list.select_next(),
                 'D' => {
                     if let Some(index) = self.list.selected() {
-                        if let Some(removed_todo) = self.todos.get(index) {
-                            self.removed_todo = Some(removed_todo.clone());
-                            self.removed_index = Some(index);
-                            self.todos.remove(index);
-                        }
+                        self.removed_todo = Some(self.todos.remove(index));
+                        self.removed_index = Some(index);
                     }
                 }
                 'U' => {
