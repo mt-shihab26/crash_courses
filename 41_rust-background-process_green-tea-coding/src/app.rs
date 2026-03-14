@@ -1,3 +1,4 @@
+use crate::color::{color_at, next_random_color_index};
 use ratatui::{
     DefaultTerminal, Frame,
     crossterm::event::{Event, KeyCode, KeyEvent, KeyEventKind, KeyModifiers, read},
@@ -8,10 +9,21 @@ use ratatui::{
     text::Line,
     widgets::{Block, Gauge, Widget},
 };
+use std::{io::Result, sync::mpsc::Sender};
 
-use std::io::Result;
+enum ProcessEvent {
+    Input(KeyEvent),
+    Percentage(u8),
+}
 
-use crate::color::{color_at, next_random_color_index};
+fn handle_input_events(tx: Sender<ProcessEvent>) -> Result<()> {
+    loop {
+        match read()? {
+            Event::Key(event) => tx.send(ProcessEvent::Input(event)).unwrap(),
+            _ => {}
+        }
+    }
+}
 
 pub struct App {
     exit: bool,
