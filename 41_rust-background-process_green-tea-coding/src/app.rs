@@ -18,7 +18,7 @@ use std::{
 
 pub enum ProcessEvent {
     Input(KeyEvent),
-    Percentage(u8),
+    Percentage(u16),
 }
 
 pub fn handle_input_events(tx: Sender<ProcessEvent>) -> Result<()> {
@@ -35,7 +35,7 @@ pub fn run_background_thread(tx: Sender<ProcessEvent>) -> Result<()> {
     let increment = 0;
 
     loop {
-        sleep(Duration::from_secs(100));
+        sleep(Duration::from_millis(100));
         percentage += increment;
         tx.send(ProcessEvent::Percentage(percentage % 100)).unwrap()
     }
@@ -44,7 +44,7 @@ pub fn run_background_thread(tx: Sender<ProcessEvent>) -> Result<()> {
 pub struct App {
     exit: bool,
     progress_bar_color_index: usize,
-    progress_percentage: u8,
+    progress_percentage: u16,
 }
 
 impl App {
@@ -140,8 +140,8 @@ impl Widget for &App {
                     .fg(color_at(self.progress_bar_color_index))
                     .bg(Color::Black),
             )
-            .label("Process 1: 50%")
-            .percent(80)
+            .label(format!("Process 1: {}%", self.progress_percentage))
+            .percent(self.progress_percentage)
             .render(
                 Rect::new(gauge_area.left(), gauge_area.top(), gauge_area.width, 3),
                 buf,
