@@ -3,7 +3,7 @@ use ratatui::{
     crossterm::event::{Event, KeyCode, KeyEvent, KeyEventKind, KeyModifiers, read},
     layout::{Alignment, Constraint, Layout},
     prelude::{Buffer, Rect},
-    style::{Color, Style, Stylize},
+    style::{Color, Style, Styled, Stylize},
     symbols::border,
     text::Line,
     widgets::{Block, Gauge, Widget},
@@ -19,7 +19,7 @@ impl App {
     pub fn new() -> Self {
         Self {
             exit: false,
-            progress_bar_color: Color::Gray,
+            progress_bar_color: Color::Green,
         }
     }
 
@@ -88,7 +88,7 @@ impl Widget for &App {
                     .border_set(border::THICK),
             )
             .gauge_style(Style::default().fg(self.progress_bar_color))
-            .label(format!("Process 1: 50%"))
+            .label("Process 1: 50%")
             .percent(80)
             .render(
                 Rect::new(gauge_area.left(), gauge_area.top(), gauge_area.width, 3),
