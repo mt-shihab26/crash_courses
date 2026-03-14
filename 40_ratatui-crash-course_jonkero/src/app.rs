@@ -21,6 +21,7 @@ pub struct App {
     input_value: String,
     removed_todo: Option<Todo>,
     removed_index: Option<usize>,
+    editing_index: Option<usize>,
 }
 
 impl App {
@@ -33,6 +34,7 @@ impl App {
             input_value: "".to_string(),
             removed_todo: None,
             removed_index: None,
+            editing_index: None,
         };
 
         app.list.select_first();
@@ -101,6 +103,13 @@ impl App {
                 'q' => self.alive = false,
                 'k' => self.list.select_previous(),
                 'j' => self.list.select_next(),
+                'E' => {
+                    if let Some(index) = self.list.selected() {
+                        self.editing_index = Some(index);
+                        self.is_input = true;
+                        self.input_value = self.todos[index].desc.clone()
+                    }
+                }
                 'D' => {
                     if let Some(index) = self.list.selected() {
                         self.removed_todo = Some(self.todos.remove(index));
