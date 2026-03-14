@@ -19,7 +19,7 @@ impl App {
     pub fn new() -> Self {
         Self {
             exit: false,
-            progress_bar_color: Color::Yellow,
+            progress_bar_color: Color::Gray,
         }
     }
 
@@ -65,7 +65,7 @@ impl Widget for &App {
         Self: Sized,
     {
         let [title_area, gauge_area] =
-            Layout::vertical([Constraint::Percentage(10), Constraint::Fill(1)])
+            Layout::vertical([Constraint::Percentage(5), Constraint::Fill(1)])
                 .margin(5)
                 .areas(area);
 
@@ -89,7 +89,7 @@ impl Widget for &App {
             )
             .gauge_style(Style::default().fg(self.progress_bar_color))
             .label(format!("Process 1: 50%"))
-            .ratio(0.5)
+            .ratio(0.8)
             .render(
                 Rect::new(gauge_area.left(), gauge_area.top(), gauge_area.width, 3),
                 buf,
