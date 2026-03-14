@@ -3,7 +3,7 @@ use ratatui::{
     crossterm::event::{Event, KeyCode, KeyEvent, KeyEventKind, read},
     layout::{Constraint, Layout},
     style::{Color, Style, Stylize},
-    widgets::{Block, BorderType, List, ListItem, ListState, Paragraph, Widget},
+    widgets::{Block, BorderType, List, ListItem, ListState, Padding, Paragraph, Widget},
 };
 
 use crate::todo::Todo;
@@ -14,6 +14,7 @@ pub struct App {
     todos: Vec<Todo>,
     list: ListState,
     is_input: bool,
+    input_value: String,
 }
 
 impl App {
@@ -23,6 +24,7 @@ impl App {
             todos: Todo::fakes(),
             list: ListState::default(),
             is_input: false,
+            input_value: "".to_string(),
         };
 
         app.list.select_first();
@@ -50,14 +52,32 @@ impl App {
 
     fn handle_key_event(&mut self, event: KeyEvent) -> Result<()> {
         match event.kind {
-            KeyEventKind::Press => return self.handle_press_events(event),
+            KeyEventKind::Press => {
+                if self.is_input {
+                    return self.handle_is_input_press_events(event);
+                }
+                return self.handle_normal_press_events(event);
+            }
             _ => (),
         }
 
         Ok(())
     }
 
-    fn handle_press_events(&mut self, event: KeyEvent) -> Result<()> {
+    fn handle_is_input_press_events(&mut self, event: KeyEvent) -> Result<()> {
+        match event.code {
+            KeyCode::Esc => self.is_input = false,
+            KeyCode::Enter => self.is_input = false,
+            KeyCode::Char(c) => {
+                self.input_value.push(c);
+            }
+            _ => (),
+        }
+
+        Ok(())
+    }
+
+    fn handle_normal_press_events(&mut self, event: KeyEvent) -> Result<()> {
         match event.code {
             KeyCode::Esc => self.alive = false,
             KeyCode::Char(c) => match c {
@@ -69,10 +89,10 @@ impl App {
                         self.todos.remove(index);
                     }
                 }
-                'A' => self.is_input = !self.is_input,
-                _ => {}
+                'A' => self.is_input = true,
+                _ => (),
             },
-            _ => {}
+            _ => (),
         }
 
         Ok(())
@@ -102,7 +122,14 @@ impl App {
         frame.render_stateful_widget(list, inner_area, &mut self.list);
 
         if self.is_input {
-            Paragraph::new("Hello World").render(frame.area(), frame.buffer_mut());
+            Paragraph::new(self.input_value.as_str())
+                .block(
+                    Block::bordered()
+                        .fg(Color::Green)
+                        .padding(Padding::uniform(1))
+                        .border_type(BorderType::Rounded),
+                )
+                .render(frame.area(), frame.buffer_mut());
         }
     }
 }
