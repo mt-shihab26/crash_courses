@@ -22,6 +22,7 @@ pub struct App {
     removed_todo: Option<Todo>,
     removed_index: Option<usize>,
     editing_index: Option<usize>,
+    show_keymaps: bool,
 }
 
 impl App {
@@ -35,6 +36,7 @@ impl App {
             removed_todo: None,
             removed_index: None,
             editing_index: None,
+            show_keymaps: false,
         };
 
         app.list.select_first();
@@ -106,11 +108,18 @@ impl App {
 
     fn handle_normal_press_events(&mut self, event: KeyEvent) -> Result<()> {
         match event.code {
-            KeyCode::Esc => self.alive = false,
+            KeyCode::Esc => {
+                if self.show_keymaps {
+                    self.show_keymaps = false
+                } else {
+                    self.alive = false
+                }
+            }
             KeyCode::Char(c) => match c {
                 'q' => self.alive = false,
                 'k' => self.list.select_previous(),
                 'j' => self.list.select_next(),
+                'K' => self.show_keymaps = !self.show_keymaps,
                 'E' => {
                     if let Some(index) = self.list.selected() {
                         self.editing_index = Some(index);
@@ -144,14 +153,57 @@ impl App {
     }
 
     fn render(&mut self, frame: &mut Frame) {
+        if self.show_keymaps {
+            self.render_keymaps(frame);
+        } else {
+            self.render_todo(frame);
+        }
+    }
+    fn render_keymaps(&mut self, frame: &mut Frame) {
+        let key_items = vec![
+            "q: Quit",
+            "k: Move Up",
+            "j: Move Down",
+            "A: Add Todo",
+            "E: Edit Todo",
+            "D: Delete Todo",
+            "U: Undo Delete",
+            "K: Toggle Keymap",
+            "Esc: Exit Input / Exit Keymap",
+            "Enter: Confirm Input",
+            "Backspace: Delete Input Char",
+        ];
+
+        let list_items: Vec<ListItem> = key_items.iter().map(|s| ListItem::new(*s)).collect();
+
+        let modal_block = Block::bordered()
+            .title("Keymap")
+            .border_type(BorderType::Rounded)
+            .fg(Color::Cyan)
+            .padding(Padding::horizontal(1));
+
+        let modal_area = Layout::default()
+            .direction(Direction::Vertical)
+            .constraints([Constraint::Min(5)])
+            .horizontal_margin(50)
+            .vertical_margin(5)
+            .split(frame.area())[0];
+
+        frame.render_widget(
+            List::new(list_items)
+                .block(modal_block)
+                .highlight_style(Style::default().fg(Color::Yellow)),
+            modal_area,
+        );
+    }
+
+    fn render_todo(&mut self, frame: &mut Frame) {
         let [border_area] = Layout::vertical([Constraint::Fill(1)])
-            .margin(1)
+            .vertical_margin(1)
             .horizontal_margin(50)
             .areas(frame.area());
 
-        let [inner_area] = Layout::vertical([Constraint::Fill(1)])
-            .margin(1)
-            .areas(border_area);
+        let [inner_area] = Layout::vertical([Constraint::Fill(1)]).areas(border_area);
 
         let [header_area, body_area, footer_area] = Layout::default()
             .direction(Direction::Vertical)
