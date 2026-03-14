@@ -179,5 +179,10 @@ impl App {
             ),
             footer_area,
         );
+
+        frame.set_cursor_position((
+            footer_area.x + self.input_value.len() as u16 + 1,
+            footer_area.y + 1,
+        ));
     }
 }
