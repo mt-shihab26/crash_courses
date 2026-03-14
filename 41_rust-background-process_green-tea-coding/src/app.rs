@@ -32,7 +32,7 @@ pub fn handle_input_events(tx: Sender<ProcessEvent>) -> Result<()> {
 
 pub fn run_background_thread(tx: Sender<ProcessEvent>) -> Result<()> {
     let mut percentage = 0;
-    let increment = 0;
+    let increment = 1;
 
     loop {
         sleep(Duration::from_millis(100));
