@@ -8,12 +8,22 @@ use ratatui::{
     text::Line,
     widgets::{Block, Gauge, Widget},
 };
+
+use rand::random_range;
 use std::io::Result;
 
 pub struct App {
     exit: bool,
     progress_bar_color: Color,
 }
+
+const COLORS: [Color; 5] = [
+    Color::Red,
+    Color::Green,
+    Color::Yellow,
+    Color::Blue,
+    Color::Black,
+];
 
 impl App {
     pub fn new() -> Self {
@@ -43,14 +53,29 @@ impl App {
 
     fn handle_key_press_event(&mut self, event: KeyEvent) -> Result<()> {
         match event.code {
+            KeyCode::Char('q') => self.exit = true,
             KeyCode::Char('c') if event.modifiers.contains(KeyModifiers::CONTROL) => {
                 self.exit = true
             }
-            KeyCode::Char('q') => {
-                self.exit = true;
-            }
+            KeyCode::Char('c') => self.handle_key_press_c_event()?,
             _ => {}
         }
+        Ok(())
+    }
+
+    fn handle_key_press_c_event(&mut self) -> Result<()> {
+        let index = random_range(0..COLORS.len());
+        let color = COLORS[index];
+        self.progress_bar_color = if self.progress_bar_color == color {
+            if index == COLORS.len() - 1 {
+                COLORS[0]
+            } else {
+                COLORS[index + 1]
+            }
+        } else {
+            color
+        };
+
         Ok(())
     }
 
