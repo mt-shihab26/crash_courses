@@ -29,9 +29,5 @@ pub fn next_random_color_index(excluded_index: Option<usize>) -> usize {
 }
 
 pub fn color_at(index: usize) -> Color {
-    if COLORS.len() <= index {
-        return COLORS[0];
-    }
-
-    COLORS[index]
+    COLORS[index % COLORS.len()]
 }
