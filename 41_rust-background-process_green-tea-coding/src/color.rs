@@ -1,7 +1,8 @@
 use rand::random_range;
 use ratatui::style::Color;
 
-const COLORS: [Color; 5] = [
+#[doc(hidden)]
+pub const COLORS: [Color; 5] = [
     Color::Red,
     Color::Green,
     Color::Yellow,

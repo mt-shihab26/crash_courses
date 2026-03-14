@@ -1,6 +1,7 @@
 #[cfg(test)]
 mod tests {
-    use background_process::color::color_at;
+    use background_process::color::{COLORS, color_at};
+    use rand::random_range;
 
     #[test]
     fn color_at_normal_case() {
@@ -17,18 +18,18 @@ mod tests {
     #[test]
     fn color_at_out_of_bound_at_len() {
         let index = COLORS.len();
-        assert_eq!(color_at(index), COLORS[index]);
+        assert_ne!(color_at(index), COLORS[index]);
     }
 
     #[test]
     fn color_at_out_of_bound_after_len() {
         let index = COLORS.len() + 1;
-        assert_eq!(color_at(index), COLORS[index]);
+        assert_ne!(color_at(index), COLORS[index]);
     }
 
     #[test]
     fn color_at_out_of_bound_after_len_random() {
         let index = random_range(COLORS.len() + 2..100);
-        assert_eq!(color_at(index), COLORS[index]);
+        assert_ne!(color_at(index), COLORS[index]);
     }
 }
