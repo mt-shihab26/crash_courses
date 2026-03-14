@@ -79,12 +79,15 @@ impl Widget for &App {
             .block(
                 Block::bordered()
                     .title(Line::from(" Background Processes "))
-                    .title_bottom(Line::from(vec![
-                        " Change color ".into(),
-                        " <C> ".blue().bold(),
-                        " Quit ".into(),
-                        " <Q> ".blue().bold(),
-                    ]))
+                    .title_bottom(
+                        Line::from(vec![
+                            " Change color ".into(),
+                            " <C> ".blue().bold(),
+                            " Quit ".into(),
+                            " <Q> ".blue().bold(),
+                        ])
+                        .alignment(Alignment::Center),
+                    )
                     .border_set(border::THICK),
             )
             .gauge_style(
