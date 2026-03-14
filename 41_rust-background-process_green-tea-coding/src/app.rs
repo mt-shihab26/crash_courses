@@ -9,27 +9,20 @@ use ratatui::{
     widgets::{Block, Gauge, Widget},
 };
 
-use rand::random_range;
 use std::io::Result;
+
+use crate::color::{get_color, get_random_color_index_with_exclude_index};
 
 pub struct App {
     exit: bool,
-    progress_bar_color: Color,
+    progress_bar_color_index: usize,
 }
-
-const COLORS: [Color; 5] = [
-    Color::Red,
-    Color::Green,
-    Color::Yellow,
-    Color::Blue,
-    Color::Black,
-];
 
 impl App {
     pub fn new() -> Self {
         Self {
             exit: false,
-            progress_bar_color: Color::Green,
+            progress_bar_color_index: get_random_color_index_with_exclude_index(None),
         }
     }
 
@@ -53,29 +46,18 @@ impl App {
 
     fn handle_key_press_event(&mut self, event: KeyEvent) -> Result<()> {
         match event.code {
-            KeyCode::Char('q') => self.exit = true,
-            KeyCode::Char('c') if event.modifiers.contains(KeyModifiers::CONTROL) => {
-                self.exit = true
+            KeyCode::Char('q') => {
+                self.exit = true;
             }
-            KeyCode::Char('c') => self.handle_key_press_c_event()?,
+            KeyCode::Char('c') if event.modifiers.contains(KeyModifiers::CONTROL) => {
+                self.exit = true;
+            }
+            KeyCode::Char('c') => {
+                self.progress_bar_color_index =
+                    get_random_color_index_with_exclude_index(Some(self.progress_bar_color_index));
+            }
             _ => {}
         }
-        Ok(())
-    }
-
-    fn handle_key_press_c_event(&mut self) -> Result<()> {
-        let index = random_range(0..COLORS.len());
-        let color = COLORS[index];
-        self.progress_bar_color = if self.progress_bar_color == color {
-            if index == COLORS.len() - 1 {
-                COLORS[0]
-            } else {
-                COLORS[index + 1]
-            }
-        } else {
-            color
-        };
-
         Ok(())
     }
 
@@ -117,7 +99,7 @@ impl Widget for &App {
             )
             .gauge_style(
                 Style::default()
-                    .fg(self.progress_bar_color)
+                    .fg(get_color(self.progress_bar_color_index))
                     .bg(Color::Black),
             )
             .label("Process 1: 50%")
