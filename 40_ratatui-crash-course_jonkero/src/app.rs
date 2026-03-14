@@ -3,7 +3,7 @@ use ratatui::{
     crossterm::event::{Event, KeyCode, KeyEvent, KeyEventKind, read},
     layout::{Constraint, Layout},
     style::{Color, Style, Stylize},
-    widgets::{Block, BorderType, List, ListItem, ListState, Widget},
+    widgets::{Block, BorderType, List, ListItem, ListState, Paragraph, Widget},
 };
 
 use crate::todo::Todo;
@@ -13,6 +13,7 @@ pub struct App {
     alive: bool,
     todos: Vec<Todo>,
     list: ListState,
+    is_input: bool,
 }
 
 impl App {
@@ -21,6 +22,7 @@ impl App {
             alive: true,
             todos: Todo::fakes(),
             list: ListState::default(),
+            is_input: false,
         };
 
         app.list.select_first();
@@ -29,7 +31,7 @@ impl App {
     }
 
     pub fn run(&mut self, terminal: &mut DefaultTerminal) -> Result<()> {
-        while !self.alive {
+        while self.alive {
             terminal.draw(|frame| self.render(frame))?;
             self.handle_events()?
         }
@@ -67,6 +69,7 @@ impl App {
                         self.todos.remove(index);
                     }
                 }
+                'A' => self.is_input = !self.is_input,
                 _ => {}
             },
             _ => {}
@@ -97,5 +100,9 @@ impl App {
         .highlight_style(Style::default().fg(Color::Green));
 
         frame.render_stateful_widget(list, inner_area, &mut self.list);
+
+        if self.is_input {
+            Paragraph::new("Hello World").render(frame.area(), frame.buffer_mut());
+        }
     }
 }
