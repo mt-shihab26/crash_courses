@@ -66,8 +66,15 @@ impl App {
 
     fn handle_is_input_press_events(&mut self, event: KeyEvent) -> Result<()> {
         match event.code {
-            KeyCode::Esc => self.is_input = false,
-            KeyCode::Enter => self.is_input = false,
+            KeyCode::Esc => {
+                self.is_input = false;
+            }
+            KeyCode::Enter => {
+                self.is_input = false;
+            }
+            KeyCode::Backspace => {
+                self.input_value.pop();
+            }
             KeyCode::Char(c) => {
                 self.input_value.push(c);
             }
