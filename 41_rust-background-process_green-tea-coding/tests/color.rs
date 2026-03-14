@@ -1,5 +1,5 @@
 #[cfg(test)]
-mod tests {
+mod color_at {
     use background_process::color::{COLORS, color_at};
     use rand::random_range;
 
