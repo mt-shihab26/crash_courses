@@ -21,9 +21,7 @@ func main() {
 		AllowCredentials: false,
 		MaxAge:           300,
 	}))
-	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("welcome"))
-	})
+	router.Get("/", home)
 	port := "3000"
 	fmt.Printf("Server is running on http://localhost:%s\n", port)
 	err := http.ListenAndServe(fmt.Sprintf(":%s", port), router)
