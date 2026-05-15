@@ -1,6 +1,8 @@
+import { createRootRoute } from '@tanstack/react-router';
+
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { TanStackDevtools } from '@tanstack/react-devtools';
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router';
+import { HeadContent, Scripts } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 
 import styles from '../styles.css?url';

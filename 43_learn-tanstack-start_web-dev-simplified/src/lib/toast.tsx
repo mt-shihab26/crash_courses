@@ -1,3 +1,5 @@
+import type { CSSProperties } from 'react';
+
 import { toast } from 'sonner';
 
 export const toastInfo = (message: string, data?: object) => {
@@ -13,6 +15,6 @@ export const toastInfo = (message: string, data?: object) => {
         },
         style: {
             '--border-radius': 'calc(var(--radius)  + 4px)',
-        } as React.CSSProperties,
+        } as CSSProperties,
     });
 };

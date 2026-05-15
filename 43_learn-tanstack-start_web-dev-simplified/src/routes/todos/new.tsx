@@ -1,8 +1,10 @@
 import { saveTodo } from '#/actions/todos';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
+
 import { TodoForm } from '#/components/screens/todos/todo-form';
 import { Button } from '#/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '#/components/ui/card';
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
+import { Link } from '@tanstack/react-router';
 import { ArrowLeftIcon } from 'lucide-react';
 
 export const Route = createFileRoute('/todos/new')({
@@ -11,6 +13,7 @@ export const Route = createFileRoute('/todos/new')({
 
 function RouteComponent() {
     const navigate = useNavigate();
+
     return (
         <div className="space-y-2">
             <Button asChild variant="ghost" size="sm" className="text-muted-foreground">
