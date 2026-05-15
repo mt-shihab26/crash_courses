@@ -4,6 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '#/com
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { ArrowLeftIcon } from 'lucide-react';
 
+// const addTodo = createServerFn().handler((value: TTodoFormSchema) => {});
+
 export const Route = createFileRoute('/todos/new')({
     component: RouteComponent,
 });
@@ -23,7 +25,7 @@ function RouteComponent() {
                     <CardDescription>Create a new task to add to your todo list</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <TodoForm />
+                    <TodoForm onSubmit={() => {}} />
                 </CardContent>
             </Card>
         </div>
