@@ -1,6 +1,7 @@
-import type { TTodo } from '#/db/schema';
-
+import { db } from '#/db';
 import { cn } from '#/lib/utils';
+import { createFileRoute } from '@tanstack/react-router';
+import { createServerFn } from '@tanstack/react-start';
 
 import { Badge } from '#/components/ui/badge';
 import { Button } from '#/components/ui/button';
@@ -9,7 +10,18 @@ import { Label } from '#/components/ui/label';
 import { Link } from '@tanstack/react-router';
 import { PlugIcon, Trash2 } from 'lucide-react';
 
-export const TodosList = ({ todos }: { todos: TTodo[] }) => {
+const fetchTodos = createServerFn({ method: 'GET' }).handler(() => {
+    return db.query.todos.findMany();
+});
+
+export const Route = createFileRoute('/todos/')({
+    component: RouteComponent,
+    loader: () => fetchTodos(),
+});
+
+function RouteComponent() {
+    const todos = Route.useLoaderData();
+
     const totalCount = todos.length;
     const completedCount = todos.filter((t) => t.completedAt).length;
 
@@ -74,4 +86,4 @@ export const TodosList = ({ todos }: { todos: TTodo[] }) => {
             </p>
         </div>
     );
-};
+}
