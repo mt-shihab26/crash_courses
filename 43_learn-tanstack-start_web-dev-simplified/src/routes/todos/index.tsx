@@ -26,7 +26,7 @@ function RouteComponent() {
     const completedCount = todos.filter((t) => t.completedAt).length;
 
     return (
-        <div className="mx-auto max-w-lg px-4">
+        <div className="mx-auto max-w-lg flex flex-col gap-4 px-4">
             <div className="flex justify-between">
                 <div>
                     <h1 className="mb-8 text-3xl font-bold tracking-tight">Todos</h1>
@@ -80,10 +80,6 @@ function RouteComponent() {
                     ))}
                 </ul>
             )}
-
-            <p className="mt-4 text-right text-xs text-muted-foreground">
-                {todos.length} item{todos.length !== 1 ? 's' : ''}
-            </p>
         </div>
     );
 }
