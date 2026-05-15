@@ -1,4 +1,6 @@
+import { TodoForm } from '#/components/screens/todos/todo-form';
 import { Button } from '#/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '#/components/ui/card';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { ArrowLeftIcon } from 'lucide-react';
 
@@ -15,6 +17,15 @@ function RouteComponent() {
                     Todo List
                 </Link>
             </Button>
+            <Card>
+                <CardHeader>
+                    <CardTitle>Add New Todo</CardTitle>
+                    <CardDescription>Create a new task to add to your todo list</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <TodoForm />
+                </CardContent>
+            </Card>
         </div>
     );
 }
