@@ -20,12 +20,13 @@ export const TodoForm = ({ onSubmit }: { onSubmit: (value: TTodoFormSchema) => P
             // onSubmit: todoFormSchema,
             // onChange: todoFormSchema,
         },
-        onSubmit: async ({ value, formApi }) => {
+        onSubmit: async ({ value }) => {
             try {
                 toastInfo('You submitted the following values:', value);
                 await onSubmit(value);
             } catch (errors: any) {
-                if (errors instanceof TServerErrors) {
+                const serverErrors = errors as TServerErrors;
+                if (serverErrors) {
                 }
             }
         },
