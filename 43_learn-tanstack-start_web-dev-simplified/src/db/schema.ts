@@ -8,3 +8,5 @@ export const todos = sqliteTable('todos', {
     createdAt: integer({ mode: 'timestamp' }).default(sql`(unixepoch())`),
     updatedAt: integer({ mode: 'timestamp' }).default(sql`(unixepoch())`),
 });
+
+export type TTodo = typeof todos.$inferSelect;
