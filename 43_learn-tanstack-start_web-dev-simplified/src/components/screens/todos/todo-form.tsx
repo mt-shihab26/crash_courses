@@ -10,18 +10,18 @@ import { Input } from '@/components/ui/input';
 
 type TTodoFormSchema = z.infer<typeof todoFormSchema>;
 
-export const TodoForm = ({ onSubmit }: { onSubmit: (value: TTodoFormSchema) => void }) => {
+export const TodoForm = ({ onSubmit }: { onSubmit: (value: TTodoFormSchema) => Promise<void> }) => {
     const form = useForm({
         defaultValues: {
             title: '',
         },
         validators: {
-            onSubmit: todoFormSchema,
-            onChange: todoFormSchema,
+            // onSubmit: todoFormSchema,
+            // onChange: todoFormSchema,
         },
-        onSubmit: ({ value }) => {
+        onSubmit: async ({ value }) => {
             toastInfo('You submitted the following values:', value);
-            onSubmit(value);
+            await onSubmit(value);
         },
     });
 
