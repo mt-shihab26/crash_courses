@@ -31,13 +31,12 @@ function RouteComponent() {
                                 await saveTodo({ data });
                                 navigate({ to: '/todos' });
                             } catch (e: any) {
-                                const parsed = JSON.parse(e?.message ?? '[]') as Array<{
-                                    path: string[];
-                                    message: string;
-                                }>;
-                                const fieldErrors = Object.fromEntries(
-                                    parsed.map(({ path, message }) => [path[0], message]),
-                                );
+                                const fieldErrors = (
+                                    JSON.parse(e?.message ?? '[]') as Array<{
+                                        path: string[];
+                                        message: string;
+                                    }>
+                                ).map(({ path, message }) => ({ path: path[0], message }));
                                 throw Object.assign(new Error('Server validation failed'), {
                                     fieldErrors,
                                 });
