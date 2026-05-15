@@ -16,9 +16,5 @@ export const Route = createFileRoute('/')({
 function RouteComponent() {
     const todos = Route.useLoaderData();
 
-    return (
-        <div className="min-h-screen bg-background py-10">
-            <TodosList todos={todos} />
-        </div>
-    );
+    return <TodosList todos={todos} />;
 }

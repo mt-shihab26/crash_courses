@@ -2,12 +2,12 @@ import type { TTodo } from '#/db/schema';
 
 import { cn } from '#/lib/utils';
 
-import { TodoForm } from '#/components/screens/todos/todo-form';
 import { Badge } from '#/components/ui/badge';
 import { Button } from '#/components/ui/button';
 import { Checkbox } from '#/components/ui/checkbox';
 import { Label } from '#/components/ui/label';
-import { Trash2 } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
+import { PlugIcon, Trash2 } from 'lucide-react';
 
 export const TodosList = ({ todos }: { todos: TTodo[] }) => {
     const totalCount = todos.length;
@@ -16,17 +16,24 @@ export const TodosList = ({ todos }: { todos: TTodo[] }) => {
     return (
         <div className="mx-auto max-w-lg px-4">
             <div className="flex justify-between">
-                <h1 className="mb-8 text-3xl font-bold tracking-tight">Todos</h1>
-                {totalCount > 0 && (
-                    <div>
-                        <Badge variant="outline">
-                            {completedCount} of {totalCount} completed
-                        </Badge>
-                    </div>
-                )}
+                <div>
+                    <h1 className="mb-8 text-3xl font-bold tracking-tight">Todos</h1>
+                    {totalCount > 0 && (
+                        <div>
+                            <Badge variant="outline">
+                                {completedCount} of {totalCount} completed
+                            </Badge>
+                        </div>
+                    )}
+                </div>
+                <div>
+                    <Link to="/todos/new">
+                        <Button>
+                            <PlugIcon className="size-5" /> Add
+                        </Button>
+                    </Link>
+                </div>
             </div>
-
-            <TodoForm />
 
             {todos.length === 0 ? (
                 <p className="py-12 text-center text-sm text-muted-foreground">

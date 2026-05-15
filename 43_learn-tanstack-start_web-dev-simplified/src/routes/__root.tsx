@@ -32,7 +32,7 @@ export const Route = createRootRoute({
                     <HeadContent />
                 </head>
                 <body>
-                    {children}
+                    <div className="min-h-screen bg-background py-10">{children}</div>
                     <TanStackDevtools
                         config={{
                             position: 'bottom-right',
