@@ -1,3 +1,4 @@
+import { TooltipProvider } from '@/components/ui/tooltip';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
@@ -32,9 +33,13 @@ export const Route = createRootRoute({
                     <HeadContent />
                 </head>
                 <body>
-                    <div className="min-h-screen bg-background py-10">
-                        <div className="mx-auto max-w-3xl flex flex-col gap-4 px-4">{children}</div>
-                    </div>
+                    <TooltipProvider>
+                        <div className="min-h-screen bg-background py-10">
+                            <div className="mx-auto max-w-3xl flex flex-col gap-4 px-4">
+                                {children}
+                            </div>
+                        </div>
+                    </TooltipProvider>
                     <TanStackDevtools
                         config={{
                             position: 'bottom-right',
