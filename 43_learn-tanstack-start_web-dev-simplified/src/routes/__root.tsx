@@ -49,4 +49,7 @@ export const Route = createRootRoute({
             </html>
         );
     },
+    notFoundComponent: () => {
+        return <div>404 | Page not found</div>;
+    },
 });

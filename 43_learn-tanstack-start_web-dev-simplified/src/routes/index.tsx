@@ -1,14 +1,24 @@
+import { db } from '#/db';
 import { createFileRoute } from '@tanstack/react-router';
+import { createServerFn } from '@tanstack/react-start';
 
-export const Route = createFileRoute('/')({ component: Home });
+const fetchTodos = createServerFn({ method: 'GET' }).handler(() => {
+    return db.query.todos.findMany();
+});
 
-function Home() {
+export const Route = createFileRoute('/')({
+    component: RouteComponent,
+    loader: () => fetchTodos(),
+});
+
+function RouteComponent() {
+    const todos = Route.useLoaderData();
+
     return (
-        <div className="p-8">
-            <h1 className="text-4xl font-bold">Welcome to TanStack Start</h1>
-            <p className="mt-4 text-lg">
-                Edit <code>src/routes/index.tsx</code> to get started.
-            </p>
+        <div>
+            {todos.map((todo) => (
+                <div key={todo.id}>{todo.title}</div>
+            ))}
         </div>
     );
 }
