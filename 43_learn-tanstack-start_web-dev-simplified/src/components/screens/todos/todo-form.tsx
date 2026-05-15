@@ -9,7 +9,6 @@ import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field
 import { Input } from '@/components/ui/input';
 
 type TTodoFormSchema = z.infer<typeof todoFormSchema>;
-type TServerErrors = { [K in keyof TTodoFormSchema]?: string };
 
 export const TodoForm = ({ onSubmit }: { onSubmit: (value: TTodoFormSchema) => Promise<void> }) => {
     const form = useForm({
@@ -17,18 +16,12 @@ export const TodoForm = ({ onSubmit }: { onSubmit: (value: TTodoFormSchema) => P
             title: '',
         },
         validators: {
-            // onSubmit: todoFormSchema,
-            // onChange: todoFormSchema,
+            onSubmit: todoFormSchema,
+            onChange: todoFormSchema,
         },
         onSubmit: async ({ value }) => {
-            try {
-                toastInfo('You submitted the following values:', value);
-                await onSubmit(value);
-            } catch (errors: any) {
-                const serverErrors = errors as TServerErrors;
-                if (serverErrors) {
-                }
-            }
+            toastInfo('You submitted the following values:', value);
+            await onSubmit(value);
         },
     });
 
@@ -45,9 +38,7 @@ export const TodoForm = ({ onSubmit }: { onSubmit: (value: TTodoFormSchema) => P
                 <form.Field
                     name="title"
                     children={(field) => {
-                        const isInvalid =
-                            (field.state.meta.isTouched || !!field.state.meta.errorMap?.onSubmit) &&
-                            !field.state.meta.isValid;
+                        const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid;
                         return (
                             <Field data-invalid={isInvalid}>
                                 <FieldLabel htmlFor={field.name}>Todo</FieldLabel>
