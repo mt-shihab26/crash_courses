@@ -56,6 +56,7 @@ export const TodoForm = ({ onSubmit }: { onSubmit: (value: TTodoFormSchema) => v
                                     aria-invalid={isInvalid}
                                     placeholder="Learn laravel"
                                     autoComplete="off"
+                                    autoFocus
                                 />
                                 {isInvalid && <FieldError errors={field.state.meta.errors} />}
                             </Field>
