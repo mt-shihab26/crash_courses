@@ -1,19 +1,14 @@
+import { todoFormSchema } from '#/actions/todos';
 import { toastInfo } from '#/lib/toast';
 import { useForm } from '@tanstack/react-form';
 import { z } from 'zod';
 
+import { Spinner } from '#/components/ui/spinner';
 import { Button } from '@/components/ui/button';
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 
-const todoFormSchema = z.object({
-    title: z
-        .string()
-        .min(5, 'todo title must be at least 5 characters.')
-        .max(255, 'todo title must be at most 255 characters.'),
-});
-
-export type TTodoFormSchema = z.infer<typeof todoFormSchema>;
+type TTodoFormSchema = z.infer<typeof todoFormSchema>;
 
 export const TodoForm = ({ onSubmit }: { onSubmit: (value: TTodoFormSchema) => void }) => {
     const form = useForm({
@@ -68,9 +63,19 @@ export const TodoForm = ({ onSubmit }: { onSubmit: (value: TTodoFormSchema) => v
                 <Button type="button" variant="outline" onClick={() => form.reset()}>
                     Reset
                 </Button>
-                <Button type="submit" form="bug-report-form">
-                    Submit
-                </Button>
+                <form.Subscribe
+                    selector={(state) => ({
+                        loading: state.isSubmitting,
+                        disabled: !state.canSubmit || state.isSubmitting,
+                    })}
+                >
+                    {(data) => (
+                        <Button type="submit" form="todo-form" disabled={data.disabled}>
+                            {data.loading && <Spinner />}
+                            Submit
+                        </Button>
+                    )}
+                </form.Subscribe>
             </Field>
         </form>
     );

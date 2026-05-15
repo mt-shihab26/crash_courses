@@ -1,7 +1,6 @@
-import { db } from '#/db';
+import { fetchTodos } from '#/actions/todos';
 import { cn } from '#/lib/utils';
 import { createFileRoute } from '@tanstack/react-router';
-import { createServerFn } from '@tanstack/react-start';
 
 import { Badge } from '#/components/ui/badge';
 import { Button } from '#/components/ui/button';
@@ -9,10 +8,6 @@ import { Checkbox } from '#/components/ui/checkbox';
 import { Label } from '#/components/ui/label';
 import { Link } from '@tanstack/react-router';
 import { PlugIcon, Trash2 } from 'lucide-react';
-
-const fetchTodos = createServerFn({ method: 'GET' }).handler(() => {
-    return db.query.todos.findMany();
-});
 
 export const Route = createFileRoute('/todos/')({
     component: RouteComponent,

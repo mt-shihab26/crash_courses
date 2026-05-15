@@ -1,0 +1,21 @@
+import { db } from '#/db';
+import { todos } from '#/db/schema';
+import { createServerFn } from '@tanstack/react-start';
+import { z } from 'zod';
+
+export const fetchTodos = createServerFn({ method: 'GET' }).handler(() => {
+    return db.query.todos.findMany();
+});
+
+export const todoFormSchema = z.object({
+    title: z
+        .string()
+        .min(5, 'todo title must be at least 5 characters.')
+        .max(255, 'todo title must be at most 255 characters.'),
+});
+
+export const saveTodo = createServerFn({ method: 'POST' })
+    .inputValidator(todoFormSchema)
+    .handler(({ data }) => {
+        return db.insert(todos).values(data);
+    });
