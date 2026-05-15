@@ -19,9 +19,18 @@ export const TodoForm = ({ onSubmit }: { onSubmit: (value: TTodoFormSchema) => P
             // onSubmit: todoFormSchema,
             // onChange: todoFormSchema,
         },
-        onSubmit: async ({ value }) => {
-            toastInfo('You submitted the following values:', value);
-            await onSubmit(value);
+        onSubmit: async ({ value, formApi }) => {
+            try {
+                toastInfo('You submitted the following values:', value);
+                await onSubmit(value);
+            } catch (e: any) {
+                for (const [field, message] of Object.entries<string>(e?.fieldErrors ?? {})) {
+                    formApi.setFieldMeta(field as keyof TTodoFormSchema, (meta) => ({
+                        ...meta,
+                        errorMap: { ...meta.errorMap, onServer: message },
+                    }));
+                }
+            }
         },
     });
 

@@ -27,8 +27,21 @@ function RouteComponent() {
                 <CardContent>
                     <TodoForm
                         onSubmit={async (data) => {
-                            await saveTodo({ data });
-                            navigate({ to: '/todos' });
+                            try {
+                                await saveTodo({ data });
+                                navigate({ to: '/todos' });
+                            } catch (e: any) {
+                                const parsed = JSON.parse(e?.message ?? '[]') as Array<{
+                                    path: string[];
+                                    message: string;
+                                }>;
+                                const fieldErrors = Object.fromEntries(
+                                    parsed.map(({ path, message }) => [path[0], message]),
+                                );
+                                throw Object.assign(new Error('Server validation failed'), {
+                                    fieldErrors,
+                                });
+                            }
                         }}
                     />
                 </CardContent>
