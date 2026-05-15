@@ -15,12 +15,14 @@ export const TodosList = ({ todos }: { todos: TTodo[] }) => {
 
     return (
         <div className="mx-auto max-w-lg px-4">
-            <div>
+            <div className="flex justify-between">
                 <h1 className="mb-8 text-3xl font-bold tracking-tight">Todos</h1>
                 {totalCount > 0 && (
-                    <Badge variant="outline">
-                        {completedCount} of {totalCount} completed
-                    </Badge>
+                    <div>
+                        <Badge variant="outline">
+                            {completedCount} of {totalCount} completed
+                        </Badge>
+                    </div>
                 )}
             </div>
 
