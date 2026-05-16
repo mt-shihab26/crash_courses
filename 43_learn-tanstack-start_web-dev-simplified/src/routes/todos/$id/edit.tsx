@@ -33,8 +33,8 @@ function RouteComponent() {
             </Button>
             <Card>
                 <CardHeader>
-                    <CardTitle>Add New Todo</CardTitle>
-                    <CardDescription>Create a new task to add to your todo list</CardDescription>
+                    <CardTitle>Edit Todo</CardTitle>
+                    <CardDescription>Edit a existing task to add to your todo list</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <TodoForm
