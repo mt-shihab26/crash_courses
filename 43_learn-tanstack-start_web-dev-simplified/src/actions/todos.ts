@@ -44,7 +44,7 @@ export const toggleComplete = createServerFn({ method: 'POST' })
     });
 
 export const updateTodo = createServerFn({ method: 'POST' })
-    .inputValidator(todoFormSchema && z.object({ id: z.number() }))
+    .inputValidator(todoFormSchema.extend({ id: z.number() }))
     .handler(async ({ data }) => {
         return db.update(todos).set({ title: data.title }).where(eq(todos.id, data.id));
     });
