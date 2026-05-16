@@ -6,7 +6,7 @@ export const todos = sqliteTable('todos', {
     title: text().notNull(),
     completedAt: integer({ mode: 'timestamp' }),
     createdAt: integer({ mode: 'timestamp' }).default(sql`(unixepoch())`),
-    updatedAt: integer({ mode: 'timestamp' }).default(sql`(unixepoch())`),
+    updatedAt: integer({ mode: 'timestamp' }).default(sql`(unixepoch())`).notNull().$onUpdate(() => new Date()),
 });
 
 export type TTodo = typeof todos.$inferSelect;

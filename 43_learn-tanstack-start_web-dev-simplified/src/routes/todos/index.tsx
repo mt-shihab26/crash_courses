@@ -2,10 +2,10 @@ import { fetchTodos } from '#/actions/todos';
 import { cn } from '#/lib/utils';
 import { createFileRoute } from '@tanstack/react-router';
 
+import { CheckmarkButton } from '#/components/screens/todos/checkmark-button';
 import { DeleteButton } from '#/components/screens/todos/delete-button';
 import { Badge } from '#/components/ui/badge';
 import { Button } from '#/components/ui/button';
-import { Checkbox } from '#/components/ui/checkbox';
 import { Label } from '#/components/ui/label';
 import { Link } from '@tanstack/react-router';
 import { PlugIcon } from 'lucide-react';
@@ -54,11 +54,10 @@ function RouteComponent() {
                             key={todo.id}
                             className="flex items-center gap-3 rounded-lg border bg-card px-4 py-3 shadow-sm"
                         >
-                            <Checkbox id={`todo-${todo.id}`} checked={todo.completedAt != null} />
+                            <CheckmarkButton todo={todo} />
                             <Label
-                                htmlFor={`todo-${todo.id}`}
                                 className={cn(
-                                    'flex-1 cursor-pointer',
+                                    'flex-1 select-auto',
                                     todo.completedAt != null &&
                                         'text-muted-foreground line-through',
                                 )}
