@@ -4,16 +4,23 @@ import { useForm } from '@tanstack/react-form';
 import { z } from 'zod';
 
 import { Spinner } from '#/components/ui/spinner';
+import type { TTodo } from '#/db/schema';
 import { Button } from '@/components/ui/button';
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 
 type TTodoFormSchema = z.infer<typeof todoFormSchema>;
 
-export const TodoForm = ({ onSubmit }: { onSubmit: (value: TTodoFormSchema) => Promise<void> }) => {
+export const TodoForm = ({
+    todo,
+    onSubmit,
+}: {
+    todo?: TTodo;
+    onSubmit: (value: TTodoFormSchema) => Promise<void>;
+}) => {
     const form = useForm({
         defaultValues: {
-            title: '',
+            title: todo?.title || '',
         },
         validators: {
             onSubmit: todoFormSchema,

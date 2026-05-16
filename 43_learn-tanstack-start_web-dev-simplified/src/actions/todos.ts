@@ -27,12 +27,24 @@ export const deleteTodo = createServerFn({ method: 'POST' })
         return db.delete(todos).where(eq(todos.id, todoId));
     });
 
+export const getTodo = createServerFn({ method: 'POST' })
+    .inputValidator(z.number())
+    .handler(async ({ data: todoId }) => {
+        return await db.query.todos.findFirst({ where: eq(todos.id, todoId) });
+    });
+
 export const toggleComplete = createServerFn({ method: 'POST' })
     .inputValidator(z.number())
     .handler(async ({ data: todoId }) => {
-        const todo = await db.query.todos.findFirst({ where: eq(todos.id, todoId) });
+        const todo = await getTodo({ data: todoId });
         return db
             .update(todos)
             .set({ completedAt: todo?.completedAt ? null : new Date() })
             .where(eq(todos.id, todoId));
+    });
+
+export const updateTodo = createServerFn({ method: 'POST' })
+    .inputValidator(todoFormSchema && z.object({ id: z.number() }))
+    .handler(async ({ data }) => {
+        return db.update(todos).set({ title: data.title }).where(eq(todos.id, data.id));
     });

@@ -8,7 +8,7 @@ import { Badge } from '#/components/ui/badge';
 import { Button } from '#/components/ui/button';
 import { Label } from '#/components/ui/label';
 import { Link } from '@tanstack/react-router';
-import { PlugIcon } from 'lucide-react';
+import { PencilIcon, PlugIcon } from 'lucide-react';
 
 export const Route = createFileRoute('/todos/')({
     component: RouteComponent,
@@ -64,6 +64,16 @@ function RouteComponent() {
                             >
                                 {todo.title}
                             </Label>
+                            <Button
+                                asChild
+                                variant="ghost"
+                                size="icon"
+                                className="text-muted-foreground hover:text-foreground"
+                            >
+                                <Link to="/todos/$id/edit" params={{ id: `${todo.id}` }}>
+                                    <PencilIcon className="h-4 w-4" />
+                                </Link>
+                            </Button>
                             <DeleteButton todo={todo} />
                         </li>
                     ))}
