@@ -1,7 +1,7 @@
 import { db } from '#/db';
 import { todos } from '#/db/schema';
 import { createServerFn } from '@tanstack/react-start';
-import { eq, sql } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { z } from 'zod';
 
 export const fetchTodos = createServerFn({ method: 'GET' }).handler(() => {
@@ -29,9 +29,10 @@ export const deleteTodo = createServerFn({ method: 'POST' })
 
 export const toggleComplete = createServerFn({ method: 'POST' })
     .inputValidator(z.number())
-    .handler(({ data: todoId }) => {
+    .handler(async ({ data: todoId }) => {
+        const todo = await db.query.todos.findFirst({ where: eq(todos.id, todoId) });
         return db
             .update(todos)
-            .set({ completedAt: sql`NOW()` })
+            .set({ completedAt: todo?.completedAt ? null : new Date() })
             .where(eq(todos.id, todoId));
     });
