@@ -2,12 +2,13 @@ import { fetchTodos } from '#/actions/todos';
 import { cn } from '#/lib/utils';
 import { createFileRoute } from '@tanstack/react-router';
 
+import { DeleteButton } from '#/components/screens/todos/delete-button';
 import { Badge } from '#/components/ui/badge';
 import { Button } from '#/components/ui/button';
 import { Checkbox } from '#/components/ui/checkbox';
 import { Label } from '#/components/ui/label';
 import { Link } from '@tanstack/react-router';
-import { PlugIcon, Trash2 } from 'lucide-react';
+import { PlugIcon } from 'lucide-react';
 
 export const Route = createFileRoute('/todos/')({
     component: RouteComponent,
@@ -64,13 +65,7 @@ function RouteComponent() {
                             >
                                 {todo.title}
                             </Label>
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="text-muted-foreground hover:text-destructive"
-                            >
-                                <Trash2 className="h-4 w-4" />
-                            </Button>
+                            <DeleteButton todo={todo} />
                         </li>
                     ))}
                 </ul>

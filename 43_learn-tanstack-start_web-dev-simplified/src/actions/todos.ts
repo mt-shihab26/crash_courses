@@ -1,6 +1,7 @@
 import { db } from '#/db';
 import { todos } from '#/db/schema';
 import { createServerFn } from '@tanstack/react-start';
+import { eq } from 'drizzle-orm';
 import { z } from 'zod';
 
 export const fetchTodos = createServerFn({ method: 'GET' }).handler(() => {
@@ -18,4 +19,10 @@ export const saveTodo = createServerFn({ method: 'POST' })
     .inputValidator(todoFormSchema)
     .handler(({ data }) => {
         return db.insert(todos).values(data);
+    });
+
+export const deleteTodo = createServerFn({ method: 'POST' })
+    .inputValidator(z.number())
+    .handler(({ data: todoId }) => {
+        return db.delete(todos).where(eq(todos.id, todoId));
     });
