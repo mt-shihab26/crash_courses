@@ -70,7 +70,7 @@ function RouteComponent() {
                                 size="icon"
                                 className="text-muted-foreground hover:text-foreground"
                             >
-                                <Link to="/todos/$id/edit" params={{ id: `${todo.id}` }}>
+                                <Link to="/todos/$id/edit" params={{ id: todo.id }}>
                                     <PencilIcon className="h-4 w-4" />
                                 </Link>
                             </Button>

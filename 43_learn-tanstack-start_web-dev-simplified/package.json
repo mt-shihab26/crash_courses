@@ -15,7 +15,8 @@
         "db:pull": "drizzle-kit pull",
         "db:studio": "drizzle-kit studio",
         "format": "prettier --write .",
-        "shadcn": "shadcn"
+        "shadcn": "shadcn",
+        "lint": "tsc"
     },
     "dependencies": {
         "@base-ui/react": "^1.4.1",
