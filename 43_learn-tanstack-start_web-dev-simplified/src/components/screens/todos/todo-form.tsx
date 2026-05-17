@@ -1,10 +1,11 @@
+import type { TTodo } from '#/db/schema';
+
 import { todoFormSchema } from '#/actions/todos';
 import { toastInfo } from '#/lib/toast';
 import { useForm } from '@tanstack/react-form';
 import { z } from 'zod';
 
 import { Spinner } from '#/components/ui/spinner';
-import type { TTodo } from '#/db/schema';
 import { Button } from '@/components/ui/button';
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
@@ -67,9 +68,6 @@ export const TodoForm = ({
                 />
             </FieldGroup>
             <Field orientation="horizontal" className="justify-between">
-                <Button type="button" variant="outline" onClick={() => form.reset()}>
-                    Reset
-                </Button>
                 <form.Subscribe
                     selector={(state) => ({
                         loading: state.isSubmitting,
