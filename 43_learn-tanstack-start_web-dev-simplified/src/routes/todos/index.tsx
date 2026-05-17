@@ -3,6 +3,7 @@ import { cn } from '#/lib/utils';
 import { createFileRoute } from '@tanstack/react-router';
 
 import { CheckmarkButton } from '#/components/screens/todos/checkmark-button';
+import { Counter } from '#/components/screens/todos/counter';
 import { DeleteButton } from '#/components/screens/todos/delete-button';
 import { Badge } from '#/components/ui/badge';
 import { Button } from '#/components/ui/button';
@@ -23,7 +24,7 @@ function RouteComponent() {
 
     return (
         <>
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center">
                 <div>
                     <h1 className="mb-8 text-3xl font-bold tracking-tight">Todos</h1>
                     {totalCount > 0 && (
@@ -34,7 +35,8 @@ function RouteComponent() {
                         </div>
                     )}
                 </div>
-                <div>
+                <div className="flex items-center gap-4">
+                    <Counter />
                     <Link to="/todos/new">
                         <Button>
                             <PlugIcon className="size-5" /> Add

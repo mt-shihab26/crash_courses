@@ -36,6 +36,7 @@ export const getTodo = createServerFn({ method: 'POST' })
 export const toggleComplete = createServerFn({ method: 'POST' })
     .inputValidator(z.number())
     .handler(async ({ data: todoId }) => {
+        await new Promise((res) => setTimeout(res, 1000));
         const todo = await getTodo({ data: todoId });
         return db
             .update(todos)
