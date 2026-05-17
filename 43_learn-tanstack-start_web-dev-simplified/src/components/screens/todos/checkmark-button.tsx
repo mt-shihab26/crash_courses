@@ -1,24 +1,25 @@
 import type { TTodo } from '#/db/schema';
 
 import { toggleComplete } from '#/actions/todos';
-import { useNavigate } from '@tanstack/react-router';
+import { useRouter } from '@tanstack/react-router';
 import { useState } from 'react';
 
 import { Checkbox } from '#/components/ui/checkbox';
 
 export const CheckmarkButton = ({ todo }: { todo: TTodo }) => {
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const [loading, setLoading] = useState(false);
 
     return (
         <Checkbox
-            checked={loading || todo.completedAt != null}
+            disabled={loading}
+            checked={todo.completedAt != null}
             onClick={async () => {
                 try {
                     setLoading(true);
                     await toggleComplete({ data: todo.id });
-                    navigate({ to: '/todos' });
+                    router.invalidate();
                 } finally {
                     setLoading(false);
                 }
