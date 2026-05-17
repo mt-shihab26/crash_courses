@@ -1,7 +1,7 @@
 import type { TTodo } from '#/db/schema';
 
 import { deleteTodo } from '#/actions/todos';
-import { useNavigate } from '@tanstack/react-router';
+import { useRouter } from '@tanstack/react-router';
 import { useState } from 'react';
 
 import { Button } from '#/components/ui/button';
@@ -9,7 +9,7 @@ import { Spinner } from '#/components/ui/spinner';
 import { Trash2 } from 'lucide-react';
 
 export const DeleteButton = ({ todo }: { todo: TTodo }) => {
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -22,7 +22,7 @@ export const DeleteButton = ({ todo }: { todo: TTodo }) => {
                 setLoading(true);
                 try {
                     await deleteTodo({ data: todo.id });
-                    navigate({ to: '/todos' });
+                    router.invalidate();
                 } finally {
                     setLoading(false);
                 }
