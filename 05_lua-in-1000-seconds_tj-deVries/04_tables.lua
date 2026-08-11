@@ -4,7 +4,7 @@ local list = {
     2,
     false,
     function()
-        print("Fourth!")
+        print "Fourth!"
     end,
 }
 print("Yep, 1-indexed:", list[1])

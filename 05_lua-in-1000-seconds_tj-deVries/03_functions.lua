@@ -2,14 +2,14 @@ local function hello(name)
     print("Hello", name)
 end
 
-hello("Shihab")
+hello "Shihab"
 
 local great = function(name)
     -- .. for string concatenation
     print("Gretting, " .. name .. "!")
 end
 
-great("Shetu")
+great "Shetu"
 
 local higher_order = function(value)
     return function(another)
@@ -34,14 +34,14 @@ print(first, second, last) -- fourth is discarded
 
 local variable_arguments = function(...)
     local arguments = { ... }
-    for i, v in ipairs({ ... }) do
+    for i, v in ipairs { ... } do
         print(i, v)
     end
     ---@diagnostic disable-next-line: deprecated
     return unpack(arguments)
 end
 
-print("===================")
+print "==================="
 print("1:", variable_arguments("hello", "world", "!"))
-print("===================")
+print "==================="
 print("2:", variable_arguments("hello", "world", "!"), "<lost>")
