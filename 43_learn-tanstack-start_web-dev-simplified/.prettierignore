@@ -1,5 +1,0 @@
-dist
-node_modules
-bun.lock
-drizzle
-src/routeTree.gen.ts
